@@ -1,0 +1,9 @@
+{
+  "verbose": true,
+  "watch": ["dist"],
+  "ignore": ["dist/public"],
+  "env": {
+    "NODE_ENV": "development"
+  },
+  "ext": "js json"
+}

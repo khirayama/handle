@@ -1,0 +1,74 @@
+$ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+
+$timing-fast: 100ms $ease-out-expo;
+$timing-basic: 200ms $ease-out-expo;
+$timing-slow: 400ms $ease-out-expo;
+$transition-time: 600ms;
+
+$font-family: 'Noto Sans Japanese', sans-serif;
+$font-weight-normal: 200;
+$font-weight-bold: 400;
+$font-base-size: 16px;
+
+$radius: 2px;
+$border: solid 1px $color-divider;
+
+html {
+  color: $color-text;
+  text-align: justify;
+  font-weight: $font-weight-normal;
+  font-size: $font-base-size;
+  font-family: $font-family;
+}
+
+html,
+body {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+.application {
+  width: 100%;
+  height: 100%;
+
+  &-content {
+    width: 100%;
+    height: 100%;
+    background: $color-background;
+  }
+}
+
+.page-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: scroll;
+  width: 100%;
+  height: 100%;
+}
+
+.page {
+  width: 100%;
+  height: 100%;
+}
+
+.icon {
+  display: inline-block;
+  overflow: hidden;
+  width: 1em;
+  vertical-align: text-bottom;
+  font-style: normal;
+  font-size: inherit;
+  font-family: 'Material Icons';
+  text-rendering: optimizeLegibility;
+  font-feature-settings: 'liga';
+}
+
+.size__inline {
+  width: auto;
+}
+
+.size__spread {
+  width: 100%;
+}

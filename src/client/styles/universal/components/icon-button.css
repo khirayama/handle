@@ -1,0 +1,29 @@
+.icon-button {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: $radius;
+  background-color: inherit;
+  color: $color-text-secondary;
+  vertical-align: text-bottom;
+  text-align: center;
+  font-weight: $font-weight-bold;
+  font-style: normal;
+  font-size: inherit;
+  font-family: 'Material Icons';
+  cursor: pointer;
+  transition: $timing-basic;
+  transition-property: color, background;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: 'liga';
+
+  &:hover,
+  &:focus {
+    background-color: $color-ui-focus;
+    color: $color-text;
+  }
+
+  &:active {
+    background-color: $color-ui-active;
+    color: $color-text;
+  }
+}

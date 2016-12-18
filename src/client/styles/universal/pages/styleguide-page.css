@@ -1,0 +1,47 @@
+.styleguide-page {
+  .page-content {
+    margin: 64px auto;
+    max-width: 100%;
+    width: 620px;
+
+    h2 {
+      margin: 48px 0 0;
+      border-bottom: $border;
+    }
+
+    h3 {
+      margin: 12px 0 8px;
+    }
+
+    h4 {
+      margin: 8px 0 4px;
+    }
+
+    ul {
+      margin-top: 20px;
+
+      li {
+        margin-bottom: 16px;
+
+        &::before {
+          content: '- ';
+        }
+      }
+    }
+
+    hr {
+      margin: 64px 0;
+      border: 0;
+      border-bottom: $border;
+    }
+  }
+
+  .texts-example {
+    h2,
+    h3,
+    h4 {
+      margin: 0;
+      border: 0;
+    }
+  }
+}

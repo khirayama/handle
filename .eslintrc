@@ -1,0 +1,17 @@
+{
+  "extends": [
+    "xo-space/esnext",
+    "xo-react/space"
+  ],
+  "env": {
+    "node": true,
+    "browser": true,
+  },
+  "rules": {
+    "comma-dangle": [
+      "error",
+    "always-multiline"
+    ],
+    "react/forbid-component-props": 0
+  }
+}

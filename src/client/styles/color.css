@@ -1,0 +1,17 @@
+$color-white: #fff;
+
+$color-primary-dark: #00bcd4;
+$color-primary: #80deea;
+$color-primary-light: #b2ebf2;
+
+$color-accent: $color-white;
+
+$color-text: #424242;
+$color-text-primary: #212121;
+$color-text-secondary: #9e9e9e;
+
+$color-divider: #e0e0e0;
+$color-background: $color-white;
+
+$color-ui-focus: #efefef;
+$color-ui-active: #ddd;

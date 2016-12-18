@@ -1,0 +1,12 @@
+{
+  "name": "Handle",
+  "short_name": "Handle",
+  "icons": [{
+    "src": "/public/icon.png",
+    "sizes": "144x144",
+    "type": "image/png"
+  }],
+  "start_url": "/timeline",
+  "display": "standalone",
+  "theme_color": "#000"
+}
