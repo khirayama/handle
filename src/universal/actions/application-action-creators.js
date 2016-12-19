@@ -1,8 +1,10 @@
 import {dispatch} from 'universal/libs/micro-dispatcher';
+
 import types from 'universal/constants/action-types';
+
 import {getUI} from 'universal/helpers';
 
-import router from 'universal/router';
+import {dispatchAction} from 'universal/router';
 
 export function updateTitle(title) {
   dispatch({
@@ -12,7 +14,7 @@ export function updateTitle(title) {
 }
 
 export function startApplication(pathname, useragent, locale, isAuthenticated) {
-  router.dispatchAction(pathname).then(() => {
+  dispatchAction(pathname).then(() => {
     dispatch({
       type: types.START_APP,
       ui: getUI(useragent),
@@ -24,7 +26,7 @@ export function startApplication(pathname, useragent, locale, isAuthenticated) {
 }
 
 export function changeLocation(pathname) {
-  router.dispatchAction(pathname).then(() => {
+  dispatchAction(pathname).then(() => {
     dispatch({
       type: types.CHANGE_LOCATION,
       pathname,

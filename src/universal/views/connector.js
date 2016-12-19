@@ -1,21 +1,23 @@
 import React, {PropTypes} from 'react';
 import classNames from 'classnames';
 
-import MicroContainer from 'universal/libs/micro-container';
+import Container from 'universal/libs/micro-container';
 
-import router from 'universal/router';
-
-export default class ApplicationContainer extends MicroContainer {
-  _updateHead(meta) {
-    window.document.querySelector('html').lang = meta.locale;
-    window.document.title = meta.title;
+export default class Connector extends Container {
+  _updateMetaInformation(meta) {
+    if (meta.lang) {
+      window.document.querySelector('html').lang = meta.locale;
+    }
+    if (meta.title) {
+      window.document.title = meta.title;
+    }
   }
   render() {
     const state = this.props.store.getState();
-    const pageElement = router.getComponent(state.pathname, {state});
+    const pageElement = this.props.getComponent(state.pathname, {state});
 
     if (typeof window === 'object') {
-      this._updateHead(state.meta);
+      this._updateMetaInformation(state.meta);
     }
 
     return (
@@ -26,11 +28,11 @@ export default class ApplicationContainer extends MicroContainer {
   }
 }
 
-ApplicationContainer.propTypes = {
+Connector.propTypes = {
   store: PropTypes.shape({
     state: PropTypes.shape({
       meta: PropTypes.shape({
-        locale: PropTypes.string.isRequired,
+        lang: PropTypes.string.isRequired,
         title: PropTypes.string.isRequired,
       }),
       ui: PropTypes.string.isRequired,
@@ -38,4 +40,5 @@ ApplicationContainer.propTypes = {
       isAuthenticated: PropTypes.bool.isRequired,
     }),
   }),
+  getComponent: PropTypes.func.isRequired,
 };

@@ -4,14 +4,16 @@ import {renderToString} from 'react-dom/server';
 
 import i18n from 'universal/locales';
 import Store from 'universal/store';
-import ApplicationContainer from 'universal/views/application-container';
+import Connector from 'universal/views/connector';
 import {startApplication} from 'universal/actions/application-action-creators';
 import {unsubscribeAll} from 'universal/libs/micro-dispatcher';
+
+import {getComponent} from 'universal/router';
 
 function layout(content, state) {
   return `
     <!DOCTYPE html>
-    <html lang="${state.meta.locale}">
+    <html lang="${state.meta.lang}">
       <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -40,7 +42,12 @@ export function applicationHandler(req, res) {
 
   const store = new Store();
   store.ready(() => {
-    const content = renderToString(<ApplicationContainer store={store}/>);
+    const content = renderToString(
+      <Connector
+        store={store}
+        getComponent={getComponent}
+        />
+    );
     res.send(layout(content, store.getState()));
   });
 
