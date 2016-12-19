@@ -2,7 +2,7 @@
 
 import axios from 'axios';
 
-export class EntryResource {
+export class Entry {
   constructor(resourceUrl) {
     this._cache = this._load();
     this._resourceUrl = resourceUrl || null;
@@ -64,7 +64,7 @@ export class EntryResource {
   }
 }
 
-export class CollectionResource {
+export class Collection {
   constructor(resourceUrl) {
     this._cache = this._load();
     this._cacheQuery = null;

@@ -1,7 +1,7 @@
 import test from 'ava';
 import sinon from 'sinon';
 
-import {EntryResource, CollectionResource} from './micro-resource';
+import {Entry, Collection} from './micro-resource';
 
 import {
   createError,
