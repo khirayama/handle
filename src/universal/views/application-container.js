@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 import Container from 'universal/libs/micro-container';
 
-export default class Connector extends Container {
+export default class ApplicationContainer extends Container {
   _updateMetaInformation(meta) {
     if (meta.lang) {
       window.document.querySelector('html').lang = meta.locale;
@@ -28,7 +28,7 @@ export default class Connector extends Container {
   }
 }
 
-Connector.propTypes = {
+ApplicationContainer.propTypes = {
   store: PropTypes.shape({
     state: PropTypes.shape({
       meta: PropTypes.shape({

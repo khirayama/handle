@@ -9,7 +9,7 @@ import Store from 'universal/store';
 
 import {changeLocation} from 'universal/actions/application-action-creators';
 
-import Connector from 'universal/views/connector';
+import ApplicationContainer from 'universal/views/application-container';
 
 window.addEventListener('popstate', () => {
   changeLocation(location.pathname, false);
@@ -21,7 +21,7 @@ window.addEventListener('DOMContentLoaded', () => {
   const store = new Store(window.state);
 
   render((
-    <Connector
+    <ApplicationContainer
       store={store}
       getComponent={getComponent}
       />

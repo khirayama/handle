@@ -10,7 +10,7 @@ import Store from 'universal/store';
 
 import {startApplication} from 'universal/actions/application-action-creators';
 
-import Connector from 'universal/views/connector';
+import ApplicationContainer from 'universal/views/application-container';
 
 function layout(content, state) {
   return `
@@ -45,7 +45,7 @@ export function applicationHandler(req, res) {
   const store = new Store();
   store.ready(() => {
     const content = renderToString(
-      <Connector
+      <ApplicationContainer
         store={store}
         getComponent={getComponent}
         />
