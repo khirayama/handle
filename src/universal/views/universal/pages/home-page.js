@@ -1,6 +1,6 @@
 import React from 'react';
 
-import i18n from 'universal/locales';
+import i18n from 'universal/libs/micro-i18n';
 
 export default function HomePage() {
   return (

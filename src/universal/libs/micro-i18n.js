@@ -42,10 +42,10 @@ class I18n {
 export default new I18n({
   locales: ['en', 'ja'],
   defaultLocale: 'en',
-  path: 'universal/locales',
+  path: 'universal/config/locales',
   // for browserify
   requires: [
-    require('universal/locales/en'),
-    require('universal/locales/ja'),
+    require('universal/config/locales/en'),
+    require('universal/config/locales/ja'),
   ],
 });

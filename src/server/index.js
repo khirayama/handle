@@ -6,7 +6,7 @@ import session from 'cookie-session';
 import passport from 'passport';
 import useragent from 'express-useragent';
 
-import i18n from 'universal/locales';
+import i18n from 'universal/libs/micro-i18n';
 
 import {setup as setupPassport} from 'config/passport';
 import router from 'config/routes';

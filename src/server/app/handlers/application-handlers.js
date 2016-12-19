@@ -1,14 +1,16 @@
-// universal
 import React from 'react';
 import {renderToString} from 'react-dom/server';
 
-import i18n from 'universal/locales';
-import Store from 'universal/store';
-import Connector from 'universal/views/connector';
-import {startApplication} from 'universal/actions/application-action-creators';
+import i18n from 'universal/libs/micro-i18n';
 import {unsubscribeAll} from 'universal/libs/micro-dispatcher';
 
-import {getComponent} from 'universal/router';
+import {getComponent} from 'universal/config/routes';
+
+import Store from 'universal/store';
+
+import {startApplication} from 'universal/actions/application-action-creators';
+
+import Connector from 'universal/views/connector';
 
 function layout(content, state) {
   return `

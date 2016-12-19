@@ -1,14 +1,15 @@
 import React from 'react';
 import {render} from 'react-dom';
 
+import i18n from 'universal/libs/micro-i18n';
+
+import {getComponent} from 'universal/config/routes';
+
 import Store from 'universal/store';
 
-import Connector from 'universal/views/connector';
-
-import i18n from 'universal/locales';
 import {changeLocation} from 'universal/actions/application-action-creators';
 
-import {getComponent} from 'universal/router';
+import Connector from 'universal/views/connector';
 
 window.addEventListener('popstate', () => {
   changeLocation(location.pathname, false);
