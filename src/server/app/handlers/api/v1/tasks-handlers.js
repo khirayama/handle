@@ -1,5 +1,29 @@
 export function tasksIndexHandler(req, res) {
-  res.json([]);
+  const now = new Date();
+
+  res.json([{
+    id: 1,
+    content: 'task',
+    completed: false,
+    createdAt: now,
+    updateAt: now,
+    order: 0,
+    label: {
+      id: 0,
+      name: 'TODAY',
+    },
+  }, {
+    id: 2,
+    content: 'task',
+    completed: false,
+    createdAt: now,
+    updateAt: now,
+    order: 0,
+    label: {
+      id: 0,
+      name: 'TODAY',
+    },
+  }]);
 }
 
 export function tasksCreateHandler(req, res) {
