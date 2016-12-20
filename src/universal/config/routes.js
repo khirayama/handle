@@ -3,6 +3,7 @@ import React from 'react';
 import Router from 'universal/libs/micro-flux-router';
 
 import {updateTitle} from 'universal/actions/application-action-creators';
+import {fetchTasks} from 'universal/actions/tasks-action-creators';
 
 import HomePage from 'universal/views/universal/pages/home-page';
 import TopPage from 'universal/views/universal/pages/top-page';
@@ -12,10 +13,14 @@ import NotFoundPage from 'universal/views/universal/pages/not-found-page';
 const router = new Router();
 
 router.register('/', {
-  action: () => {
+  action: (params, {isAuthenticated}) => {
     return new Promise(resolve => {
       updateTitle('Handle');
-      resolve();
+      if (isAuthenticated) {
+        fetchTasks().then(() => {
+          resolve();
+        });
+      }
     });
   },
   component: (params, {state}) => {
@@ -54,8 +59,8 @@ export function getComponent(path, data) {
   return router.getComponent(path, data);
 }
 
-export function dispatchAction(path) {
-  return router.dispatchAction(path);
+export function dispatchAction(path, data) {
+  return router.dispatchAction(path, data);
 }
 
 export default router;

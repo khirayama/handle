@@ -4,7 +4,7 @@ import types from 'universal/constants/action-types';
 
 import {getUI} from 'universal/helpers';
 
-import {dispatchAction} from 'universal/router';
+import {dispatchAction} from 'universal/config/routes';
 
 export function updateTitle(title) {
   dispatch({
@@ -14,7 +14,7 @@ export function updateTitle(title) {
 }
 
 export function startApplication(pathname, useragent, locale, isAuthenticated) {
-  dispatchAction(pathname).then(() => {
+  dispatchAction(pathname, {isAuthenticated}).then(() => {
     dispatch({
       type: types.START_APP,
       ui: getUI(useragent),

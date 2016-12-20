@@ -13,7 +13,7 @@ export function createLabel() {
 }
 
 export function updateLabel() {
-  Label.create().then((res) => {
+  Label.update().then((res) => {
     console.log(res);
   });
 }

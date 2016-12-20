@@ -17,6 +17,7 @@ export class Entry {
   get data() {
     return this._cache;
   }
+  // query
   fetch(data, cache = true) {
     if (cache && this._cache !== null) {
       return new Promise(resolve => {
@@ -33,14 +34,20 @@ export class Entry {
       });
     });
   }
+  // command
   update(entity) {
     return new Promise((resolve, reject) => {
       this._request.put(this._url(), entity).then(res => {
-        this._cache = res.data;
+        this._clear();
         this._save();
         resolve(res.data);
       }).catch(error => reject(error));
     });
+  }
+
+  // for cache
+  _clear() {
+    this._cache = null;
   }
   _save() {
     const key = '__' + this.constructor.name + 'Cache';
@@ -80,6 +87,7 @@ export class Collection {
   get data() {
     return this._cache;
   }
+  // query
   fetch(query, cache = true) {
     if (
       cache &&
@@ -92,35 +100,8 @@ export class Collection {
     }
     return new Promise((resolve, reject) => {
       this._request.get(this._url(), {params: query}).then(res => {
-        this._cache = res.data;
+        this._clear();
         this._cacheQuery = JSON.stringify(query);
-        this._save();
-        resolve(res.data);
-      }).catch(error => reject(error));
-    });
-  }
-  create(entity) {
-    return new Promise((resolve, reject) => {
-      this._request.post(this._url(), entity).then(res => {
-        this._create(res.data);
-        this._save();
-        resolve(res.data);
-      }).catch(error => reject(error));
-    });
-  }
-  update(entity) {
-    return new Promise((resolve, reject) => {
-      this._request.put(this._url(entity.id), entity).then(res => {
-        this._update(res.data);
-        this._save();
-        resolve(res.data);
-      }).catch(error => reject(error));
-    });
-  }
-  delete(id) {
-    return new Promise((resolve, reject) => {
-      this._request.delete(this._url(id)).then(res => {
-        this._delete(res.data);
         this._save();
         resolve(res.data);
       }).catch(error => reject(error));
@@ -144,37 +125,40 @@ export class Collection {
   }
   _find(id, resolve, reject) {
     this._request.get(this._url(id)).then(res => {
-      this._create(res.data);
       this._save();
       resolve(res.data);
     }).catch(error => reject(error));
   }
+  // command
+  create(entity) {
+    return new Promise((resolve, reject) => {
+      this._request.post(this._url(), entity).then(res => {
+        this._clear();
+        this._save();
+        resolve(res.data);
+      }).catch(error => reject(error));
+    });
+  }
+  update(entity) {
+    return new Promise((resolve, reject) => {
+      this._request.put(this._url(entity.id), entity).then(res => {
+        this._clear();
+        this._save();
+        resolve(res.data);
+      }).catch(error => reject(error));
+    });
+  }
+  delete(id) {
+    return new Promise((resolve, reject) => {
+      this._request.delete(this._url(id)).then(res => {
+        this._clear();
+        this._save();
+        resolve(res.data);
+      }).catch(error => reject(error));
+    });
+  }
 
   // for cache
-  _create(newEntity) {
-    if (this._cache === null) {
-      this._cache = [];
-    }
-    this._cache.push(newEntity);
-  }
-  _update(newEntity) {
-    if (this._cache === null) {
-      this._cache = [newEntity];
-    } else {
-      this._cache.map(entity => {
-        if (entity.id === newEntity.id) {
-          return newEntity;
-        }
-        return entity;
-      });
-    }
-  }
-  _delete(deletedEntity) {
-    if (this._cache === null) {
-      return;
-    }
-    this._cache = this._cache.filter(entity => (entity.id !== deletedEntity.id));
-  }
   _clear() {
     this._cache = null;
   }

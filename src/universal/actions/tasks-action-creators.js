@@ -1,8 +1,11 @@
 import Task from 'universal/repositories/task';
 
 export function fetchTasks() {
-  Task.fetch().then((res) => {
-    console.log(res);
+  return new Promise((resolve) => {
+    Task.fetch().then((res) => {
+      console.log(res);
+      resolve();
+    }).catch( e => console.log(e));
   });
 }
 
@@ -13,7 +16,7 @@ export function createTask() {
 }
 
 export function updateTask() {
-  Task.create().then((res) => {
+  Task.update().then((res) => {
     console.log(res);
   });
 }

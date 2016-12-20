@@ -169,16 +169,16 @@ export default class MicroFluxRouter {
     return this;
   }
 
-  dispatchAction(path) {
+  dispatchAction(path, data) {
     for (let index = 0; index < this._actionRoutes.length; index++) {
       const actionRoute = this._actionRoutes[index];
       const matches = exec(actionRoute.regexp, path);
       if (matches) {
-        return actionRoute.callback(matches.params);
+        return actionRoute.callback(matches.params, data);
       }
     }
     if (this._nomatchAction !== null) {
-      return this._nomatchAction();
+      return this._nomatchAction(data);
     }
     return null;
   }
