@@ -1,7 +1,0 @@
-@import "./reset";
-@import "./font";
-@import "./color";
-@import "./application";
-@import "./universal/**/*";
-@import "./desktop/**/*";
-@import "./mobile/**/*";

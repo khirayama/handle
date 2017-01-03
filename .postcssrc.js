@@ -1,5 +1,5 @@
 module.exports = {
-  "input": "src/client/styles/index.css",
+  "input": "src/styles/index.css",
   "output": "dist/public/index.css",
   "use": [
     "postcss-easy-import",

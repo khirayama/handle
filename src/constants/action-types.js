@@ -1,0 +1,6 @@
+const actionTypes = {
+  INITIALIZE_HOME_PAGE: '__INITIALIZE_HOME_PAGE',
+  INITIALIZE_DASHBOARD_PAGE: '__INITIALIZE_DASHBOARD_PAGE',
+};
+
+export default actionTypes;
