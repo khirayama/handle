@@ -11,6 +11,8 @@ import {getUI} from 'helpers';
 
 import reducer from 'reducers';
 
+const PAGE_TRANSITION_TIME = 600;
+
 export function applicationHandler(req, res) {
   i18n.setLocale(req.getLocale());
 
@@ -37,6 +39,10 @@ export function applicationHandler(req, res) {
       <Connector
         router={router}
         path={req.path}
+
+        transitionName="page-transition"
+        transitionEnterTimeout={PAGE_TRANSITION_TIME}
+        transitionLeaveTimeout={PAGE_TRANSITION_TIME}
         />
     );
 
