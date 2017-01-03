@@ -1,9 +1,10 @@
 import React, {PropTypes} from 'react';
+import {Link} from 'spectrometer';
 import {Container} from '@khirayama/react-circuit';
 
 import i18n from 'libs/micro-i18n';
 
-export default class HomePageContainer extends Container {
+export default class HomePage extends Container {
   render() {
     return (
       <section className="page home-page">
@@ -26,6 +27,4 @@ export default class HomePageContainer extends Container {
   }
 }
 
-HomePageContainer.propTypes = {
-  changeLocation: PropTypes.func.isRequired,
-};
+HomePage.propTypes = {};

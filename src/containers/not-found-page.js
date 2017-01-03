@@ -1,25 +1,16 @@
 import React, {PropTypes} from 'react';
 import {Container} from '@khirayama/react-circuit';
+import {Link} from 'spectrometer';
 
 export default class NotFoundPage extends Container {
-  constructor(props) {
-    super(props);
-
-    this.handleClick = this._handleClick.bind(this);
-  }
-  _handleClick() {
-    this.props.changeLocation('/', {dispatch: this.dispatch});
-  }
   render() {
     return (
       <section className="page not-found-page">
         <h1>Not Found</h1>
-        <div onClick={this.handleClick}>to Home Page</div>
+        <Link href="/dashboard">to Dashboard</Link>
       </section>
     );
   }
 }
 
-NotFoundPage.propTypes = {
-  changeLocation: PropTypes.func.isRequired,
-};
+NotFoundPage.propTypes = {};

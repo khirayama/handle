@@ -1,22 +1,36 @@
-import React, {PropTypes} from 'react';
+import React, {PropTypes, Component} from 'react';
+import classNames from 'classnames';
+import {Link} from 'spectrometer';
 import {Container} from '@khirayama/react-circuit';
 
-export default class DashboardPage extends Container {
-  constructor(props) {
-    super(props);
+function IconButton(props) {
+  return <button {...props} className={classNames('icon-button', props.className)}>{props.children}</button>;
+}
 
-    this.handleClick = this._handleClick.bind(this);
+class ApplicationHeader extends Component {
+  render() {
+    return (
+      <section className="application-header">
+        <Link href="/setting" className="setting-link">
+          <div style={{width: '44px', height: '44px'}} className="setting-link-content"/>
+        </Link>
+        <div className="search-button-container">
+          <IconButton className="search-button">search</IconButton>
+        </div>
+      </section>
+    );
   }
-  _handleClick() {
-    this.props.changeLocation('/', {dispatch: this.dispatch});
-  }
+}
+
+export default class DashboardPage extends Container {
   render() {
     const state = this.state;
 
     return (
       <section className="page dashboard-page">
+        <ApplicationHeader />
         <h1>Dashboard Page</h1>
-        <div onClick={this.handleClick}>to Home Page</div>
+        <Link href="/" className="link">to Home Page</Link>
         <h2>Tasks</h2>
         <ul>{state.tasks.map((task) => <li key={task.id}>{task.content}</li>)}</ul>
         <h2>Labels</h2>
@@ -26,6 +40,4 @@ export default class DashboardPage extends Container {
   }
 }
 
-DashboardPage.propTypes = {
-  changeLocation: PropTypes.func.isRequired,
-};
+DashboardPage.propTypes = {};
