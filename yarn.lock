@@ -5222,13 +5222,14 @@ specificity@^0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/specificity/-/specificity-0.3.0.tgz#332472d4e5eb5af20821171933998a6bc3b1ce6f"
 
-spectrometer@^0.0.4:
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/spectrometer/-/spectrometer-0.0.4.tgz#2b9e79f75a08f0ad096fd6b9125a8f96c171d581"
+spectrometer@^0.0.5:
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/spectrometer/-/spectrometer-0.0.5.tgz#e87318e761563e28c25c856ecf0c3ed5ccd6d8d1"
   dependencies:
     babel-preset-react "^6.16.0"
     eslint-config-xo-react "^0.10.0"
     react "^15.4.1"
+    react-addons-css-transition-group "^15.4.1"
 
 split2@^0.2.1:
   version "0.2.1"
