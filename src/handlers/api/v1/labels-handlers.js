@@ -13,6 +13,12 @@ export function labelsIndexHandler(req, res) {
     order: 0,
     createdAt: now,
     updateAt: now,
+  }, {
+    id: 2,
+    name: 'SCHEDULE',
+    order: 0,
+    createdAt: now,
+    updateAt: now,
   }]);
 }
 

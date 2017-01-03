@@ -25,6 +25,14 @@ export function tasksIndexHandler(req, res) {
     updateAt: now,
     order: 0,
     labelId: 1,
+  }, {
+    id: 4,
+    content: 'schedule task 1',
+    completed: false,
+    createdAt: now,
+    updateAt: now,
+    order: 0,
+    labelId: 2,
   }]);
 }
 

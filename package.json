@@ -66,6 +66,7 @@
     "postcss-reporter": "^3.0.0",
     "postcss-simple-vars": "^3.0.0",
     "react": "^15.4.1",
+    "react-addons-css-transition-group": "^15.4.1",
     "react-dom": "^15.4.1",
     "spectrometer": "^0.0.4",
     "stylelint": "^7.6.0",

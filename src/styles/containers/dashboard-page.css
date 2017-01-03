@@ -1,0 +1,19 @@
+.dashboard-page {
+  &.page-transition-enter {
+    transform: scale(.9)
+  }
+  &.page-transition-enter.page-transition-enter-active {
+    transform: scale(1);
+    overflow: hidden;
+    transition: transform $page-transition-time $ease-out-expo;
+  }
+  &.page-transition-leave {
+    z-index: -1;
+    transform: scale(1);
+  }
+  &.page-transition-leave.page-transition-leave-active {
+    transform: scale(.9);
+    overflow: hidden;
+    transition: transform $page-transition-time $ease-out-expo;
+  }
+}

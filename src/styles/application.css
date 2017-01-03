@@ -6,8 +6,8 @@ $timing-slow: 400ms $ease-out-expo;
 $page-transition-time: 600ms;
 
 $font-family: 'Noto Sans Japanese', sans-serif;
-$font-weight-normal: 200;
-$font-weight-bold: 400;
+$font-weight-normal: 400;
+$font-weight-bold: 700;
 $font-base-size: 16px;
 
 $radius: 2px;
@@ -49,8 +49,13 @@ body {
 }
 
 .page {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
+  background-color: $color-white;
+  will-change: transform;
 }
 
 .icon {

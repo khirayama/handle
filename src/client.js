@@ -9,6 +9,8 @@ import routes from 'config/routes';
 
 import reducer from 'reducers';
 
+const PAGE_TRANSITION_TIME = 600;
+
 window.addEventListener('DOMContentLoaded', () => {
   i18n.setLocale(window.state.lang);
 
@@ -21,6 +23,10 @@ window.addEventListener('DOMContentLoaded', () => {
       router={router}
       path={location.pathname}
       firstRendering={false}
+
+      transitionName="page-transition"
+      transitionEnterTimeout={PAGE_TRANSITION_TIME}
+      transitionLeaveTimeout={PAGE_TRANSITION_TIME}
       />,
     document.querySelector('.application')
   );

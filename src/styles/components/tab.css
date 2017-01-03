@@ -1,27 +1,32 @@
 .tab {
   width: 100%;
+  height: 100%;
 
   .tab-list {
+    position: relative;
+    z-index: 1;
     display: flex;
-    height: 44px;
-    border-bottom: $border;
+    height: 48px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
 
     .tab-list-item {
       position: relative;
       flex: 1;
       text-align: center;
+      font-weight: $font-weight-bold;
       cursor: pointer;
       user-select: none;
-      background: $color-white;
+      background-color: $color-white;
 
       &::after {
         position: absolute;
         left: 50%;
-        bottom: -1px;
+        bottom: 0;
         width: 0;
-        height: 2px;
+        height: 3px;
         content: '';
         background: $color-primary;
+        will-change: width, left;
         transition: $timing-slow;
         transition-property: width, left;
       }
@@ -35,12 +40,15 @@
   }
 
   .tab-content-list {
-    width: 100%;
+    display: flex;
+    position: relative;
     height: 100%;
+    will-change: left;
 
     .tab-content-list-item {
-      width: 100%;
+      flex: 1;
       height: 100%;
+      background: $color-white;
     }
   }
 }
