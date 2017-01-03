@@ -3,26 +3,28 @@ export function tasksIndexHandler(req, res) {
 
   res.json([{
     id: 1,
-    content: 'task',
+    content: 'today task 1',
     completed: false,
     createdAt: now,
     updateAt: now,
     order: 0,
-    label: {
-      id: 0,
-      name: 'TODAY',
-    },
+    labelId: 0,
   }, {
     id: 2,
-    content: 'task',
+    content: 'today task 2',
     completed: false,
     createdAt: now,
     updateAt: now,
     order: 0,
-    label: {
-      id: 0,
-      name: 'TODAY',
-    },
+    labelId: 0,
+  }, {
+    id: 3,
+    content: 'later task 1',
+    completed: false,
+    createdAt: now,
+    updateAt: now,
+    order: 0,
+    labelId: 1,
   }]);
 }
 
@@ -36,10 +38,7 @@ export function tasksCreateHandler(req, res) {
     createdAt: now,
     updateAt: now,
     order: 0,
-    label: {
-      id: 0,
-      name: 'TODAY',
-    },
+    labelId: 0,
   });
 }
 
@@ -53,10 +52,7 @@ export function tasksUpdateHandler(req, res) {
     createdAt: now,
     updateAt: now,
     order: 0,
-    label: {
-      id: 0,
-      name: 'TODAY',
-    },
+    labelId: 0,
   });
 }
 

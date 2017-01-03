@@ -6,7 +6,7 @@ import IconButton from 'components/icon-button';
 export class TabList extends Component {
   render() {
     return (
-      <ul className="tab-list">{this.props.children}</ul>
+      <div className="tab-list">{this.props.children}</div>
     );
   }
 }
@@ -24,9 +24,9 @@ export class TabListItem extends Component {
     const index = Number(this.props.index);
 
     if (index === this.context.currentIndex) {
-      return <li className="tab-list-item tab-list-item__active" onClick={this.handleClick}>{this.props.children}</li>
+      return <button className="tab-list-item tab-list-item__active" onClick={this.handleClick}>{this.props.children}</button>
     }
-    return <li className="tab-list-item" onClick={this.handleClick}>{this.props.children}</li>
+    return <button className="tab-list-item" onClick={this.handleClick}>{this.props.children}</button>
   }
 }
 

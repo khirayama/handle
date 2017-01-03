@@ -20,7 +20,15 @@ export default class DashboardPage extends Container {
 
     state.labels.forEach((label, index) => {
       labelTabElements.push(<TabListItem key={index} index={index}>{label.name}</TabListItem>);
-      labelTabContentElements.push(<TabContentListItem key={index} index={index}><h1>{label.name}</h1></TabContentListItem>);
+      labelTabContentElements.push(
+        <TabContentListItem key={index} index={index}>
+          <ul>{state.tasks.filter(task => {
+            return (task.labelId === label.id);
+          }).map(task => {
+            return <li key={task.id}>{task.content}</li>;
+          })}</ul>
+        </TabContentListItem>
+      );
     });
 
     return (
