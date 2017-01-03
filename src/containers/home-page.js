@@ -1,5 +1,4 @@
-import React, {PropTypes} from 'react';
-import {Link} from 'spectrometer';
+import React from 'react';
 import {Container} from '@khirayama/react-circuit';
 
 import i18n from 'libs/micro-i18n';
@@ -18,8 +17,8 @@ export default class HomePage extends Container {
         </header>
         <div className="lang-list-container">
           <ul className="lang-list">
-            <li><a href="?lang=en"><small>English</small></a></li>
-            <li><a href="?lang=ja"><small>日本語</small></a></li>
+            <li><a href="/?lang=en"><small>English</small></a></li>
+            <li><a href="/?lang=ja"><small>日本語</small></a></li>
           </ul>
         </div>
       </section>

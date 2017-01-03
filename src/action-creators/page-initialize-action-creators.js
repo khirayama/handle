@@ -12,8 +12,8 @@ export function initializeHomePage(params, {dispatch}) {
 
 export function initializeDashboardPage(params, {dispatch}) {
   return new Promise(resolve => {
-    Task.fetch().then((tasks) => {
-      Label.fetch().then((labels) => {
+    Task.fetch().then(tasks => {
+      Label.fetch().then(labels => {
         dispatch({
           type: actionTypes.INITIALIZE_DASHBOARD_PAGE,
           tasks,

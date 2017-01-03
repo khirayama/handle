@@ -1,11 +1,8 @@
-import React, {PropTypes, Component} from 'react';
-import classNames from 'classnames';
-import {Link} from 'spectrometer';
+import React, {Component} from 'react';
 import {Container} from '@khirayama/react-circuit';
 
-function IconButton(props) {
-  return <button {...props} className={classNames('icon-button', props.className)}>{props.children}</button>;
-}
+import Link from 'components/link';
+import IconButton from 'components/icon-button';
 
 class ApplicationHeader extends Component {
   render() {
@@ -28,13 +25,13 @@ export default class DashboardPage extends Container {
 
     return (
       <section className="page dashboard-page">
-        <ApplicationHeader />
+        <ApplicationHeader/>
         <h1>Dashboard Page</h1>
-        <Link href="/" className="link">to Home Page</Link>
+        <Link href="/">to Home Page</Link>
         <h2>Tasks</h2>
-        <ul>{state.tasks.map((task) => <li key={task.id}>{task.content}</li>)}</ul>
+        <ul>{state.tasks.map(task => <li key={task.id}>{task.content}</li>)}</ul>
         <h2>Labels</h2>
-        <ul>{state.labels.map((label) => <li key={label.id}>{label.name}</li>)}</ul>
+        <ul>{state.labels.map(label => <li key={label.id}>{label.name}</li>)}</ul>
       </section>
     );
   }

@@ -1,6 +1,7 @@
-import React, {PropTypes} from 'react';
+import React from 'react';
 import {Container} from '@khirayama/react-circuit';
-import {Link} from 'spectrometer';
+
+import Link from 'components/link';
 
 export default class NotFoundPage extends Container {
   render() {

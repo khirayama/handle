@@ -5,6 +5,7 @@ export default function reducer(state, action) {
     case actionTypes.INITIALIZE_DASHBOARD_PAGE:
       state.tasks = action.tasks;
       state.labels = action.labels;
+      break;
     default:
       break;
   }
