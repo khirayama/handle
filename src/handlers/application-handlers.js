@@ -19,6 +19,8 @@ export function applicationHandler(req, res) {
   const initialState = {
     lang: req.getLocale(),
     ui: getUI(req.useragent),
+    tasks: [],
+    labels: [],
   };
 
   clearStore();

@@ -20,6 +20,7 @@ window.addEventListener('DOMContentLoaded', () => {
     <Connector
       router={router}
       path={location.pathname}
+      firstRendering={false}
       />,
     document.querySelector('.application')
   );
