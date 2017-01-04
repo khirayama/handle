@@ -1,9 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import classNames from 'classnames';
 
-import Link from 'components/link';
-import IconButton from 'components/icon-button';
-
 export class TabList extends Component {
   render() {
     return (
