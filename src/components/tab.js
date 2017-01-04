@@ -49,6 +49,7 @@ export class TabContentList extends Component {
       _endX: null,
       _endY: null,
       _endTime: null,
+      _moving: false,
       _transitionProperty: 'left .2s ease-out',
     };
 
@@ -76,6 +77,7 @@ export class TabContentList extends Component {
       _endX: event.touches[0].clientX,
       _endY: event.touches[0].clientY,
       _endTime: new Date(),
+      _moving: true,
       _transitionProperty: 'none',
     });
   }
@@ -106,6 +108,7 @@ export class TabContentList extends Component {
       _endX: null,
       _endY: null,
       _endTime: null,
+      _moving: false,
       _transitionProperty: 'left .2s ease-out',
     });
   }
@@ -113,6 +116,7 @@ export class TabContentList extends Component {
     let x = this.state._endX - this.state._startX;
     let y = this.state._endY - this.state._startY;
     let time = this.state._endTime - this.state._startTime;
+
     if (this.state._endX !== null && this.state._endY !== null) {
       if (this.context.currentIndex === 0 && x > 0) {
         x = 0;
@@ -133,15 +137,16 @@ export class TabContentList extends Component {
     };
   }
   render() {
+    const diff = this._getDiff();
     const style = {
       width: (this.props.children.length * 100) + '%',
-      left: `calc(-${this.context.currentIndex * 100}% + ${this._getDiff().x}px)`,
+      left: `calc(-${this.context.currentIndex * 100}% + ${diff.x}px)`,
       transition: this.state._transitionProperty,
     };
     return (
       <ul
       style={style}
-      className="tab-content-list">{this.props.children}</ul>
+      className={classNames("tab-content-list", {"tab-content-list__moving": (this.state._moving && diff.x !== 0)})}>{this.props.children}</ul>
     );
   }
 }

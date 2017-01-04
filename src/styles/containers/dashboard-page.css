@@ -1,4 +1,6 @@
 .dashboard-page {
+  will-change: transform;
+
   &.page-transition-enter {
     .page-content {
       transform: scale(.9)

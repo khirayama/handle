@@ -1,4 +1,6 @@
 .not-found-page {
+  will-change: transform;
+
   &.page-transition-enter {
     z-index: 1;
     transform: translateY(100%);
