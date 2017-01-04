@@ -39,12 +39,6 @@ export default class DashboardPage extends Container {
             <TabList>{labelTabElements}</TabList>
             <TabContentList>{labelTabContentElements}</TabContentList>
           </Tab>
-          <h1>Dashboard Page</h1>
-          <Link href="/">to Home Page</Link>
-          <h2>Tasks</h2>
-          <ul>{state.tasks.map(task => <li key={task.id}>{task.content}</li>)}</ul>
-          <h2>Labels</h2>
-          <ul>{state.labels.map(label => <li key={label.id}>{label.name}</li>)}</ul>
        </section>
       </section>
     );

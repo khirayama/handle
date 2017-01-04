@@ -1,6 +1,17 @@
 .dashboard-page {
   will-change: transform;
 
+  .tab {
+    /* 56px - application header height */
+    height: calc(100% - 56px);
+  }
+
+  .page-content {
+    max-width: 680px;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+
   &.page-transition-enter {
     .page-content {
       transform: scale(.9)
