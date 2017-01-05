@@ -11,7 +11,7 @@ import reducer from 'reducers';
 
 const PAGE_TRANSITION_TIME = 600;
 
-window.addEventListener('contextmenu', (event) => {
+window.addEventListener('contextmenu', event => {
   event.preventDefault();
 });
 

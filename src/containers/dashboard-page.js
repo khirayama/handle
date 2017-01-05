@@ -1,7 +1,6 @@
 import React from 'react';
 import {Container} from '@khirayama/react-circuit';
 
-import Link from 'components/link';
 import ApplicationHeader from 'components/application-header';
 import {
   Tab,
@@ -13,6 +12,9 @@ import {
 import {
   List,
   ListItem,
+  ListItemContent,
+  ListItemLeftBackground,
+  ListItemRightBackground,
 } from 'components/list';
 
 export default class DashboardPage extends Container {
@@ -35,11 +37,15 @@ export default class DashboardPage extends Container {
             return (
               <ListItem
                 key={task.id}
-                onClick={() => console.log('tap')}
-                onHold={() => console.log('hold!')}
-                onSwipeLeft={() => console.log('swipe left!')}
-                onSwipeRight={() => console.log('swipe right!')}
-              >{task.content}</ListItem>
+                // onClick={() => console.log('tap')}
+                // onHold={() => console.log('hold!')}
+                // onSwipeLeft={() => console.log('swipe left!')}
+                // onSwipeRight={() => console.log('swipe right!')}
+                >
+                <ListItemLeftBackground>Left</ListItemLeftBackground>
+                <ListItemContent>{task.content}</ListItemContent>
+                <ListItemRightBackground>Right</ListItemRightBackground>
+              </ListItem>
             );
           })}</List>
         </TabContentListItem>
@@ -54,7 +60,7 @@ export default class DashboardPage extends Container {
             <TabList>{labelTabElements}</TabList>
             <TabContentList>{labelTabContentElements}</TabContentList>
           </Tab>
-       </section>
+        </section>
       </section>
     );
   }

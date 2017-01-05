@@ -9,6 +9,10 @@ export class TabList extends Component {
   }
 }
 
+TabList.propTypes = {
+  children: PropTypes.node,
+};
+
 export class TabListItem extends Component {
   constructor() {
     super();
@@ -16,14 +20,14 @@ export class TabListItem extends Component {
     this.handleClick = this._handleClick.bind(this);
   }
   _handleClick() {
-    this.context.setCurrentIndex(Number(this.props.index))
+    this.context.setCurrentIndex(Number(this.props.index));
   }
   render() {
     const index = Number(this.props.index);
 
     return (
       <button
-        className={classNames("tab-list-item", {"tab-list-item__active": (index === this.context.currentIndex)})}
+        className={classNames('tab-list-item', {'tab-list-item__active': (index === this.context.currentIndex)})}
         onClick={this.handleClick}
         >{this.props.children}</button>
     );
@@ -33,6 +37,11 @@ export class TabListItem extends Component {
 TabListItem.contextTypes = {
   currentIndex: PropTypes.number,
   setCurrentIndex: PropTypes.func,
+};
+
+TabListItem.propTypes = {
+  index: PropTypes.number.isRequired,
+  children: PropTypes.node,
 };
 
 export class TabContentList extends Component {
@@ -92,15 +101,15 @@ export class TabContentList extends Component {
 
     if (THRESHOLD_WIDTH < Math.abs(diff.x)) {
       if (diff.x > 0) {
-        this._swipeLeftHandler();
-      } else {
         this._swipeRightHandler();
+      } else {
+        this._swipeLeftHandler();
       }
     } else if (THRESHOLD_DELTAX < Math.abs(diff.delta.x)) {
       if (diff.delta.x > 0) {
-        this._swipeLeftHandler();
-      } else {
         this._swipeRightHandler();
+      } else {
+        this._swipeLeftHandler();
       }
     }
 
@@ -137,16 +146,16 @@ export class TabContentList extends Component {
       y,
       time,
       delta: {
-        x: Number((x/time).toFixed(2)),
-        y: Number((y/time).toFixed(2)),
-      }
+        x: Number((x / time).toFixed(2)),
+        y: Number((y / time).toFixed(2)),
+      },
     };
   }
   _swipeLeftHandler() {
-    this.context.setCurrentIndex(this.context.currentIndex - 1);
+    this.context.setCurrentIndex(this.context.currentIndex + 1);
   }
   _swipeRightHandler() {
-    this.context.setCurrentIndex(this.context.currentIndex + 1);
+    this.context.setCurrentIndex(this.context.currentIndex - 1);
   }
   render() {
     const diff = this._getDiff();
@@ -157,8 +166,9 @@ export class TabContentList extends Component {
     };
     return (
       <ul
-      style={style}
-      className={classNames("tab-content-list", {"tab-content-list__moving": (this.state._moving && diff.x !== 0)})}>{this.props.children}</ul>
+        style={style}
+        className={classNames('tab-content-list', {'tab-content-list__moving': (this.state._moving && diff.x !== 0)})}
+        >{this.props.children}</ul>
     );
   }
 }
@@ -174,16 +184,19 @@ TabContentList.contextTypes = {
   setCurrentIndex: PropTypes.func,
 };
 
+TabContentList.propTypes = {
+  children: PropTypes.node,
+};
+
 export class TabContentListItem extends Component {
   render() {
-    const index = Number(this.props.index);
-
     return (
       <li
-      onTouchStart={this.context.handleTouchStart}
-      onTouchMove={this.context.handleTouchMove}
-      onTouchEnd={this.context.handleTouchEnd}
-      className="tab-content-list-item">{this.props.children}</li>
+        onTouchStart={this.context.handleTouchStart}
+        onTouchMove={this.context.handleTouchMove}
+        onTouchEnd={this.context.handleTouchEnd}
+        className="tab-content-list-item"
+        >{this.props.children}</li>
     );
   }
 }
@@ -193,6 +206,10 @@ TabContentListItem.contextTypes = {
   handleTouchMove: PropTypes.func,
   handleTouchEnd: PropTypes.func,
   currentIndex: PropTypes.number,
+};
+
+TabContentListItem.propTypes = {
+  children: PropTypes.node,
 };
 
 export class Tab extends Component {
@@ -226,4 +243,6 @@ Tab.childContextTypes = {
   setCurrentIndex: PropTypes.func,
 };
 
-Tab.propTypes = {};
+Tab.propTypes = {
+  children: PropTypes.node,
+};
