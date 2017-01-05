@@ -10,6 +10,10 @@ import {
   TabContentList,
   TabContentListItem,
 } from 'components/tab';
+import {
+  List,
+  ListItem,
+} from 'components/list';
 
 export default class DashboardPage extends Container {
   render() {
@@ -27,7 +31,17 @@ export default class DashboardPage extends Container {
 
       labelTabContentElements.push(
         <TabContentListItem key={index} index={index}>
-          <ul>{filterdTasks.map(task => <li key={task.id}>{task.content}</li>)}</ul>
+          <List>{filterdTasks.map(task => {
+            return (
+              <ListItem
+                key={task.id}
+                onClick={() => console.log('tap')}
+                onHold={() => console.log('hold!')}
+                onSwipeLeft={() => console.log('swipe left!')}
+                onSwipeRight={() => console.log('swipe right!')}
+              >{task.content}</ListItem>
+            );
+          })}</List>
         </TabContentListItem>
       );
     });

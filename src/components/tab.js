@@ -92,15 +92,15 @@ export class TabContentList extends Component {
 
     if (THRESHOLD_WIDTH < Math.abs(diff.x)) {
       if (diff.x > 0) {
-        this.context.setCurrentIndex(this.context.currentIndex - 1);
+        this._swipeLeftHandler();
       } else {
-        this.context.setCurrentIndex(this.context.currentIndex + 1);
+        this._swipeRightHandler();
       }
     } else if (THRESHOLD_DELTAX < Math.abs(diff.delta.x)) {
       if (diff.delta.x > 0) {
-        this.context.setCurrentIndex(this.context.currentIndex - 1);
+        this._swipeLeftHandler();
       } else {
-        this.context.setCurrentIndex(this.context.currentIndex + 1);
+        this._swipeRightHandler();
       }
     }
 
@@ -119,6 +119,8 @@ export class TabContentList extends Component {
     let x = this.state._endX - this.state._startX;
     let y = this.state._endY - this.state._startY;
     let time = this.state._endTime.getTime() - this.state._startTime.getTime();
+
+    time = (time < 0) ? 0 : time;
 
     if (this.state._endX !== null && this.state._endY !== null) {
       if (this.context.currentIndex === 0 && x > 0) {
@@ -139,6 +141,12 @@ export class TabContentList extends Component {
         y: Number((y/time).toFixed(2)),
       }
     };
+  }
+  _swipeLeftHandler() {
+    this.context.setCurrentIndex(this.context.currentIndex - 1);
+  }
+  _swipeRightHandler() {
+    this.context.setCurrentIndex(this.context.currentIndex + 1);
   }
   render() {
     const diff = this._getDiff();
