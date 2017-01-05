@@ -52,11 +52,6 @@
       background: $color-white;
     }
 
-    &__moving {
-      .tab-content-list-item {
-        border-left: solid 3px $color-divider;
-        border-right: solid 3px $color-divider;
-      }
-    }
+    /* &__moving {} */
   }
 }

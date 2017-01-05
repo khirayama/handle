@@ -42,10 +42,10 @@ export class TabContentList extends Component {
     this.state = {
       _startX: null,
       _startY: null,
-      _startTime: null,
+      _startTime: new Date(),
       _endX: null,
       _endY: null,
-      _endTime: null,
+      _endTime: new Date(),
       _moving: false,
       _transitionProperty: 'left .2s ease-out',
     };
@@ -62,6 +62,8 @@ export class TabContentList extends Component {
     };
   }
   _handleTouchStart(event) {
+    event.stopPropagation();
+
     this.setState({
       _startX: event.touches[0].clientX,
       _startY: event.touches[0].clientY,
@@ -70,6 +72,8 @@ export class TabContentList extends Component {
     });
   }
   _handleTouchMove(event) {
+    event.stopPropagation();
+
     this.setState({
       _endX: event.touches[0].clientX,
       _endY: event.touches[0].clientY,
@@ -79,8 +83,10 @@ export class TabContentList extends Component {
     });
   }
   _handleTouchEnd(event) {
+    event.stopPropagation();
+
     const THRESHOLD_WIDTH = window.screen.width / 3;
-    const THRESHOLD_DELTAX = 0.4;
+    const THRESHOLD_DELTAX = 0.6;
 
     const diff = this._getDiff();
 
@@ -101,10 +107,10 @@ export class TabContentList extends Component {
     this.setState({
       _startX: null,
       _startY: null,
-      _startTime: null,
+      _startTime: new Date(),
       _endX: null,
       _endY: null,
-      _endTime: null,
+      _endTime: new Date(),
       _moving: false,
       _transitionProperty: 'left .2s ease-out',
     });
@@ -112,7 +118,7 @@ export class TabContentList extends Component {
   _getDiff() {
     let x = this.state._endX - this.state._startX;
     let y = this.state._endY - this.state._startY;
-    let time = this.state._endTime - this.state._startTime;
+    let time = this.state._endTime.getTime() - this.state._startTime.getTime();
 
     if (this.state._endX !== null && this.state._endY !== null) {
       if (this.context.currentIndex === 0 && x > 0) {
@@ -127,6 +133,7 @@ export class TabContentList extends Component {
     return {
       x,
       y,
+      time,
       delta: {
         x: Number((x/time).toFixed(2)),
         y: Number((y/time).toFixed(2)),
