@@ -1,6 +1,4 @@
 .not-found-page {
-  will-change: transform;
-
   &.page-transition-enter {
     z-index: 1;
     transform: translateY(100%);
@@ -8,6 +6,7 @@
   &.page-transition-enter.page-transition-enter-active {
     transform: translateY(0);
     transition: transform $page-transition-time $ease-out-expo;
+    will-change: transform;
   }
   &.page-transition-leave {
     transform: translateY(0);
@@ -16,5 +15,6 @@
     z-index: 1;
     transform: translateY(100%);
     transition: transform $page-transition-time $ease-out-expo;
+    will-change: transform;
   }
 }

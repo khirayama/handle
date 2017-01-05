@@ -57,6 +57,7 @@ body {
   overflow: hidden;
   background-color: $color-white;
   box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.1);
+  z-index: 0;
 
   .page-content {
     width: 100%;

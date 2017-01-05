@@ -1,6 +1,4 @@
 .dashboard-page {
-  will-change: transform;
-
   .tab {
     /* 56px - application header height */
     height: calc(100% - 56px);
@@ -21,6 +19,7 @@
     .page-content {
       transform: scale(1);
       transition: transform $page-transition-time $ease-out-expo;
+      will-change: transform;
     }
   }
   &.page-transition-leave {
@@ -33,6 +32,7 @@
     .page-content {
       transform: scale(.9);
       transition: transform $page-transition-time $ease-out-expo;
+      will-change: transform;
     }
   }
 }
