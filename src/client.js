@@ -11,6 +11,10 @@ import reducer from 'reducers';
 
 const PAGE_TRANSITION_TIME = 600;
 
+window.addEventListener('contextmenu', (event) => {
+  event.preventDefault();
+});
+
 window.addEventListener('DOMContentLoaded', () => {
   i18n.setLocale(window.state.lang);
 
