@@ -2,7 +2,8 @@ import {Collection} from 'libs/micro-repository';
 
 class Task extends Collection {
   constructor() {
-    super('http://localhost:3000/api/v1/tasks');
+    const hostname = process.env.HOSTNAME || 'http://0.0.0.0:3000';
+    super(`${hostname}/api/v1/tasks`);
   }
 }
 

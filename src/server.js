@@ -16,6 +16,8 @@ import 'config/passport';
 
 const app = express();
 
+const port = process.env.PORT || 3000;
+
 // middleware
 app.use(express.static(path.join(__dirname, 'assets')));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -45,6 +47,6 @@ app.use(apiRouter);
 app.use(authRouter);
 app.use(uiRouter);
 
-app.listen(3000, () => {
-  console.log('listening on port 3000');
+app.listen(port, '0.0.0.0', () => {
+  console.log(`open http://0.0.0.0:${port}`);
 });
