@@ -6,9 +6,10 @@ export class ListItemContent extends Component {
   render() {
     const diff = this.context.getDiff();
     const style = {};
-    if (this.context.isTarget()) {
+    if (this.context.isTarget() && Math.abs(diff.y) < Math.abs(diff.x)) {
       style.transform = `translateX(${diff.x}px)`;
     } else {
+      style.transform = `translateX(0px)`;
       style.transition = 'transform .2s ease-out';
     }
 
