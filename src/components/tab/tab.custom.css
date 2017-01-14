@@ -1,0 +1,47 @@
+.tab {
+  width: 100%;
+  height: 100%;
+
+  .tab-list {
+    height: 48px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
+
+    .tab-list-item {
+      position: relative;
+      text-align: center;
+      font-weight: bold;
+      background-color: #fff;
+
+      &::after {
+        position: absolute;
+        z-index: 0;
+        left: 50%;
+        bottom: 0;
+        width: 0;
+        height: 3px;
+        content: '';
+        background: #64b5f6;
+        transition: 200ms ease-out;
+        transition-property: width, left;
+        will-change: width, left;
+      }
+      &.tab-list-item__active {
+        &::after {
+          width: 100%;
+          left: 0;
+        }
+      }
+    }
+  }
+
+  .tab-content-list {
+    height: 100%;
+    will-change: left;
+
+    .tab-content-list-item {
+      overflow: scroll;
+      height: 100%;
+      background: #fff;
+    }
+  }
+}
