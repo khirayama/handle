@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 
-import Link from 'components/link';
-import IconButton from 'components/icon-button';
+import {Link} from 'components/link';
+import {IconButton} from 'components/icon-button';
 
-export default class ApplicationHeader extends Component {
+export class ApplicationHeader extends Component {
   render() {
     return (
       <section className="application-header">

@@ -63,7 +63,7 @@
     "passport-instagram": "^1.0.0",
     "passport-twitter": "^1.0.4",
     "postcss-cli": "^2.6.0",
-    "postcss-easy-import": "^1.0.1",
+    "postcss-easy-import": "^2.0.0",
     "postcss-nested": "^1.0.0",
     "postcss-reporter": "^3.0.0",
     "postcss-simple-vars": "^3.0.0",

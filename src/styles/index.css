@@ -2,5 +2,5 @@
 @import "./font";
 @import "./color";
 @import "./application";
-@import "./containers/**/*";
-@import "./components/**/*";
+@import "../containers/**/*";
+@import "../components/**/*";

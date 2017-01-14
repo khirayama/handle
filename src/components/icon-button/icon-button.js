@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react';
 
-export default function IconButton(props) {
+export function IconButton(props) {
   const props_ = Object.assign({}, props);
   props_.className = (props_.className) ? props_.className + ' icon-button' : 'icon-button';
 

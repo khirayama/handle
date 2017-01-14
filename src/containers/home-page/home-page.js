@@ -3,7 +3,7 @@ import {Container} from '@khirayama/react-circuit';
 
 import i18n from 'libs/micro-i18n';
 
-export default class HomePage extends Container {
+export class HomePage extends Container {
   render() {
     return (
       <section className="page home-page">

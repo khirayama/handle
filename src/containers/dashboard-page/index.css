@@ -1,0 +1,38 @@
+.dashboard-page {
+  .tab {
+    /* 56px - application header height */
+    height: calc(100% - 56px);
+  }
+
+  .page-content {
+    max-width: 680px;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+
+  &.page-transition-enter {
+    .page-content {
+      transform: scale(.9)
+    }
+  }
+  &.page-transition-enter.page-transition-enter-active {
+    .page-content {
+      transform: scale(1);
+      transition: transform $page-transition-time $ease-out-expo;
+      will-change: transform;
+    }
+  }
+  &.page-transition-leave {
+    .page-content {
+      z-index: -1;
+      transform: scale(1);
+    }
+  }
+  &.page-transition-leave.page-transition-leave-active {
+    .page-content {
+      transform: scale(.9);
+      transition: transform $page-transition-time $ease-out-expo;
+      will-change: transform;
+    }
+  }
+}

@@ -1,0 +1,42 @@
+/* reset */
+.tab,
+.tab-list,
+.tab-list-item,
+.tab-content-list,
+.tab-content-list-item {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  border: 0;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  touch-callout: none;
+  user-select: none;
+}
+
+.tab {
+  .tab-list {
+    display: flex;
+    list-style: none;
+
+    .tab-list-item {
+      flex: 1;
+      cursor: pointer;
+      user-select: none;
+      /* &__active {} */
+    }
+  }
+
+  .tab-content-list {
+    display: flex;
+    position: relative;
+    list-style: none;
+    will-change: left;
+
+    .tab-content-list-item {
+      flex: 1;
+    }
+
+    /* &__moving {} */
+  }
+}

@@ -1,8 +1,8 @@
 import {dispatch} from '@khirayama/circuit';
 
-import HomePage from 'containers/home-page';
-import DashboardPage from 'containers/dashboard-page';
-import NotFoundPage from 'containers/not-found-page';
+import {HomePage} from 'containers/home-page';
+import {DashboardPage} from 'containers/dashboard-page';
+import {NotFoundPage} from 'containers/not-found-page';
 
 import {
   initializeHomePage,
