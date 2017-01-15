@@ -29,3 +29,11 @@ export function deleteTask(dispatch, taskId) {
   });
 }
 
+export function sortTasks(dispatch, labelId, from, to) {
+  dispatch({
+    type: actionTypes.SORT_TASKS,
+    labelId,
+    from,
+    to,
+  });
+}

@@ -6,6 +6,7 @@ import {
   deleteTask,
   uncompletedTask,
   completedTask,
+  sortTasks,
 } from 'action-creators/task-action-creators';
 
 import {
@@ -36,6 +37,8 @@ export class DashboardPage extends Container {
     state.labels.forEach((label, index) => {
       const filterdTasks = state.tasks.filter(task => {
         return (task.labelId === label.id);
+      }).sort((taskA, taskB) => {
+        return (taskA.order > taskB.order) ? 1 : -1;
       });
 
       labelTabElements.push(<TabListItem key={index} index={index}>{label.name}</TabListItem>);
@@ -43,7 +46,9 @@ export class DashboardPage extends Container {
       labelTabContentElements.push(
         <TabContentListItem key={index} index={index}>
           <List
-            onSort={(from, to) => console.log(from, to)}
+            onSort={(from, to) => {
+              sortTasks(this.dispatch, label.id, from, to);
+            }}
             >{filterdTasks.map(task => {
               return (
                 <ListItem
