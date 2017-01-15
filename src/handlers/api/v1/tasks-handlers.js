@@ -1,22 +1,32 @@
 export function tasksIndexHandler(req, res) {
   const now = new Date();
 
-  const labels = ['today', 'later', 'schedule'];
+  const labels = [{
+    id: 0,
+    name: 'today',
+  }, {
+    id: 1,
+    name: 'later',
+  }, {
+    id: 2,
+    name: 'schedule'
+  }];
+
   const tasks = [];
 
-  for (let index = 0; index < 30; index++) {
-    const i = Math.floor(Math.random() * 3);
-    const label = labels[i];
-
-    tasks.push({
-      id: index,
-      content: `${label} taks ${index}`,
-      createdAt: now,
-      updateAt: now,
-      order: index,
-      labelId: i,
-    });
-  }
+  labels.forEach((label, labelIndex) => {
+    for (let index = 0; index < 10; index++) {
+      tasks.push({
+        id: labelIndex * 10 + index,
+        content: `${label.name} taks ${index}`,
+        order: index,
+        completed: false,
+        labelId: label.id,
+        createdAt: now,
+        updateAt: now,
+      });
+    }
+  });
 
   res.json(tasks);
 }
