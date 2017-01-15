@@ -21,7 +21,9 @@ export class Tab extends Component {
   }
   render() {
     return (
-      <section className="tab">{this.props.children}</section>
+      <section
+        className="tab"
+        >{this.props.children}</section>
     );
   }
 }

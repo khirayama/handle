@@ -64,10 +64,12 @@ export class DashboardPage extends Container {
       <section className="page dashboard-page">
         <section className="page-content">
           <ApplicationHeader/>
-          <Tab>
-            <TabList>{labelTabElements}</TabList>
-            <TabContentList>{labelTabContentElements}</TabContentList>
-          </Tab>
+          <section className="tab-container">
+            <Tab>
+              <TabList>{labelTabElements}</TabList>
+              <TabContentList>{labelTabContentElements}</TabContentList>
+            </Tab>
+          </section>
         </section>
       </section>
     );

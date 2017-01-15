@@ -31,7 +31,6 @@ export class TabContentList extends Component {
   }
   _handleTouchStart(event) {
     event.stopPropagation();
-    event.preventDefault();
 
     this.touch = Object.assign({}, this.touch, {
       startX: event.touches[0].clientX,
@@ -129,12 +128,11 @@ export class TabContentList extends Component {
   _updateTouchMoveView() {
     const diff = this._calcFilteredDiff();
 
-    if (this.touch._moving && diff.x !== 0) {
+    if (this.touch.moving && diff.x !== 0 && (Math.abs(diff.delta.x) > Math.abs(diff.delta.y)) && (Math.abs(diff.x) > Math.abs(diff.y))) {
       this.tabContentList.classList.add('tab-content-list__moving');
+      this.tabContentList.style.left = `calc(-${this.context.currentIndex * 100}% + ${diff.x}px)`;
+      this.tabContentList.style.transition = 'none';
     }
-
-    this.tabContentList.style.left = `calc(-${this.context.currentIndex * 100}% + ${diff.x}px)`;
-    this.tabContentList.style.transition = 'none';
   }
   _updateTouchEndView() {
     if (this.tabContentList.classList.contains('tab-content-list__moving')) {

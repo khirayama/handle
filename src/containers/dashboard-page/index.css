@@ -1,5 +1,5 @@
 .dashboard-page {
-  .tab {
+  .tab-container {
     /* 56px - application header height */
     height: calc(100% - 56px);
   }
