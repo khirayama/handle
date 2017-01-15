@@ -15,3 +15,4 @@ $color-background: $color-white;
 
 $color-ui-focus: #efefef;
 $color-ui-active: #f0f0f0;
+$color-ui-shadow: rgba(0, 0, 0, 0.2);

@@ -3,14 +3,16 @@
   height: 100%;
 
   .tab-list {
+    position: relative;
     height: 48px;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
+    box-shadow: 0 1px 1px $color-ui-shadow;
+    z-index: 1;
 
     .tab-list-item {
       position: relative;
       text-align: center;
       font-weight: bold;
-      background-color: #fff;
+      background-color: $color-white;
 
       &::after {
         position: absolute;
@@ -20,7 +22,7 @@
         width: 0;
         height: 3px;
         content: '';
-        background: #64b5f6;
+        background: $color-primary;
         transition: 200ms ease-out;
         transition-property: width, left;
         will-change: width, left;

@@ -3,22 +3,21 @@
   height: 100%;
   overflow: scroll;
   .list-content {
-    border-top: solid 1px #aaa;
     .list-item {
-      border-bottom: solid 1px #aaa;
-      background-color: #fff;
+      border-bottom: $border;
+      background-color: $color-white;
 
       &__holding {
-        box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 1px 1px 1px $color-ui-shadow;
         transition-property: box-shadow;
       }
 
       .list-item-content {
-        background-color: #fff;
+        background-color: $color-white;
         padding: 18px 12px;
       }
       .list-item-background {
-        color: #fff;
+        color: $color-white;
         & div {
           font-size: 18px;
           font-weight: bold;
