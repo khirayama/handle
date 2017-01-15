@@ -16,9 +16,17 @@
         background-color: $color-white;
         padding: 18px 12px;
 
-        &__completed {
+        &__swipe_right {
           background-color: $color-divider;
         }
+
+        &__completed {
+          background-color: $color-divider;
+          &.list-item-content__swipe_right {
+            background-color: $color-white;
+          }
+        }
+
       }
       .list-item-background {
         color: $color-white;

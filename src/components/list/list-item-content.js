@@ -122,6 +122,9 @@ export class ListItemContent extends Component {
     if (listItemElement.classList.contains('list-item__moving')) {
       setTimeout(() => {
         listItemElement.classList.remove('list-item__moving');
+        this.listItemContent.classList.remove('list-item-content__swipe');
+        this.listItemContent.classList.remove('list-item-content__swipe_left');
+        this.listItemContent.classList.remove('list-item-content__swipe_right');
       }, TRANSITION_TIME);
     }
   }
@@ -205,6 +208,17 @@ export class ListItemContent extends Component {
       listItemElement.classList.add('list-item__moving');
       this.listItemContent.style.transitionProperty = transitionProperties.NONE;
       this.listItemContent.style.transform = `translateX(${diffX}px)`;
+    }
+    if (this._isLeftSwipe()) {
+      this.listItemContent.classList.add('list-item-content__swipe');
+      this.listItemContent.classList.add('list-item-content__swipe_left');
+    } else if (this._isRightSwipe()) {
+      this.listItemContent.classList.add('list-item-content__swipe');
+      this.listItemContent.classList.add('list-item-content__swipe_right');
+    } else {
+      this.listItemContent.classList.remove('list-item-content__swipe');
+      this.listItemContent.classList.remove('list-item-content__swipe_left');
+      this.listItemContent.classList.remove('list-item-content__swipe_right');
     }
   }
   _updateBackgroundView() {
