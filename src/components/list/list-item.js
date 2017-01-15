@@ -212,13 +212,14 @@ export class ListItem extends Component {
   _scrollListView() {
     const listElement = this.context.listElement();
     const listContentElement = listElement.querySelector('.list-content');
+    const listElementRect = listElement.getBoundingClientRect();
 
     if (!this.timerId) {
       this.timerId = setInterval(() => {
         if (
           this.touch.endY &&
           listElement.scrollTop > 0 &&
-          this.touch.endY < listElement.offsetTop + THRESHOLD_SCROLL_HEIGHT
+          this.touch.endY < listElementRect.top + THRESHOLD_SCROLL_HEIGHT
         ) {
           listElement.scrollTop -= 3;
           this._moveCurrentListItemAnimation();
@@ -226,7 +227,7 @@ export class ListItem extends Component {
         } else if (
           this.touch.endY &&
           listElement.scrollTop < listContentElement.offsetHeight - listElement.offsetHeight &&
-          this.touch.endY > listElement.offsetTop + listElement.offsetHeight - THRESHOLD_SCROLL_HEIGHT
+          this.touch.endY > listElementRect.top + listElement.offsetHeight - THRESHOLD_SCROLL_HEIGHT
         ) {
           listElement.scrollTop += 3;
           this._moveCurrentListItemAnimation();
