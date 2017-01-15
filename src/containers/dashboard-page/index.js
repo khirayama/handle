@@ -1,5 +1,12 @@
 import React from 'react';
+import classNames from 'classnames';
 import {Container} from '@khirayama/react-circuit';
+
+import {
+  deleteTask,
+  uncompletedTask,
+  completedTask,
+} from 'action-creators/task-action-creators';
 
 import {
   ApplicationHeader,
@@ -41,15 +48,24 @@ export class DashboardPage extends Container {
               return (
                 <ListItem
                   key={task.id}
-                  onTouchHold={() => console.log('hold!')}
-                  onSwipeLeft={() => console.log('swipe left!')}
-                  onSwipeRight={() => console.log('swipe right!')}
+                  onSwipeLeft={() => {
+                    deleteTask(this.dispatch, task.id);
+                  }}
+                  onSwipeRight={() => {
+                    if (task.completed) {
+                      uncompletedTask(this.dispatch, task.id)
+                    } else {
+                      completedTask(this.dispatch, task.id)
+                    }
+                  }}
                   througnRight={false}
                   >
                   <ListItemLeftBackground>
                     <div>L</div>
                   </ListItemLeftBackground>
-                  <ListItemContent>{task.content}</ListItemContent>
+                  <ListItemContent
+                    className={classNames({"list-item-content__completed": task.completed})}
+                    >{task.content}</ListItemContent>
                   <ListItemRightBackground>
                     <div>R</div>
                   </ListItemRightBackground>

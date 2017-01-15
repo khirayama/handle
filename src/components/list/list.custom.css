@@ -15,6 +15,10 @@
       .list-item-content {
         background-color: $color-white;
         padding: 18px 12px;
+
+        &__completed {
+          background-color: $color-divider;
+        }
       }
       .list-item-background {
         color: $color-white;
