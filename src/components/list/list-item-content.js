@@ -38,6 +38,9 @@ export class ListItemContent extends Component {
     const props = this.context.getProps();
     const touch = this.context.getTouch();
 
+    if (touch.startScrollTop !== this.context.listElement().scrollTop) {
+      return;
+    }
     clearTimeout(touch.timerId);
     if (Math.abs(diff.x) >= Math.abs(diff.y) && !this.context.holding() && diff.x <= 0 && props.onSwipeLeft) {
       event.stopPropagation();
