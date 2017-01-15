@@ -79,9 +79,13 @@ export class ListItem extends Component {
   _handleTouchHold() {
     this.touch.holding = true;
 
-    this._updateTouchHoldView();
+    if (this.props.onTouchHold || this.context.onSort) {
+      this._updateTouchHoldView();
+    }
 
-    this.props.onTouchHold();
+    if (this.props.onTouchHold) {
+      this.props.onTouchHold();
+    }
   }
   _handleTouchEnd() {
     clearTimeout(this.touch.timerId);
