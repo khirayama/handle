@@ -1,7 +1,5 @@
 import actionTypes from 'constants/action-types';
 
-import Task from 'repositories/task';
-
 export function uncompletedTask(dispatch, taskId) {
   dispatch({
     type: actionTypes.UPDATE_TASK,
@@ -29,11 +27,10 @@ export function deleteTask(dispatch, taskId) {
   });
 }
 
-export function sortTasks(dispatch, labelId, from, to) {
+export function sortTasks(dispatch, taskId, to) {
   dispatch({
     type: actionTypes.SORT_TASKS,
-    labelId,
-    from,
+    task: {id: taskId},
     to,
   });
 }

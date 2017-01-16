@@ -9,7 +9,7 @@ export function tasksIndexHandler(req, res) {
     name: 'later',
   }, {
     id: 2,
-    name: 'schedule'
+    name: 'schedule',
   }];
 
   const tasks = [];
@@ -17,7 +17,7 @@ export function tasksIndexHandler(req, res) {
   labels.forEach((label, labelIndex) => {
     for (let index = 0; index < 10; index++) {
       tasks.push({
-        id: labelIndex * 10 + index,
+        id: (labelIndex * 10) + index,
         content: `${label.name} taks ${index}`,
         order: index,
         completed: false,

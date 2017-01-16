@@ -47,7 +47,7 @@ export class DashboardPage extends Container {
         <TabContentListItem key={index} index={index}>
           <List
             onSort={(from, to) => {
-              sortTasks(this.dispatch, label.id, from, to);
+              sortTasks(this.dispatch, filterdTasks[from].id, to);
             }}
             >{filterdTasks.map(task => {
               return (
@@ -58,9 +58,9 @@ export class DashboardPage extends Container {
                   }}
                   onSwipeRight={() => {
                     if (task.completed) {
-                      uncompletedTask(this.dispatch, task.id)
+                      uncompletedTask(this.dispatch, task.id);
                     } else {
-                      completedTask(this.dispatch, task.id)
+                      completedTask(this.dispatch, task.id);
                     }
                   }}
                   througnRight={false}
@@ -69,7 +69,7 @@ export class DashboardPage extends Container {
                     <div>L</div>
                   </ListItemLeftBackground>
                   <ListItemContent
-                    className={classNames({"list-item-content__completed": task.completed})}
+                    className={classNames({'list-item-content__completed': task.completed})}
                     >{task.content}</ListItemContent>
                   <ListItemRightBackground>
                     <div>R</div>
