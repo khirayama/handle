@@ -2,6 +2,9 @@
   .tab-container {
     /* 56px - application header height */
     height: calc(100% - 56px);
+    .list-container {
+      height: calc(100% - 44px);
+    }
   }
 
   .page-content {
@@ -35,4 +38,31 @@
       will-change: transform;
     }
   }
+}
+
+.modal {
+  position: fixed;
+  z-index: 1;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: $color-white;
+  transition: 175ms ease-out;
+  transition-property: top;
+  &__open {
+    top: 0;
+  }
+}
+
+.add-task-button {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  line-height: 44px;
+  height: 44px;
+  z-index: 1;
+  background-color: $color-white;
+  border-top: $border;
+  text-align: center;
 }

@@ -10,8 +10,11 @@ export class ApplicationHeader extends Component {
         <Link href="/setting" className="setting-link">
           <div className="setting-link-content"/>
         </Link>
-        <div className="search-button-container">
-          <IconButton className="search-button">search</IconButton>
+        <div
+          className="search-button-container"
+          onClick={this.props.onClickAddLabelButton}
+          >
+          <IconButton className="search-button">add</IconButton>
         </div>
       </section>
     );
