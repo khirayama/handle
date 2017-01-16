@@ -103,8 +103,10 @@ export class ListItemContent extends Component {
   }
   _updateTouchEndView() {
     const diff = this._calcDiff();
-    const listItemElement = this.context.listItemElement();
     const props = this.context.getProps();
+    const listItemElement = this.context.listItemElement();
+    const leftBackgroundElement = listItemElement.querySelector('.list-item-left-background');
+    const rightBackgroundElement = listItemElement.querySelector('.list-item-right-background');
 
     this.listItemContent.style.transitionProperty = transitionProperties.TRANSFORM;
 
@@ -125,6 +127,12 @@ export class ListItemContent extends Component {
         this.listItemContent.classList.remove('list-item-content__swipe');
         this.listItemContent.classList.remove('list-item-content__swipe_left');
         this.listItemContent.classList.remove('list-item-content__swipe_right');
+        if (leftBackgroundElement) {
+          leftBackgroundElement.classList.remove('list-item-background__will-swipe');
+        }
+        if (rightBackgroundElement) {
+          rightBackgroundElement.classList.remove('list-item-background__will-swipe');
+        }
       }, TRANSITION_TIME);
     }
   }
