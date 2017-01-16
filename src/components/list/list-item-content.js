@@ -133,7 +133,8 @@ export class ListItemContent extends Component {
         if (rightBackgroundElement) {
           rightBackgroundElement.classList.remove('list-item-background__will-swipe');
         }
-      }, TRANSITION_TIME);
+        // Prevent flickering of animation
+      }, TRANSITION_TIME + 1);
     }
   }
   _isLeftSwipe() {
