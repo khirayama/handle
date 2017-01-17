@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import classNames from 'classnames';
 import {Container} from '@khirayama/react-circuit';
 
+import {IconButton} from 'components/icon-button';
+
 import {
   deleteTask,
   uncompletedTask,
@@ -30,7 +32,12 @@ import {
 class Modal extends Component {
   render() {
     return (
-      <div className={classNames("modal", {"modal__open": this.props.show})}>{this.props.children}</div>
+      <div
+        className={classNames(
+          "modal",
+          {"modal__open": this.props.show}
+        )}
+        >{this.props.children}</div>
     );
   }
 }
@@ -101,7 +108,7 @@ export class DashboardPage extends Container {
                 );
               })}</List>
             </div>
-            <div className="add-task-button" onClick={() => {this._setShowTaskModal(true)}}>add task</div>
+            <div className="add-task-button" onClick={() => {this._setShowTaskModal(true)}}>Add task</div>
         </TabContentListItem>
       );
     });
@@ -119,8 +126,24 @@ export class DashboardPage extends Container {
             </Tab>
           </section>
         </section>
-        <Modal show={this.state.showLabelModal}><div onClick={() => {this._setShowLabelModal(false)}}>close</div>create label</Modal>
-        <Modal show={this.state.showTaskModal}><div onClick={() => {this._setShowTaskModal(false)}}>close</div>create task</Modal>
+        <Modal show={this.state.showLabelModal}>
+          <header className="modal-header">
+            <IconButton
+              onClick={() => {this._setShowLabelModal(false)}}
+              className="close-modal-button"
+              >close</IconButton>
+          </header>
+          <div>create label</div>
+        </Modal>
+        <Modal show={this.state.showTaskModal}>
+          <header className="modal-header">
+            <IconButton
+              onClick={() => {this._setShowTaskModal(false)}}
+              className="close-modal-button"
+              >close</IconButton>
+          </header>
+          <div>create task</div>
+        </Modal>
       </section>
     );
   }
