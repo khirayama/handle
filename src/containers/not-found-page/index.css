@@ -5,7 +5,8 @@
   }
   &.page-transition-enter.page-transition-enter-active {
     transform: translateY(0);
-    transition: transform $page-transition-time $ease-out-expo;
+    transition: $timing-transition;
+    transition-property: transform;
     will-change: transform;
   }
   &.page-transition-leave {
@@ -14,7 +15,8 @@
   &.page-transition-leave.page-transition-leave-active {
     z-index: 1;
     transform: translateY(100%);
-    transition: transform $page-transition-time $ease-out-expo;
+    transition: $timing-transition;
+    transition-property: transform;
     will-change: transform;
   }
 }

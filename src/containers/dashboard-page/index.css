@@ -21,7 +21,8 @@
   &.page-transition-enter.page-transition-enter-active {
     .page-content {
       transform: scale(1);
-      transition: transform $page-transition-time $ease-out-expo;
+      transition: $timing-transition;
+      transition-property: transform;
       will-change: transform;
     }
   }
@@ -34,24 +35,10 @@
   &.page-transition-leave.page-transition-leave-active {
     .page-content {
       transform: scale(.9);
-      transition: transform $page-transition-time $ease-out-expo;
+      transition: $timing-transition;
+      transition-property: transform;
       will-change: transform;
     }
-  }
-}
-
-.modal {
-  position: fixed;
-  z-index: 1;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: $color-white;
-  transition: 200ms ease-out;
-  transition-property: top;
-  &__open {
-    top: 0;
   }
 }
 
@@ -66,18 +53,4 @@
   font-weight: $font-weight-bold;
   background-color: $color-white;
   text-align: center;
-}
-
-.modal-header {
-  position: relative;
-  height: 56px;
-  box-shadow: 0 1px 1px $color-ui-shadow;
-  .close-modal-button {
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    width: 44px;
-    height: 44px;
-    font-size: 24px;
-  }
 }

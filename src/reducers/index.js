@@ -30,11 +30,6 @@ export default function reducer(state, action) {
     }
     case actionTypes.DELETE_TASK: {
       const targetTask = findTask(state.tasks, action.task.id);
-      const tasks = state.tasks.filter(task => {
-        return (task.labelId === targetTask.labelId);
-      }).sort((taskA, taskB) => {
-        return (taskA.order > taskB.order) ? 1 : -1;
-      });
       state.tasks = state.tasks.filter(task => {
         return (task.id !== action.task.id);
       }).map(task => {

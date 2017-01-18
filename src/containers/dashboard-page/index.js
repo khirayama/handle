@@ -1,8 +1,6 @@
-import React, {Component} from 'react';
+import React from 'react';
 import classNames from 'classnames';
 import {Container} from '@khirayama/react-circuit';
-
-import {IconButton} from 'components/icon-button';
 
 import {
   deleteTask,
@@ -28,19 +26,10 @@ import {
   TabContentList,
   TabContentListItem,
 } from 'components/tab';
-
-class Modal extends Component {
-  render() {
-    return (
-      <div
-        className={classNames(
-          "modal",
-          {"modal__open": this.props.show}
-        )}
-        >{this.props.children}</div>
-    );
-  }
-}
+import {
+  Modal,
+  ModalHeader,
+} from 'components/modal';
 
 export class DashboardPage extends Container {
   constructor() {
@@ -107,8 +96,12 @@ export class DashboardPage extends Container {
                   </ListItem>
                 );
               })}</List>
-            </div>
-            <div className="add-task-button" onClick={() => {this._setShowTaskModal(true)}}>Add task</div>
+          </div>
+          <div
+            className="add-task-button" onClick={() => {
+              this._setShowTaskModal(true);
+            }}
+                                        >Add task</div>
         </TabContentListItem>
       );
     });
@@ -116,9 +109,7 @@ export class DashboardPage extends Container {
     return (
       <section className="page dashboard-page">
         <section className="page-content">
-          <ApplicationHeader onClickAddLabelButton={() => {
-            this._setShowLabelModal(true);
-          }}/>
+          <ApplicationHeader onClickAddLabelButton={() => this._setShowLabelModal(true)}/>
           <section className="tab-container">
             <Tab>
               <TabList>{labelTabElements}</TabList>
@@ -127,27 +118,16 @@ export class DashboardPage extends Container {
           </section>
         </section>
         <Modal show={this.state.showLabelModal}>
-          <header className="modal-header">
-            <IconButton
-              onClick={() => {this._setShowLabelModal(false)}}
-              className="close-modal-button"
-              >close</IconButton>
-          </header>
+          <ModalHeader onClickCloseButton={() => this._setShowLabelModal(false)}/>
           <div>create label</div>
         </Modal>
         <Modal show={this.state.showTaskModal}>
-          <header className="modal-header">
-            <IconButton
-              onClick={() => {this._setShowTaskModal(false)}}
-              className="close-modal-button"
-              >close</IconButton>
-          </header>
+          <ModalHeader onClickCloseButton={() => this._setShowTaskModal(false)}/>
           <div>create task</div>
         </Modal>
       </section>
     );
   }
 }
-
 
 DashboardPage.propTypes = {};

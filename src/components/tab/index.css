@@ -31,6 +31,8 @@
     display: flex;
     position: relative;
     list-style: none;
+    transition: $timing-basic;
+    transition-property: left;
     will-change: left;
 
     .tab-content-list-item {

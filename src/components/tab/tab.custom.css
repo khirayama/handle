@@ -23,7 +23,7 @@
         height: 3px;
         content: '';
         background: $color-primary;
-        transition: 200ms ease-out;
+        transition: timing-basic;
         transition-property: width, left;
         will-change: width, left;
       }

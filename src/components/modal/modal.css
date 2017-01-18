@@ -1,0 +1,14 @@
+.modal {
+  position: fixed;
+  z-index: 1;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: $color-white;
+  transition: $timing-transition;
+  transition-property: top;
+  &__open {
+    top: 0;
+  }
+}
