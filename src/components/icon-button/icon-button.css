@@ -11,7 +11,8 @@
   font-size: inherit;
   font-family: 'Material Icons';
   cursor: pointer;
-  transition: $timing-basic;
+  transition-timing-function: $ease-out-expo;
+  transition-duration: $time-basic;
   transition-property: color, background;
   text-rendering: optimizeLegibility;
   font-feature-settings: 'liga';

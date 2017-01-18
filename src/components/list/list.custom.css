@@ -32,12 +32,13 @@
         color: $color-white;
         & div {
           font-size: 18px;
-          font-weight: bold;
+          font-weight: $font-weight-bold;
           display: flex;
           align-items: center;
           height: 100%;
           padding: 12px;
-          transition: $timing-basic;
+          transition-timing-function: $ease-out-expo;
+          transition-duration: $time-basic;
           transition-property: font-size;
         }
 

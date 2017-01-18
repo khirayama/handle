@@ -100,8 +100,7 @@ export class DashboardPage extends Container {
           <div
             className="add-task-button" onClick={() => {
               this._setShowTaskModal(true);
-            }}
-                                        >Add task</div>
+            }}>Add task</div>
         </TabContentListItem>
       );
     });

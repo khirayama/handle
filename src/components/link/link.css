@@ -7,7 +7,8 @@
   text-align: center;
   font-weight: $font-weight-bold;
   cursor: pointer;
-  transition: $timing-basic;
+  transition-timing-function: $ease-out-expo;
+  transition-duration: $time-basic;
   transition-property: background;
   user-select: none;
 

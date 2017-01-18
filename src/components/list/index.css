@@ -26,7 +26,8 @@
   width: 100%;
   .list-item {
     overflow: hidden;
-    transition: $timing-fast;
+    transition-timing-function: $ease-out;
+    transition-duration: $time-fast;
     will-change: transform, height, max-height;
 
     &__holding {
@@ -39,7 +40,8 @@
     }
 
     &-transition-leave {
-      transition: $timing-fast;
+      transition-timing-function: $ease-out;
+      transition-duration: $time-fast;
       transition-property: height;
       &-active {
         height: 0!important;
@@ -47,7 +49,8 @@
     }
 
     .list-item-content {
-      transition: $timing-min;
+      transition-timing-function: $ease-out;
+      transition-duration: $time-min;
     }
 
     .list-item-background {

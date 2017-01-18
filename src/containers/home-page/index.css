@@ -30,7 +30,8 @@
           border-color: $color-white;
           border-radius: $radius;
           opacity: 1;
-          transition: $timing-slow;
+          transition-timing-function: $ease-out;
+          transition-duration: $time-slow;
           transition-property: opacity;
 
           &:hover {

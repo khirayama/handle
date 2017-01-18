@@ -42,15 +42,18 @@
   }
 }
 
-.add-task-button {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  line-height: 52px;
-  height: 56px;
-  z-index: 1;
-  box-shadow: 0 -1px 1px $color-ui-shadow;
-  font-weight: $font-weight-bold;
-  background-color: $color-white;
-  text-align: center;
+.tab-content-list-item {
+  position: relative;
+  .add-task-button {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    line-height: 52px;
+    height: 56px;
+    z-index: 1;
+    box-shadow: 0 -1px 1px $color-ui-shadow;
+    font-weight: $font-weight-bold;
+    background-color: $color-white;
+    text-align: center;
+  }
 }

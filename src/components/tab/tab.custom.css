@@ -11,7 +11,7 @@
     .tab-list-item {
       position: relative;
       text-align: center;
-      font-weight: bold;
+      font-weight: $font-weight-bold;
       background-color: $color-white;
 
       &::after {
@@ -23,7 +23,8 @@
         height: 3px;
         content: '';
         background: $color-primary;
-        transition: $timing-basic;
+        transition-timing-function: $ease-out-expo;
+        transition-duration: $time-basic;
         transition-property: width, left;
         will-change: width, left;
       }
