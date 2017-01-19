@@ -1,10 +1,10 @@
 import actionTypes from 'constants/action-types';
 
-export function findTask(tasks, id) {
-  for (let index = 0; index < tasks.length; index++) {
-    const task = tasks[index];
-    if (task.id === id) {
-      return task;
+function find(items, id) {
+  for (let index = 0; index < items.length; index++) {
+    const item = items[index];
+    if (item.id === id) {
+      return item;
     }
   }
   return null;
@@ -13,12 +13,17 @@ export function findTask(tasks, id) {
 export default function reducer(state, action) {
   switch (action.type) {
     case actionTypes.INITIALIZE_DASHBOARD_PAGE: {
-      state.tasks = action.tasks;
-      state.labels = action.labels;
+      state.tasks = (state.tasks.length) ? state.tasks : action.tasks;
+      state.labels = (state.labels.length) ? state.labels : action.labels;
       break;
     }
 
-      // task
+    case actionTypes.INITIALIZE_LABELS_PAGE: {
+      state.labels = (state.labels.length) ? state.labels : action.labels;
+      break;
+    }
+
+    // task
     case actionTypes.UPDATE_TASK: {
       state.tasks = state.tasks.map(task => {
         if (task.id === action.task.id) {
@@ -29,7 +34,7 @@ export default function reducer(state, action) {
       break;
     }
     case actionTypes.DELETE_TASK: {
-      const targetTask = findTask(state.tasks, action.task.id);
+      const targetTask = find(state.tasks, action.task.id);
       state.tasks = state.tasks.filter(task => {
         return (task.id !== action.task.id);
       }).map(task => {
@@ -43,7 +48,7 @@ export default function reducer(state, action) {
       break;
     }
     case actionTypes.SORT_TASKS: {
-      const targetTask = findTask(state.tasks, action.task.id);
+      const targetTask = find(state.tasks, action.task.id);
       const tasks = state.tasks.filter(task => {
         return (task.labelId === targetTask.labelId);
       }).sort((taskA, taskB) => {
@@ -75,6 +80,61 @@ export default function reducer(state, action) {
       });
       break;
     }
+
+    // labels
+    case actionTypes.UPDATE_LABEL: {
+      state.labels = state.labels.map(label => {
+        if (label.id === action.label.id) {
+          return Object.assign({}, label, action.label);
+        }
+        return label;
+      });
+      break;
+    }
+    case actionTypes.DELETE_LABEL: {
+      const targetLabel = find(state.labels, action.label.id);
+      state.labels = state.labels.filter(label => {
+        return (label.id !== action.label.id);
+      }).map(label => {
+        if (label.order > targetLabel.order) {
+          return Object.assign({}, label, {order: label.order - 1});
+        }
+        return label;
+      });
+      break;
+    }
+    case actionTypes.SORT_LABELS: {
+      const targetLabel = find(state.labels, action.label.id);
+      const labels = state.labels.sort((labelA, labelB) => {
+        return (labelA.order > labelB.order) ? 1 : -1;
+      });
+      const from = targetLabel.order;
+      const to = action.to;
+
+      if (from > to) {
+        for (let index = to; index < from; index++) {
+          const label_ = labels[index];
+          label_.order += 1;
+        }
+        labels[from].order = to;
+      } else if (from < to) {
+        for (let index = from + 1; index <= to; index++) {
+          const label_ = labels[index];
+          label_.order -= 1;
+        }
+        labels[from].order = to;
+      }
+      state.labels = state.labels.map(label => {
+        for (let index = 0; index < labels.length; index++) {
+          if (labels[index].id === label.id) {
+            return labels[index];
+          }
+        }
+        return label;
+      });
+      break;
+    }
+
     default: {
       break;
     }

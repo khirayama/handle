@@ -48,7 +48,11 @@ export class DashboardPage extends Container {
     const labelTabElements = [];
     const labelTabContentElements = [];
 
-    state.labels.forEach((label, index) => {
+    state.labels.filter((label) => {
+      return label.visibled;
+    }).sort((labelA, labelB) => {
+      return (labelA.order > labelB.order) ? 1 : -1;
+    }).forEach((label, index) => {
       const filterdTasks = state.tasks.filter(task => {
         return (task.labelId === label.id);
       }).sort((taskA, taskB) => {

@@ -6,6 +6,10 @@ const actionTypes = {
   UPDATE_TASK: '__UPDATE_TASK',
   DELETE_TASK: '__DELETE_TASK',
   SORT_TASKS: '__SORT_TASKS',
+
+  UPDATE_LABEL: '__UPDATE_LABEL',
+  DELETE_LABEL: '__DELETE_LABEL',
+  SORT_LABELS: '__SORT_LABELS',
 };
 
 export default actionTypes;

@@ -1,20 +1,41 @@
 .labels-page {
+  .labels-header {
+    position: relative;
+    z-index: 1;
+    height: 56px;
+    box-shadow: 0 1px 1px $color-ui-shadow;
+    .close-labels-button {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 44px;
+      height: 44px;
+      font-size: 24px;
+      &.link {
+        padding: 0;
+      }
+    }
+  }
+  .list-container {
+    height: calc(100% - 56px);
+  }
+
   &.page-transition-enter {
     z-index: 1;
-    transform: translateX(100%);
+    transform: translateY(100%);
   }
   &.page-transition-enter.page-transition-enter-active {
-    transform: translateX(0);
+    transform: translateY(0);
     transition: $timing-transition;
     transition-property: transform;
     will-change: transform;
   }
   &.page-transition-leave {
-    transform: translateX(0);
+    transform: translateY(0);
   }
   &.page-transition-leave.page-transition-leave-active {
     z-index: 1;
-    transform: translateX(100%);
+    transform: translateY(100%);
     transition: $timing-transition;
     transition-property: transform;
     will-change: transform;
