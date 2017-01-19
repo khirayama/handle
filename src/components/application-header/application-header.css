@@ -18,15 +18,13 @@
     }
   }
 
-  .search-button-container {
+  .labels-link {
     position: absolute;
     top: 8px;
     right: 8px;
-
-    .search-button {
-      width: 44px;
-      height: 44px;
-      font-size: 24px;
+    font-size: 24px;
+    &.link {
+      padding: 0;
     }
   }
 }

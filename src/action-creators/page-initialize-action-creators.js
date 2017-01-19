@@ -24,3 +24,15 @@ export function initializeDashboardPage(params, {dispatch}) {
     }).catch(error => console.log(error));
   });
 }
+
+export function initializeLabelsPage(params, {dispatch}) {
+  return new Promise(resolve => {
+    Label.fetch().then(labels => {
+      dispatch({
+        type: actionTypes.INITIALIZE_LABELS_PAGE,
+        labels,
+      });
+      resolve();
+    }).catch(error => console.log(error));
+  });
+}

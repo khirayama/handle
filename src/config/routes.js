@@ -2,11 +2,13 @@ import {dispatch} from '@khirayama/circuit';
 
 import {HomePage} from 'containers/home-page';
 import {DashboardPage} from 'containers/dashboard-page';
+import {LabelsPage} from 'containers/labels-page';
 import {NotFoundPage} from 'containers/not-found-page';
 
 import {
   initializeHomePage,
   initializeDashboardPage,
+  initializeLabelsPage,
 } from 'action-creators/page-initialize-action-creators';
 
 const routes = [{
@@ -22,6 +24,14 @@ const routes = [{
   initialize: initializeDashboardPage,
   component: DashboardPage,
   head: {title: 'Handle'},
+  options: {
+    data: {dispatch},
+  },
+}, {
+  path: '/labels',
+  initialize: initializeLabelsPage,
+  component: LabelsPage,
+  head: {title: 'Labels | Handle'},
   options: {
     data: {dispatch},
   },

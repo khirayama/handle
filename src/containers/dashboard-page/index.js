@@ -36,12 +36,8 @@ export class DashboardPage extends Container {
     super();
 
     this.state = Object.assign({}, this.state, {
-      showLabelModal: false,
       showTaskModal: false,
     });
-  }
-  _setShowLabelModal(showLabelModal) {
-    this.setState({showLabelModal});
   }
   _setShowTaskModal(showTaskModal) {
     this.setState({showTaskModal});
@@ -108,7 +104,7 @@ export class DashboardPage extends Container {
     return (
       <section className="page dashboard-page">
         <section className="page-content">
-          <ApplicationHeader onClickAddLabelButton={() => this._setShowLabelModal(true)}/>
+          <ApplicationHeader />
           <section className="tab-container">
             <Tab>
               <TabList>{labelTabElements}</TabList>
@@ -116,10 +112,6 @@ export class DashboardPage extends Container {
             </Tab>
           </section>
         </section>
-        <Modal show={this.state.showLabelModal}>
-          <ModalHeader onClickCloseButton={() => this._setShowLabelModal(false)}/>
-          <div>create label</div>
-        </Modal>
         <Modal show={this.state.showTaskModal}>
           <ModalHeader onClickCloseButton={() => this._setShowTaskModal(false)}/>
           <div>create task</div>
