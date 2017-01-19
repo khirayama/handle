@@ -44,6 +44,7 @@ body {
   overflow: scroll;
   width: 100%;
   height: 100%;
+  box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.1);
 }
 
 .page {
@@ -54,7 +55,6 @@ body {
   height: 100%;
   overflow: hidden;
   background-color: $color-white;
-  box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.1);
   z-index: 0;
 
   .page-content {
