@@ -3,6 +3,8 @@ import classNames from 'classnames';
 import {Container} from '@khirayama/react-circuit';
 
 import {
+  createTask,
+  updateTask,
   deleteTask,
   uncompletedTask,
   completedTask,
@@ -35,8 +37,17 @@ export class DashboardPage extends Container {
   constructor() {
     super();
 
+    const activeLabels = this.state.labels.filter((label) => {
+      return label.visibled;
+    }).sort((labelA, labelB) => {
+      return (labelA.order > labelB.order) ? 1 : -1;
+    });
+
     this.state = Object.assign({}, this.state, {
       showTaskModal: false,
+      content: '',
+      selectedTaskId: null,
+      selectedLabelId: activeLabels[0].id,
     });
   }
   _setShowTaskModal(showTaskModal) {
@@ -48,11 +59,13 @@ export class DashboardPage extends Container {
     const labelTabElements = [];
     const labelTabContentElements = [];
 
-    state.labels.filter((label) => {
+    const activeLabels = state.labels.filter((label) => {
       return label.visibled;
     }).sort((labelA, labelB) => {
       return (labelA.order > labelB.order) ? 1 : -1;
-    }).forEach((label, index) => {
+    });
+
+    activeLabels.forEach((label, index) => {
       const filterdTasks = state.tasks.filter(task => {
         return (task.labelId === label.id);
       }).sort((taskA, taskB) => {
@@ -72,6 +85,15 @@ export class DashboardPage extends Container {
                 return (
                   <ListItem
                     key={task.id}
+                    onClick={() => {
+                      console.log('click');
+                      this._setShowTaskModal(true);
+                      this.setState({
+                        content: task.content,
+                        selectedTaskId: task.id,
+                        selectedLabelId: label.id,
+                      });
+                    }}
                     onSwipeLeft={() => {
                       deleteTask(this.dispatch, task.id);
                     }}
@@ -99,6 +121,11 @@ export class DashboardPage extends Container {
           </div>
           <div
             className="add-task-button" onClick={() => {
+              this.setState({
+                selectedLabelId: label.id,
+                selectedTaskId: null,
+                content: '',
+              });
               this._setShowTaskModal(true);
             }}>Add task</div>
         </TabContentListItem>
@@ -118,7 +145,25 @@ export class DashboardPage extends Container {
         </section>
         <Modal show={this.state.showTaskModal}>
           <ModalHeader onClickCloseButton={() => this._setShowTaskModal(false)}/>
-          <div>create task</div>
+          <div>
+            <select
+              value={this.state.selectedLabelId}
+              onChange={(event) => {this.setState({selectedLabelId: Number(event.target.value)})}}
+              >
+              {activeLabels.map(label => <option key={label.id} value={label.id}>{label.name}</option>)}
+            </select>
+            <input type="text" value={this.state.content} onChange={(event) => {this.setState({content: event.target.value})}}/>
+            <button onClick={() => {
+              if (this.state.content !== '') {
+                if (this.state.selectedTaskId !== null) {
+                  updateTask(this.dispatch, this.state.selectedTaskId, this.state.content, this.state.selectedLabelId);
+                } else {
+                  createTask(this.dispatch, this.state.content, this.state.selectedLabelId);
+                }
+                this._setShowTaskModal(false);
+              }
+            }}>Add task</button>
+          </div>
         </Modal>
       </section>
     );

@@ -24,13 +24,45 @@ export default function reducer(state, action) {
     }
 
     // task
-    case actionTypes.UPDATE_TASK: {
-      state.tasks = state.tasks.map(task => {
-        if (task.id === action.task.id) {
-          return Object.assign({}, task, action.task);
-        }
-        return task;
+    case actionTypes.CREATE_TASK: {
+      const tasks = state.tasks.filter(task => {
+        return (task.labelId === action.task.labelId);
+      }).sort((taskA, taskB) => {
+        return (taskA.order > taskB.order) ? 1 : -1;
       });
+      state.tasks.push(Object.assign({}, {
+        id: state.tasks.lenght + (new Date()).getTime(),
+        order: tasks.length,
+        completed: false,
+        createdAt: new Date(),
+        updateAt: new Date(),
+      }, action.task));
+      break;
+    }
+    case actionTypes.UPDATE_TASK: {
+      const targetTask = find(state.tasks, action.task.id);
+      if (action.task.labelId && targetTask.labelId !== action.task.labelId) {
+        const order = state.tasks.filter(task => {
+          return (action.task.labelId === task.labelId);
+        }).length;
+        state.tasks = state.tasks.map(task => {
+          if (task.id === action.task.id) {
+            return Object.assign({}, task, action.task, {order});
+          } else if (task.labelId === targetTask.labelId) {
+            if (task.order > targetTask.order) {
+              return Object.assign({}, task, {order: task.order - 1});
+            }
+          }
+          return task;
+        });
+      } else {
+        state.tasks = state.tasks.map(task => {
+          if (task.id === action.task.id) {
+            return Object.assign({}, task, action.task);
+          }
+          return task;
+        });
+      }
       break;
     }
     case actionTypes.DELETE_TASK: {
@@ -82,6 +114,17 @@ export default function reducer(state, action) {
     }
 
     // labels
+    case actionTypes.CREATE_LABEL: {
+      state.labels.push(Object.assign({
+        id: state.labels.length,
+        order: state.labels.length,
+        name: action.label.name,
+        visibled: true,
+        createdAt: new Date(),
+        updateAt: new Date(),
+      }));
+      break;
+    }
     case actionTypes.UPDATE_LABEL: {
       state.labels = state.labels.map(label => {
         if (label.id === action.label.id) {

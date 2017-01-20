@@ -15,7 +15,7 @@ export function tasksIndexHandler(req, res) {
   const tasks = [];
 
   labels.forEach((label, labelIndex) => {
-    for (let index = 0; index < 10; index++) {
+    for (let index = 0; index < 3; index++) {
       tasks.push({
         id: (labelIndex * 10) + index,
         content: `${label.name} taks ${index}`,

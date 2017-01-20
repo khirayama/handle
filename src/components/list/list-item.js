@@ -297,8 +297,15 @@ export class ListItem extends Component {
     this.listItem = listItem;
   }
   render() {
+    const props = Object.assign({}, this.props);
+    delete props.onSwipeLeft;
+    delete props.onSwipeRight;
+    delete props.througnRight;
+    delete props.througnLeft;
+
     return (
       <div
+        {...props}
         className={classNames(this.props.className, 'list-item')}
         ref={this.setListItem}
         onTouchStart={this.handleTouchStart}

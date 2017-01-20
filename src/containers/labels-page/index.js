@@ -2,6 +2,8 @@ import React from 'react';
 import {Container} from '@khirayama/react-circuit';
 
 import {
+  createLabel,
+  updateLabel,
   unvisibledLabel,
   visibledLabel,
   deleteLabel,
@@ -17,8 +19,21 @@ import {
   ListItemLeftBackground,
   ListItemRightBackground,
 } from 'components/list';
+import {
+  Modal,
+  ModalHeader,
+} from 'components/modal';
 
 export class LabelsPage extends Container {
+  constructor() {
+    super();
+
+    this.state = Object.assign({}, this.state, {
+      showLabelModal: false,
+      selectedLabelId: null,
+      name: '',
+    });
+  }
   render() {
     return (
       <section className="page labels-page">
@@ -28,7 +43,7 @@ export class LabelsPage extends Container {
               className="close-labels-button"
               href="/dashboard"
               >
-              <IconButton>close</IconButton>
+              <IconButton>arrow_back</IconButton>
             </Link>
           </header>
           <div className="list-container">
@@ -42,6 +57,13 @@ export class LabelsPage extends Container {
                 return (
                   <ListItem
                     key={label.id}
+                    onClick={() => {
+                      this.setState({
+                        showLabelModal: true,
+                        selectedLabelId: label.id,
+                        name: label.name,
+                      });
+                    }}
                     onSwipeLeft={() => {
                       if (confirm('Delete it?')) {
                         deleteLabel(this.dispatch, label.id);
@@ -69,7 +91,25 @@ export class LabelsPage extends Container {
               })}
             </List>
           </div>
+          <div
+            className="add-label-button" onClick={() => {
+              this.setState({showLabelModal: true, name: '', selectedLabelId: null});
+            }}>Add label</div>
         </section>
+        <Modal show={this.state.showLabelModal}>
+          <ModalHeader onClickCloseButton={() => this.setState({showLabelModal: false})}/>
+          <div>
+            <input type="text" value={this.state.name} onChange={(event) => {this.setState({name: event.target.value})}}/>
+            <button onClick={() => {
+              if (this.state.selectedLabelId !== null) {
+                updateLabel(this.dispatch, this.state.selectedLabelId, this.state.name);
+              } else {
+                createLabel(this.dispatch, this.state.name);
+              }
+              this.setState({showLabelModal: false});
+            }}>Add label</button>
+          </div>
+        </Modal>
       </section>
     );
   }
