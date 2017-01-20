@@ -31,7 +31,7 @@ export default function reducer(state, action) {
         return (taskA.order > taskB.order) ? 1 : -1;
       });
       state.tasks.push(Object.assign({}, {
-        id: state.tasks.lenght + (new Date()).getTime(),
+        id: (new Date()).getTime(),
         order: tasks.length,
         completed: false,
         createdAt: new Date(),

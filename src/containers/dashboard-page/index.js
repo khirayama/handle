@@ -50,9 +50,6 @@ export class DashboardPage extends Container {
       selectedLabelId: activeLabels[0].id,
     });
   }
-  _setShowTaskModal(showTaskModal) {
-    this.setState({showTaskModal});
-  }
   render() {
     const state = this.state;
 
@@ -86,9 +83,8 @@ export class DashboardPage extends Container {
                   <ListItem
                     key={task.id}
                     onClick={() => {
-                      console.log('click');
-                      this._setShowTaskModal(true);
                       this.setState({
+                        showTaskModal: true,
                         content: task.content,
                         selectedTaskId: task.id,
                         selectedLabelId: label.id,
@@ -122,11 +118,11 @@ export class DashboardPage extends Container {
           <div
             className="add-task-button" onClick={() => {
               this.setState({
+                showTaskModal: true,
                 selectedLabelId: label.id,
                 selectedTaskId: null,
                 content: '',
               });
-              this._setShowTaskModal(true);
             }}>Add task</div>
         </TabContentListItem>
       );
@@ -144,7 +140,7 @@ export class DashboardPage extends Container {
           </section>
         </section>
         <Modal show={this.state.showTaskModal}>
-          <ModalHeader onClickCloseButton={() => this._setShowTaskModal(false)}/>
+          <ModalHeader onClickCloseButton={() => this.setState({showTaskModal: false})}/>
           <div>
             <select
               value={this.state.selectedLabelId}
@@ -160,7 +156,7 @@ export class DashboardPage extends Container {
                 } else {
                   createTask(this.dispatch, this.state.content, this.state.selectedLabelId);
                 }
-                this._setShowTaskModal(false);
+                this.setState({showTaskModal: false});
               }
             }}>Add task</button>
           </div>
