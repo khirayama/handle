@@ -18,14 +18,21 @@ export function authHandler(req, res) {
   authenticate(req, res);
 }
 
-export function authCallbackHandler(req, res) {
+export function authCallbackHandler(req, res, next) {
   const provider = req.params.provider;
-  const authenticate = passport.authenticate(provider, {
-    successRedirect: '/dashboard',
-    failureRedirect: '/',
+  const authenticate = passport.authenticate(provider, (err, user, info) => {
+    if (!user || err) {
+      return res.redirect('/');
+    }
+    req.login(user, (err) => {
+      if (err) {
+        return next(err);
+      }
+      return res.redirect('/dashboard');
+    });
   });
 
-  authenticate(req, res);
+  authenticate(req, res, next);
 }
 
 export function logoutHandler(req, res) {
