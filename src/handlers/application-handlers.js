@@ -11,6 +11,8 @@ import {getUI} from 'helpers';
 
 import reducer from 'reducers';
 
+import {User} from '../../models';
+
 const PAGE_TRANSITION_TIME = 600;
 
 export function applicationHandler(req, res) {
