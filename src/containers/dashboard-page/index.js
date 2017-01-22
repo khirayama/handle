@@ -40,7 +40,7 @@ export class DashboardPage extends Container {
     const activeLabels = this.state.labels.filter((label) => {
       return label.visibled;
     }).sort((labelA, labelB) => {
-      return (labelA.order > labelB.order) ? 1 : -1;
+      return (labelA.priority > labelB.priority) ? 1 : -1;
     });
 
     this.state = Object.assign({}, this.state, {
@@ -59,14 +59,14 @@ export class DashboardPage extends Container {
     const activeLabels = state.labels.filter((label) => {
       return label.visibled;
     }).sort((labelA, labelB) => {
-      return (labelA.order > labelB.order) ? 1 : -1;
+      return (labelA.priority > labelB.priority) ? 1 : -1;
     });
 
     activeLabels.forEach((label, index) => {
       const filterdTasks = state.tasks.filter(task => {
         return (task.labelId === label.id);
       }).sort((taskA, taskB) => {
-        return (taskA.order > taskB.order) ? 1 : -1;
+        return (taskA.priority > taskB.priority) ? 1 : -1;
       });
 
       labelTabElements.push(<TabListItem key={index} index={index}>{label.name}</TabListItem>);

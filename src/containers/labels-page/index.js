@@ -52,7 +52,7 @@ export class LabelsPage extends Container {
                 sortLabels(this.dispatch, this.state.labels[from].id, to);
               }}
               >{this.state.labels.sort((labelA, labelB) => {
-                return (labelA.order > labelB.order) ? 1 : -1;
+                return (labelA.priority > labelB.priority) ? 1 : -1;
               }).map(label => {
                 return (
                   <ListItem

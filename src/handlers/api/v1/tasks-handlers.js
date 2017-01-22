@@ -19,7 +19,7 @@ export function tasksIndexHandler(req, res) {
       tasks.push({
         id: (labelIndex * 10) + index,
         content: `${label.name} taks ${index}`,
-        order: index,
+        priority: index,
         completed: false,
         labelId: label.id,
         createdAt: now,
@@ -40,7 +40,7 @@ export function tasksCreateHandler(req, res) {
     completed: false,
     createdAt: now,
     updateAt: now,
-    order: 0,
+    priority: 0,
     labelId: 0,
   });
 }
@@ -54,7 +54,7 @@ export function tasksUpdateHandler(req, res) {
     completed: false,
     createdAt: now,
     updateAt: now,
-    order: 0,
+    priority: 0,
     labelId: 0,
   });
 }

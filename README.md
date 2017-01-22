@@ -18,5 +18,5 @@
 ## リソース
 
 - users (id / uid / provider / name / language / image-url / profile)
-- tasks (id / content / order / label-id)
+- tasks (id / content / priority / label-id)
 - labels (id / name)
