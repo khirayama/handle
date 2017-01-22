@@ -1,41 +1,57 @@
 import {Task} from '../../../../models';
 
+function omit(task) {
+  return {
+    id: task.id,
+    labelId: task.labelId,
+    content: task.contetn,
+    priority: task.priority,
+    completed: task.completed,
+    createdAt: task.createdAt,
+    updatedAt: task.updatedAt,
+  };
+}
+
 export function tasksIndexHandler(req, res) {
   Task.findAll({
-    where: {
-      UserId: req.user.id,
-    },
+    where: {UserId: req.user.id},
     order: [['LabelId', 'ASC'], ['priority', 'ASC']],
   }).then(tasks => {
-    res.json(tasks);
+    res.json(tasks.map(task => {
+      return omit(task);
+    }));
   });
 }
 
 export function tasksCreateHandler(req, res) {
   Task.create({
+    userId: req.user.id,
+    labelId: req.body.labelId,
     content: req.body.content,
     priority: req.body.priority,
-    UserId: req.user.id,
+    completed: false,
   }).then(task => {
     res.json(task);
   });
 }
 
 export function tasksUpdateHandler(req, res) {
-  Task.findById(req.body.id).then(task => {
+  Task.findById(req.params.id).then(task => {
     task.update({
-      content: req.body.content,
-      priority: req.body.priority,
+      labelId: (req.body.labelId !== undefined) ? req.body.labelId : task.labelId,
+      content: (req.body.content !== undefined) ? req.body.content : task.content,
+      priority: (req.body.priority !== undefined) ? req.body.priority : task.priority,
+      completed: (req.body.completed !== undefined) ? req.body.completed : task.completed,
     }).then(() => {
-      res.json(task);
+      res.json(omit(task));
     });
   });
 }
 
 export function tasksDeleteHandler(req, res) {
-  Task.findById(req.body.id).then(task => {
+  Task.findById(req.params.id).then(task => {
     task.destroy().then(destroyedTask => {
-      res.json(destroyedTask);
+      res.json(omit(destroyedTask));
     });
   });
 }
