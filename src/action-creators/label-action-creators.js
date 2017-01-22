@@ -1,19 +1,31 @@
 import actionTypes from 'constants/action-types';
+import {getState} from '@khirayama/circuit';
+
+import Label from 'repositories/label';
 
 export function createLabel(dispatch, name) {
-  dispatch({
-    type: actionTypes.CREATE_LABEL,
-    label: {name},
+  const state = getState();
+
+  Label.create({
+    name,
+    priority: state.labels.length,
+  }).then(label => {
+    dispatch({
+      type: actionTypes.CREATE_LABEL,
+      label,
+    });
   });
 }
 
 export function updateLabel(dispatch, labelId, name) {
-  dispatch({
-    type: actionTypes.UPDATE_LABEL,
-    label: {
-      id: labelId,
-      name,
-    },
+  Label.update({
+    id: labelId,
+    name,
+  }).then(label => {
+    dispatch({
+      type: actionTypes.UPDATE_LABEL,
+      label,
+    });
   });
 }
 
@@ -38,9 +50,11 @@ export function visibledLabel(dispatch, labelId) {
 }
 
 export function deleteLabel(dispatch, labelId) {
-  dispatch({
-    type: actionTypes.DELETE_LABEL,
-    label: {id: labelId},
+  Label.delete(labelId).then(label => {
+    dispatch({
+      type: actionTypes.DELETE_LABEL,
+      label,
+    });
   });
 }
 

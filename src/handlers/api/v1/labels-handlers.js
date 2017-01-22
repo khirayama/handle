@@ -1,5 +1,15 @@
 import {Label} from '../../../../models';
 
+function omitLabel(label) {
+  return {
+    id: label.id,
+    name: label.name,
+    priority: label.priority,
+    createdAt: label.createdAt,
+    updatedAt: label.updatedAt,
+  };
+}
+
 export function labelsIndexHandler(req, res) {
   Label.findAll({
     where: {
@@ -7,25 +17,27 @@ export function labelsIndexHandler(req, res) {
     },
     order: [['priority', 'ASC']],
   }).then(labels => {
-    res.json(labels);
+    res.json(labels.map(label => {
+      return omitLabel(label);
+    }));
   });
 }
 
 export function labelsCreateHandler(req, res) {
   Label.create({
+    userId: req.user.id,
     name: req.body.name,
     priority: req.body.priority,
-    UserId: req.user.id,
   }).then(label => {
-    res.json(label);
+    res.json(omitLabel(label));
   });
 }
 
 export function labelsUpdateHandler(req, res) {
-  Label.findById(req.body.id).then(label => {
+  Label.findById(req.params.id).then(label => {
     label.update({
-      name: req.body.content,
-      priority: req.body.priority,
+      name: req.body.name,
+      priority: req.body.priority || label.priority,
     }).then(() => {
       res.json(label);
     });
@@ -33,7 +45,7 @@ export function labelsUpdateHandler(req, res) {
 }
 
 export function labelsDeleteHandler(req, res) {
-  Label.findById(req.body.id).then(label => {
+  Label.findById(req.params.id).then(label => {
     label.destroy().then(destroyedLabel => {
       res.json(destroyedLabel);
     });
