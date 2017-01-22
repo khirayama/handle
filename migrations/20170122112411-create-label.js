@@ -1,5 +1,3 @@
-'use strict';
-
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('Labels', {
@@ -7,6 +5,10 @@ module.exports = {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
+        allowNull: false
+      },
+      userId: {
+        type: Sequelize.INTEGER,
         allowNull: false
       },
       name: {
@@ -23,15 +25,6 @@ module.exports = {
       },
       updatedAt: {
         type: Sequelize.DATE
-      },
-      UserId: {
-        type: Sequelize.INTEGER,
-        onDelete: "CASCADE",
-        allowNull: false,
-        references: {
-          model: 'Users',
-          key: 'id'
-        }
       },
     });
   },

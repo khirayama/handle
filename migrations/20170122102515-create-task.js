@@ -1,5 +1,3 @@
-'use strict';
-
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('Tasks', {
@@ -7,6 +5,14 @@ module.exports = {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
+        allowNull: false
+      },
+      userId: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+      },
+      labelId: {
+        type: Sequelize.INTEGER,
         allowNull: false
       },
       content: {
@@ -27,21 +33,8 @@ module.exports = {
         allowNull: false
       },
       updatedAt: {
-        type: Sequelize.DATE
-      },
-      UserId: {
-        type: Sequelize.INTEGER,
-        onDelete: "CASCADE",
-        allowNull: false,
-        references: {
-          model: 'Users',
-          key: 'id'
-        }
-      },
-      LabelId: {
-        type: Sequelize.INTEGER,
-        onDelete: "CASCADE",
-        allowNull: false,
+        type: Sequelize.DATE,
+        allowNull: false
       },
     });
   },

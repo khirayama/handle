@@ -1,5 +1,3 @@
-'use strict';
-
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('Users', {
@@ -30,7 +28,8 @@ module.exports = {
         allowNull: false
       },
       updatedAt: {
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        allowNull: false
       }
     });
   },

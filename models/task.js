@@ -1,7 +1,13 @@
-"use strict";
-
 module.exports = (sequelize, DataTypes) => {
-  const Task = sequelize.define("Task", {
+  return sequelize.define('Task', {
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    labelId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
     content: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -15,18 +21,5 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       defaultValue: false,
     },
-  }, {
-    classMethods: {
-      associate: (models) => {
-        Task.belongsTo(models.User, {
-          onDelete: "CASCADE",
-          foreignKey: {
-            allowNull: false,
-          },
-        });
-      }
-    }
   });
-
-  return Task;
 };

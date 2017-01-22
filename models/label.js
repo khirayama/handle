@@ -1,7 +1,9 @@
-"use strict";
-
 module.exports = (sequelize, DataTypes) => {
-  const Label = sequelize.define("Label", {
+  return sequelize.define('Label', {
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -10,18 +12,5 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-  }, {
-    classMethods: {
-      associate: (models) => {
-        Label.belongsTo(models.User, {
-          onDelete: "CASCADE",
-          foreignKey: {
-            allowNull: false,
-          },
-        });
-      }
-    }
   });
-
-  return Label;
 };
