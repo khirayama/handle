@@ -16,6 +16,11 @@ import {User} from '../../models';
 const PAGE_TRANSITION_TIME = 600;
 
 export function applicationHandler(req, res) {
+  if (!req.isAuthenticated() && req.path !== '/') {
+    res.redirect('/');
+    return;
+  }
+
   i18n.setLocale(req.getLocale());
 
   const pathname = req.path;
