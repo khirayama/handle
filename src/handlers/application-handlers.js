@@ -28,6 +28,7 @@ export function applicationHandler(req, res) {
   const initialState = {
     lang: req.getLocale(),
     ui: getUI(req.useragent),
+    user: req.user,
     tasks: [],
     labels: [],
   };
