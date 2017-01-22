@@ -4,7 +4,7 @@ function omit(task) {
   return {
     id: task.id,
     labelId: task.labelId,
-    content: task.contetn,
+    content: task.content,
     priority: task.priority,
     completed: task.completed,
     createdAt: task.createdAt,

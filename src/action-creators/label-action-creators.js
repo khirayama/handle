@@ -100,30 +100,18 @@ export function sortLabels(dispatch, labelId, to) {
     for (let index = to; index < from; index++) {
       const label_ = labels[index];
       label_.priority += 1;
-      Label.update({
-        id: label_.id,
-        priority: label_.priority,
-      });
+      Label.update(label_);
     }
     labels[from].priority = to;
-    Label.update({
-      id: labels[from].id,
-      priority: to,
-    });
+    Label.update(labels[from]);
   } else if (from < to) {
     for (let index = from + 1; index <= to; index++) {
       const label_ = labels[index];
       label_.priority -= 1;
-      Label.update({
-        id: label_.id,
-        priority: label_.priority,
-      });
+      Label.update(label_);
     }
     labels[from].priority = to;
-    Label.update({
-      id: labels[from].id,
-      priority: to,
-    });
+    Label.update(labels[from]);
   }
   const newLabels = state.labels.map(label => {
     for (let index = 0; index < labels.length; index++) {
