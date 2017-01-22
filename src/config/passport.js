@@ -4,16 +4,18 @@ import {Strategy as InstagramStrategy} from 'passport-instagram';
 
 import {User} from '../../models';
 
+const hostname = (process.env.NODE_ENV === 'production') ? process.env.HOSTNAME : 'http://localhost:3000';
+
 const config = {
   twitter: {
     consumerKey: process.env.TWITTER_KEY,
     consumerSecret: process.env.TWITTER_SECRET,
-    callbackURL: 'http://localhost:3000/auth/twitter/callback',
+    callbackURL: `${hostname}/auth/twitter/callback`,
   },
   instagram: {
     clientID: process.env.INSTAGRAM_KEY,
     clientSecret: process.env.INSTAGRAM_SECRET,
-    callbackURL: 'http://localhost:3000/auth/instagram/callback',
+    callbackURL: `${hostname}/auth/instagram/callback`,
   },
 };
 
