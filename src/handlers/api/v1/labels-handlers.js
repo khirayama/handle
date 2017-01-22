@@ -1,6 +1,6 @@
 import {Label} from '../../../../models';
 
-function omitLabel(label) {
+function omit(label) {
   return {
     id: label.id,
     name: label.name,
@@ -13,13 +13,11 @@ function omitLabel(label) {
 
 export function labelsIndexHandler(req, res) {
   Label.findAll({
-    where: {
-      userId: req.user.id,
-    },
+    where: {userId: req.user.id},
     order: [['priority', 'ASC']],
   }).then(labels => {
     res.json(labels.map(label => {
-      return omitLabel(label);
+      return omit(label);
     }));
   });
 }
@@ -31,7 +29,7 @@ export function labelsCreateHandler(req, res) {
     priority: req.body.priority,
     visibled: true,
   }).then(label => {
-    res.json(omitLabel(label));
+    res.json(omit(label));
   });
 }
 
@@ -42,7 +40,7 @@ export function labelsUpdateHandler(req, res) {
       priority: (req.body.priority !== undefined) ? req.body.priority : label.priority,
       visibled: (req.body.visibled !== undefined) ? req.body.visibled : label.visibled,
     }).then(() => {
-      res.json(label);
+      res.json(omit(label));
     });
   });
 }
@@ -50,7 +48,7 @@ export function labelsUpdateHandler(req, res) {
 export function labelsDeleteHandler(req, res) {
   Label.findById(req.params.id).then(label => {
     label.destroy().then(destroyedLabel => {
-      res.json(destroyedLabel);
+      res.json(omit(destroyedLabel));
     });
   });
 }
