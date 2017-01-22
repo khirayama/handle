@@ -19,13 +19,13 @@ router.use('/api', new Router()
   .use('/v1', new Router()
     .get('/tasks', tasksIndexHandler)
     .post('/tasks', tasksCreateHandler)
-    .put('/tasks', tasksUpdateHandler)
-    .delete('/tasks', tasksDeleteHandler)
+    .put('/tasks/:id', tasksUpdateHandler)
+    .delete('/tasks/:id', tasksDeleteHandler)
 
     .get('/labels', labelsIndexHandler)
     .post('/labels', labelsCreateHandler)
-    .put('/labels', labelsUpdateHandler)
-    .delete('/labels', labelsDeleteHandler)
+    .put('/labels/:id', labelsUpdateHandler)
+    .delete('/labels/:id', labelsDeleteHandler)
   )
 );
 
