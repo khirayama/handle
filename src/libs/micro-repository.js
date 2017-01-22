@@ -17,15 +17,14 @@ export class Entry {
   get data() {
     return this._cache;
   }
-  // query
-  fetch(data, cache = true) {
+  fetch(config, cache = true) {
     if (cache && this._cache !== null) {
       return new Promise(resolve => {
         resolve(this._cache);
       });
     }
     return new Promise((resolve, reject) => {
-      this._request.get(this._url(), {params: data}).then(res => {
+      this._request.get(this._url(), config).then(res => {
         this._cache = res.data;
         this._save();
         resolve(res.data);
@@ -35,9 +34,9 @@ export class Entry {
     });
   }
   // command
-  update(entity) {
+  update(data, config) {
     return new Promise((resolve, reject) => {
-      this._request.put(this._url(), entity).then(res => {
+      this._request.put(this._url(), data, config).then(res => {
         this._clear();
         this._save();
         resolve(res.data);
@@ -87,11 +86,10 @@ export class Collection {
   get data() {
     return this._cache;
   }
-  // query
-  fetch(query, cache = true) {
+  fetch(config, cache = true) {
     if (
       cache &&
-      JSON.stringify(query) === this._cacheQuery &&
+      JSON.stringify(config) === this._cacheQuery &&
       this._cache !== null
     ) {
       return new Promise(resolve => {
@@ -99,15 +97,15 @@ export class Collection {
       });
     }
     return new Promise((resolve, reject) => {
-      this._request.get(this._url(), {params: query}).then(res => {
+      this._request.get(this._url(), config).then(res => {
         this._clear();
-        this._cacheQuery = JSON.stringify(query);
+        this._cacheQuery = JSON.stringify(config);
         this._save();
         resolve(res.data);
       }).catch(error => reject(error));
     });
   }
-  find(id) {
+  find(id, config) {
     if (this._cache !== null) {
       return new Promise((resolve, reject) => {
         for (let index = 0; index < this._cache.length; index++) {
@@ -116,41 +114,41 @@ export class Collection {
             resolve(item);
           }
         }
-        this._find(id, resolve, reject);
+        this._find(id, config, resolve, reject);
       });
     }
     return new Promise((resolve, reject) => {
       this._find(id, resolve, reject);
     });
   }
-  _find(id, resolve, reject) {
-    this._request.get(this._url(id)).then(res => {
+  _find(id, config, resolve, reject) {
+    this._request.get(this._url(id), config).then(res => {
       this._save();
       resolve(res.data);
     }).catch(error => reject(error));
   }
   // command
-  create(entity) {
+  create(data, config) {
     return new Promise((resolve, reject) => {
-      this._request.post(this._url(), entity).then(res => {
+      this._request.post(this._url(), data, config).then(res => {
         this._clear();
         this._save();
         resolve(res.data);
       }).catch(error => reject(error));
     });
   }
-  update(entity) {
+  update(data, config) {
     return new Promise((resolve, reject) => {
-      this._request.put(this._url(entity.id), entity).then(res => {
+      this._request.put(this._url(data.id), data, config).then(res => {
         this._clear();
         this._save();
         resolve(res.data);
       }).catch(error => reject(error));
     });
   }
-  delete(id) {
+  delete(id, config) {
     return new Promise((resolve, reject) => {
-      this._request.delete(this._url(id)).then(res => {
+      this._request.delete(this._url(id), config).then(res => {
         this._clear();
         this._save();
         resolve(res.data);

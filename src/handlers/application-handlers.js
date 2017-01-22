@@ -34,6 +34,14 @@ export function applicationHandler(req, res) {
 
   const {data} = router.getOptions(pathname);
 
+  let serializedCookies = '';
+  Object.keys(req.cookies).forEach(cookieKey => {
+    serializedCookies += (cookieKey + '=' + req.cookies[cookieKey] + ';');
+  });
+  data.config = {
+    headers: {'cookie': serializedCookies}
+  };
+
   router.initialize(pathname, data).then(() => {
     const state = getState();
     const head = router.getHead(req.path);
