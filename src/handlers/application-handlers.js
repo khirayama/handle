@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/server';
 
 import i18n from 'libs/micro-i18n';
 import {Router, Connector} from 'spectrometer';
-import {createStore, getState, clearStore} from '@khirayama/circuit';
+import {Store} from '@khirayama/circuit';
 
 import routes from 'config/routes';
 
@@ -27,8 +27,8 @@ export function applicationHandler(req, res) {
     labels: [],
   };
 
-  clearStore();
-  createStore(initialState, reducer);
+  // Can't use createStore. circuit store is singleton.
+  const store = new Store(initialState, reducer);
 
   const router = new Router(routes);
 
@@ -41,14 +41,16 @@ export function applicationHandler(req, res) {
   data.config = {
     headers: {'cookie': serializedCookies}
   };
+  data.dispatch = store.dispatch.bind(store);
 
   router.initialize(pathname, data).then(() => {
-    const state = getState();
+    const state = store.getState();
     const head = router.getHead(req.path);
     const content = ReactDOM.renderToString(
       <Connector
         router={router}
         path={req.path}
+        store={store}
 
         transitionName="page-transition"
         transitionEnterTimeout={PAGE_TRANSITION_TIME}

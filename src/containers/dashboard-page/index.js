@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import {Container} from '@khirayama/react-circuit';
+import {Container} from 'libs/container';
 
 import {
   createTask,
@@ -34,8 +34,8 @@ import {
 } from 'components/modal';
 
 export class DashboardPage extends Container {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     const activeLabels = this.state.labels.filter((label) => {
       return label.visibled;

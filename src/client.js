@@ -18,7 +18,7 @@ window.addEventListener('contextmenu', event => {
 window.addEventListener('DOMContentLoaded', () => {
   i18n.setLocale(window.state.lang);
 
-  createStore(window.state, reducer);
+  const store = createStore(window.state, reducer);
 
   const router = new Router(routes);
 
@@ -27,6 +27,7 @@ window.addEventListener('DOMContentLoaded', () => {
       router={router}
       path={location.pathname}
       firstRendering={false}
+      store={store}
 
       transitionName="page-transition"
       transitionEnterTimeout={PAGE_TRANSITION_TIME}

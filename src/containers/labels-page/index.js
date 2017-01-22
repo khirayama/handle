@@ -1,5 +1,5 @@
 import React from 'react';
-import {Container} from '@khirayama/react-circuit';
+import {Container} from 'libs/container';
 
 import {
   createLabel,
