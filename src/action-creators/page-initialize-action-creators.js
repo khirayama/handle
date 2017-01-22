@@ -13,7 +13,7 @@ export function initializeHomePage(params, {dispatch}) {
 export function initializeDashboardPage(params, {dispatch, config}) {
   return new Promise(resolve => {
     Task.fetch(config).then(tasks => {
-      Label.fetch().then(labels => {
+      Label.fetch(config).then(labels => {
         dispatch({
           type: actionTypes.INITIALIZE_DASHBOARD_PAGE,
           tasks,

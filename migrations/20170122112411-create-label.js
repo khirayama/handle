@@ -2,25 +2,20 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Tasks', {
+    return queryInterface.createTable('Labels', {
       id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
         allowNull: false
       },
-      content: {
+      name: {
         type: Sequelize.STRING,
         allowNull: false,
       },
       priority: {
         type: Sequelize.INTEGER,
         allowNull: false,
-      },
-      completed: {
-        type: Sequelize.BOOLEAN,
-        allowNull: false,
-        defaultValue: false,
       },
       createdAt: {
         type: Sequelize.DATE,
@@ -38,14 +33,9 @@ module.exports = {
           key: 'id'
         }
       },
-      LabelId: {
-        type: Sequelize.INTEGER,
-        onDelete: "CASCADE",
-        allowNull: false,
-      },
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Tasks');
+    return queryInterface.dropTable('Labels');
   }
 };

@@ -47,7 +47,7 @@ export class DashboardPage extends Container {
       showTaskModal: false,
       content: '',
       selectedTaskId: null,
-      selectedLabelId: activeLabels[0].id,
+      selectedLabelId: (activeLabels[0] || {}).id || null,
     });
   }
   render() {

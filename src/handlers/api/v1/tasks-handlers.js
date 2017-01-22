@@ -1,4 +1,4 @@
-import {User, Task} from '../../../../models';
+import {Task} from '../../../../models';
 
 export function tasksIndexHandler(req, res) {
   Task.findAll({
@@ -6,8 +6,8 @@ export function tasksIndexHandler(req, res) {
       UserId: req.user.id,
     },
     order: [['priority', 'ASC']],
-  }).then(users => {
-    res.json(users);
+  }).then(tasks => {
+    res.json(tasks);
   });
 }
 
