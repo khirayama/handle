@@ -1,64 +1,41 @@
+import {User, Task} from '../../../../models';
+
 export function tasksIndexHandler(req, res) {
-  const now = new Date();
-
-  const labels = [{
-    id: 0,
-    name: 'today',
-  }, {
-    id: 1,
-    name: 'later',
-  }, {
-    id: 2,
-    name: 'schedule',
-  }];
-
-  const tasks = [];
-
-  labels.forEach((label, labelIndex) => {
-    for (let index = 0; index < 3; index++) {
-      tasks.push({
-        id: (labelIndex * 10) + index,
-        content: `${label.name} taks ${index}`,
-        priority: index,
-        completed: false,
-        labelId: label.id,
-        createdAt: now,
-        updateAt: now,
-      });
-    }
+  Task.findAll({
+    where: {
+      UserId: req.user.id,
+    },
+    order: [['priority', 'ASC']],
+  }).then(users => {
+    res.json(users);
   });
-
-  res.json(tasks);
 }
 
 export function tasksCreateHandler(req, res) {
-  const now = new Date();
-
-  res.json({
-    id: 1,
-    content: 'task',
-    completed: false,
-    createdAt: now,
-    updateAt: now,
-    priority: 0,
-    labelId: 0,
+  Task.create({
+    content: req.body.content,
+    priority: req.body.priority,
+    UserId: req.user.id,
+  }).then(task => {
+    res.json(task);
   });
 }
 
 export function tasksUpdateHandler(req, res) {
-  const now = new Date();
-
-  res.json({
-    id: 1,
-    content: 'updated task',
-    completed: false,
-    createdAt: now,
-    updateAt: now,
-    priority: 0,
-    labelId: 0,
+  Task.findById(req.body.id).then(task => {
+    task.update({
+      content: req.body.content,
+      priority: req.body.priority,
+    }).then(() => {
+      res.json(task);
+    });
   });
 }
 
 export function tasksDeleteHandler(req, res) {
-  res.json({id: 1});
+  Task.findById(req.body.id).then(task => {
+    task.destroy().then(destroyedTask => {
+      res.json(destroyedTask);
+    });
+  });
 }
