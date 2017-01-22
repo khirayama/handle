@@ -115,14 +115,7 @@ export default function reducer(state, action) {
 
     // labels
     case actionTypes.CREATE_LABEL: {
-      state.labels.push(Object.assign({
-        id: state.labels.length,
-        priority: state.labels.length,
-        name: action.label.name,
-        visibled: true,
-        createdAt: new Date(),
-        updateAt: new Date(),
-      }));
+      state.labels.push(Object.assign({}, action.label));
       break;
     }
     case actionTypes.UPDATE_LABEL: {
@@ -135,46 +128,11 @@ export default function reducer(state, action) {
       break;
     }
     case actionTypes.DELETE_LABEL: {
-      const targetLabel = find(state.labels, action.label.id);
-      state.labels = state.labels.filter(label => {
-        return (label.id !== action.label.id);
-      }).map(label => {
-        if (label.priority > targetLabel.priority) {
-          return Object.assign({}, label, {priority: label.priority - 1});
-        }
-        return label;
-      });
+      state.labels = action.labels;
       break;
     }
     case actionTypes.SORT_LABELS: {
-      const targetLabel = find(state.labels, action.label.id);
-      const labels = state.labels.sort((labelA, labelB) => {
-        return (labelA.priority > labelB.priority) ? 1 : -1;
-      });
-      const from = targetLabel.priority;
-      const to = action.to;
-
-      if (from > to) {
-        for (let index = to; index < from; index++) {
-          const label_ = labels[index];
-          label_.priority += 1;
-        }
-        labels[from].priority = to;
-      } else if (from < to) {
-        for (let index = from + 1; index <= to; index++) {
-          const label_ = labels[index];
-          label_.priority -= 1;
-        }
-        labels[from].priority = to;
-      }
-      state.labels = state.labels.map(label => {
-        for (let index = 0; index < labels.length; index++) {
-          if (labels[index].id === label.id) {
-            return labels[index];
-          }
-        }
-        return label;
-      });
+      state.labels = action.labels;
       break;
     }
 
