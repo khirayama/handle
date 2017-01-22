@@ -5,7 +5,7 @@ export function tasksIndexHandler(req, res) {
     where: {
       UserId: req.user.id,
     },
-    order: [['priority', 'ASC']],
+    order: [['LabelId', 'ASC'], ['priority', 'ASC']],
   }).then(tasks => {
     res.json(tasks);
   });

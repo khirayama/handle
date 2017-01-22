@@ -142,12 +142,14 @@ export class DashboardPage extends Container {
         <Modal show={this.state.showTaskModal}>
           <ModalHeader onClickCloseButton={() => this.setState({showTaskModal: false})}/>
           <div>
-            <select
-              value={this.state.selectedLabelId}
-              onChange={(event) => {this.setState({selectedLabelId: Number(event.target.value)})}}
-              >
-              {activeLabels.map(label => <option key={label.id} value={label.id}>{label.name}</option>)}
-            </select>
+            {(this.state.selectedLabelId) ? (
+              <select
+                value={this.state.selectedLabelId}
+                onChange={(event) => {this.setState({selectedLabelId: Number(event.target.value)})}}
+                >
+                {activeLabels.map(label => <option key={label.id} value={label.id}>{label.name}</option>)}
+              </select>
+            ) : null}
             <input type="text" value={this.state.content} onChange={(event) => {this.setState({content: event.target.value})}}/>
             <button onClick={() => {
               if (this.state.content !== '') {

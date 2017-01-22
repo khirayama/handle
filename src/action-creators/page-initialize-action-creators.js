@@ -25,9 +25,9 @@ export function initializeDashboardPage(params, {dispatch, config}) {
   });
 }
 
-export function initializeLabelsPage(params, {dispatch}) {
+export function initializeLabelsPage(params, {dispatch, config}) {
   return new Promise(resolve => {
-    Label.fetch().then(labels => {
+    Label.fetch(config).then(labels => {
       dispatch({
         type: actionTypes.INITIALIZE_LABELS_PAGE,
         labels,

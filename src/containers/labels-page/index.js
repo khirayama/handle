@@ -25,8 +25,8 @@ import {
 } from 'components/modal';
 
 export class LabelsPage extends Container {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = Object.assign({}, this.state, {
       showLabelModal: false,
