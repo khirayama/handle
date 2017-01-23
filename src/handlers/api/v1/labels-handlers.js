@@ -1,4 +1,4 @@
-import {Label} from '../../../../models';
+import {Label} from 'models';
 
 function omit(label) {
   return {

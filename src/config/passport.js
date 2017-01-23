@@ -4,7 +4,7 @@ import {Strategy as InstagramStrategy} from 'passport-instagram';
 
 import getLocalAddress from 'libs/get-local-address';
 
-import {User} from '../../models';
+import {User} from 'models';
 
 const {ipv4} = getLocalAddress();
 const hostname = (process.env.NODE_ENV === 'production') ? process.env.HOSTNAME : `http://${ipv4[0].address}:3000`;
