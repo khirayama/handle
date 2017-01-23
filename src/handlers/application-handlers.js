@@ -26,13 +26,16 @@ export function applicationHandler(req, res) {
   const initialState = {
     lang: req.getLocale(),
     ui: getUI(req.useragent),
-    profile: {
-      username: req.user.username,
-      imageUrl: req.user.imageUrl,
-    },
     tasks: [],
     labels: [],
   };
+
+  if (req.isAuthenticated()) {
+    initialState.profile = {
+      username: req.user.username,
+      imageUrl: req.user.imageUrl,
+    };
+  }
 
   // Can't use createStore. circuit store is singleton.
   const store = new Store(initialState, reducer);
