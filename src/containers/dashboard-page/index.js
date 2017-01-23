@@ -13,6 +13,7 @@ import {
 
 import {ApplicationHeader} from 'components/application-header';
 import {Icon} from 'components/icon';
+import {IconButton} from 'components/icon-button';
 import {
   List,
   ListItem,
@@ -141,24 +142,10 @@ export class DashboardPage extends Container {
           </section>
         </section>
         <Modal show={this.state.showTaskModal}>
-          <ModalHeader onClickCloseButton={() => this.setState({showTaskModal: false})}/>
-          <div>
-            {(this.state.selectedLabelId) ? (
-              <select
-                value={this.state.selectedLabelId}
-                onChange={event => {
-                  this.setState({selectedLabelId: Number(event.target.value)});
-                }}
-                >
-                {activeLabels.map(label => <option key={label.id} value={label.id}>{label.name}</option>)}
-              </select>
-            ) : null}
-            <input
-              type="text" value={this.state.content} onChange={event => {
-                this.setState({content: event.target.value});
-              }}
-                                                     />
-            <button
+          <ModalHeader
+            onClickCloseButton={() => this.setState({showTaskModal: false})}
+          >
+            <IconButton
               onClick={() => {
                 if (this.state.content !== '') {
                   if (this.state.selectedTaskId !== null) {
@@ -169,8 +156,34 @@ export class DashboardPage extends Container {
                   this.setState({showTaskModal: false});
                 }
               }}
-              ><Icon>add</Icon>Add Task</button>
-          </div>
+              className="action-button"
+              >add</IconButton>
+          </ModalHeader>
+          <section className="task-form">
+            <div className="task-form-label-select-container">
+              <span className="task-form-label-select-label">Label</span>
+              {(this.state.selectedLabelId) ? (
+                <select
+                  value={this.state.selectedLabelId}
+                  onChange={event => {
+                    this.setState({selectedLabelId: Number(event.target.value)});
+                  }}
+                  >
+                  {activeLabels.map(label => <option key={label.id} value={label.id}>{label.name}</option>)}
+                </select>
+              ) : null}
+            </div>
+            <div className="task-form-content-textarea-container">
+              <textarea
+                autoFocus
+                className="task-form-content-textarea"
+                placeholder="Content"
+                value={this.state.content}
+                onChange={event => {
+                  this.setState({content: event.target.value});
+                }}/>
+            </div>
+          </section>
         </Modal>
       </section>
     );

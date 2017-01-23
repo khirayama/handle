@@ -104,14 +104,10 @@ export class LabelsPage extends Container {
             ><Icon>add</Icon>Add Label</div>
         </section>
         <Modal show={this.state.showLabelModal}>
-          <ModalHeader onClickCloseButton={() => this.setState({showLabelModal: false})}/>
-          <div>
-            <input
-              type="text" value={this.state.name} onChange={event => {
-                this.setState({name: event.target.value});
-              }}
-                                                  />
-            <button
+          <ModalHeader
+            onClickCloseButton={() => this.setState({showLabelModal: false})}
+          >
+            <IconButton
               onClick={() => {
                 if (this.state.selectedLabelId !== null) {
                   updateLabel(this.dispatch, this.state.selectedLabelId, this.state.name);
@@ -120,8 +116,21 @@ export class LabelsPage extends Container {
                 }
                 this.setState({showLabelModal: false});
               }}
-              >Add label</button>
-          </div>
+              className="action-button"
+              >add</IconButton>
+          </ModalHeader>
+          <section className="label-form">
+            <div className="label-form-content-textarea-container">
+              <textarea
+                autoFocus
+                className="label-form-content-textarea"
+                placeholder="Name"
+                value={this.state.name}
+                onChange={event => {
+                  this.setState({name: event.target.value});
+                }}/>
+            </div>
+          </section>
         </Modal>
       </section>
     );

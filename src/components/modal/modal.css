@@ -1,16 +1,19 @@
 .modal {
   position: fixed;
   z-index: 3;
-  top: 100%;
+  top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  transform: translateY(100%);
   box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.1);
   background-color: $color-white;
   transition-timing-function: $ease-out-expo;
   transition-duration: $time-max;
-  transition-property: top;
+  /* transition-property: top; */
+  transition-property: transform;
   &__open {
-    top: 0;
+    /* top: 0; */
+    transform: translateY(0);
   }
 }

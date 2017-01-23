@@ -6,6 +6,7 @@ export class ModalHeader extends Component {
   render() {
     return (
       <header className="modal-header">
+        {this.props.children}
         <IconButton
           onClick={this.props.onClickCloseButton}
           className="close-modal-button"
@@ -16,5 +17,6 @@ export class ModalHeader extends Component {
 }
 
 ModalHeader.propTypes = {
+  children: PropTypes.node,
   onClickCloseButton: PropTypes.func.isRequired,
 };

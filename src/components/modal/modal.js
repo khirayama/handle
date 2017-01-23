@@ -9,7 +9,7 @@ export class Modal extends Component {
           'modal',
           {modal__open: this.props.show}
         )}
-        >{this.props.children}</div>
+        >{(this.props.show) ? this.props.children : null}</div>
     );
   }
 }

@@ -61,3 +61,33 @@
     text-align: center;
   }
 }
+
+.task-form {
+  width: 100%;
+  /* 56px - modal header height */
+  height: calc(100% - 56px);
+  .task-form-label-select-container {
+    height: 51px;
+    padding: 12px;
+    border-bottom: $border;
+    .task-form-label-select-label {
+      color: $color-text-secondary;
+      padding-right: 12px;
+    }
+    select {
+      background-color: $color-white;
+      border-radius: 0;
+      padding: 0 4px;
+    }
+  }
+  .task-form-content-textarea-container {
+    width: 100%;
+    height: calc(100% - 51px);
+    padding: 12px;
+    .task-form-content-textarea {
+      width: 100%;
+      height: 100%;
+      resize: none;
+    }
+  }
+}
