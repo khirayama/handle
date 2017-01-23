@@ -2,19 +2,19 @@ module.exports = (sequelize, DataTypes) => {
   return sequelize.define('User', {
     provider: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     uid: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     username: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     imageUrl: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
   });
 };

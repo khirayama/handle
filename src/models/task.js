@@ -2,11 +2,11 @@ module.exports = (sequelize, DataTypes) => {
   return sequelize.define('Task', {
     userId: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
     },
     labelId: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
     },
     content: {
       type: DataTypes.STRING,

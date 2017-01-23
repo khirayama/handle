@@ -79,7 +79,8 @@ export class DashboardPage extends Container {
               onSort={(from, to) => {
                 sortTasks(this.dispatch, filterdTasks[from].id, to);
               }}
-              >{filterdTasks.map(task => {
+              >
+              {filterdTasks.map(task => {
                 return (
                   <ListItem
                     key={task.id}
@@ -117,7 +118,8 @@ export class DashboardPage extends Container {
               })}</List>
           </div>
           <div
-            className="add-task-button" onClick={() => {
+            className="add-task-button"
+            onClick={() => {
               this.setState({
                 showTaskModal: true,
                 selectedLabelId: label.id,
@@ -125,7 +127,7 @@ export class DashboardPage extends Container {
                 content: '',
               });
             }}
-                                        ><Icon>add</Icon>Add Task</div>
+            ><Icon>add</Icon>Add Task</div>
         </TabContentListItem>
       );
     });
@@ -133,7 +135,7 @@ export class DashboardPage extends Container {
     return (
       <section className="page dashboard-page">
         <section className="page-content">
-          <ApplicationHeader imageUrl={state.user.imageUrl}/>
+          <ApplicationHeader imageUrl={state.profile.imageUrl}/>
           <section className="tab-container">
             <Tab>
               <TabList>{labelTabElements}</TabList>
@@ -142,9 +144,7 @@ export class DashboardPage extends Container {
           </section>
         </section>
         <Modal show={this.state.showTaskModal}>
-          <ModalHeader
-            onClickCloseButton={() => this.setState({showTaskModal: false})}
-            >
+          <ModalHeader onClickCloseButton={() => this.setState({showTaskModal: false})}>
             <IconButton
               onClick={() => {
                 if (this.state.content !== '') {

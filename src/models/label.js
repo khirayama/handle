@@ -2,7 +2,7 @@ module.exports = (sequelize, DataTypes) => {
   return sequelize.define('Label', {
     userId: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
     },
     name: {
       type: DataTypes.STRING,
