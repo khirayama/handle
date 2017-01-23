@@ -10,4 +10,3 @@ export function IconButton(props) {
 IconButton.propTypes = {
   children: PropTypes.node,
 };
-
