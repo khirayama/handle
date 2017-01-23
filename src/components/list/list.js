@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import classNames from 'classnames';
 
 import {TRANSITION_TIME} from '../constants';
 
@@ -26,7 +27,7 @@ export class List extends Component {
   render() {
     return (
       <section
-        className="list"
+        className={classNames("list", this.props.className)}
         ref={this.setListElement}
         >
         <div className="list-content">

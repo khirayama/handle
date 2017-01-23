@@ -15,7 +15,15 @@
       .list-item-content {
         background-color: $color-white;
         padding: 18px 12px;
+      }
+    }
+  }
+}
 
+.list.task-list {
+  .list-content {
+    .list-item {
+      .list-item-content {
         &__swipe_right {
           background-color: $color-divider;
         }
@@ -26,37 +34,87 @@
             background-color: $color-white;
           }
         }
-
       }
       .list-item-background {
         color: $color-white;
-        & div {
-          font-size: 18px;
-          font-weight: $font-weight-bold;
+        padding: 0 12px;
+        & .icon {
+          font-size: 24px;
           display: flex;
           align-items: center;
+          width: 100%;
           height: 100%;
-          padding: 12px;
           transition-timing-function: $ease-out-expo;
           transition-duration: $time-basic;
           transition-property: font-size;
         }
 
         &__will-swipe {
-          & div {
+          & .icon {
             font-size: 32px;
           }
         }
       }
       .list-item-left-background {
-        background-color: #4caf50;
-        & div {
+        background-color: $color-primary;
+        & .icon {
           justify-content: flex-start;
         }
       }
       .list-item-right-background {
-        background-color: #ff9800;
-        & div {
+        background-color: $color-accent-attention;
+        & .icon {
+          justify-content: flex-end;
+        }
+      }
+    }
+  }
+}
+
+.list.label-list {
+  .list-content {
+    .list-item {
+      .list-item-content {
+        &__swipe_right {
+          background-color: $color-divider;
+        }
+
+        &__unvisibled {
+          background-color: $color-divider;
+          &.list-item-content__swipe_right {
+            background-color: $color-white;
+          }
+        }
+      }
+      .list-item-background {
+        color: $color-white;
+        padding: 0 12px;
+        & .icon {
+          font-size: 24px;
+          display: flex;
+          align-items: center;
+          width: 100%;
+          height: 100%;
+          transition-timing-function: $ease-out-expo;
+          transition-duration: $time-basic;
+          transition-property: font-size;
+        }
+
+        &__will-swipe {
+          & .icon {
+            font-size: 32px;
+          }
+        }
+      }
+      .list-item-left-background {
+        background-color: $color-primary;
+        & .icon {
+          justify-content: flex-start;
+        }
+      }
+      .list-item-right-background {
+        background-color: $color-accent-attention;
+        & .icon {
           justify-content: flex-end;
         }
       }
