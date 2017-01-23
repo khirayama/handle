@@ -5,9 +5,9 @@
     .tab-list {
       position: relative;
       z-index: 2;
-      .list-container {
-        height: calc(100% - 56px);
-      }
+    }
+    .list-container {
+      height: calc(100% - 56px);
     }
   }
 
