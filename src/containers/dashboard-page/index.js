@@ -125,7 +125,7 @@ export class DashboardPage extends Container {
                 content: '',
               });
             }}
-            ><Icon>add</Icon>Add Task</div>
+                                        ><Icon>add</Icon>Add Task</div>
         </TabContentListItem>
       );
     });
@@ -144,14 +144,14 @@ export class DashboardPage extends Container {
         <Modal show={this.state.showTaskModal}>
           <ModalHeader
             onClickCloseButton={() => this.setState({showTaskModal: false})}
-          >
+            >
             <IconButton
               onClick={() => {
                 if (this.state.content !== '') {
-                  if (this.state.selectedTaskId !== null) {
-                    updateTask(this.dispatch, this.state.selectedTaskId, this.state.content, this.state.selectedLabelId);
-                  } else {
+                  if (this.state.selectedTaskId === null) {
                     createTask(this.dispatch, this.state.content, this.state.selectedLabelId);
+                  } else {
+                    updateTask(this.dispatch, this.state.selectedTaskId, this.state.content, this.state.selectedLabelId);
                   }
                   this.setState({showTaskModal: false});
                 }
@@ -181,7 +181,8 @@ export class DashboardPage extends Container {
                 value={this.state.content}
                 onChange={event => {
                   this.setState({content: event.target.value});
-                }}/>
+                }}
+                />
             </div>
           </section>
         </Modal>

@@ -1,4 +1,4 @@
-import os  from 'os';
+import os from 'os';
 
 export default function getLocalAddress() {
   const interfaces = {
@@ -10,7 +10,7 @@ export default function getLocalAddress() {
   Object.keys(networkInterfaces).forEach(key => {
     networkInterfaces[key].forEach(details => {
       if (!details.internal) {
-        switch(details.family) {
+        switch (details.family) {
           case 'IPv4': {
             interfaces.ipv4.push({
               name: key,
@@ -20,9 +20,12 @@ export default function getLocalAddress() {
           }
           case 'IPv6': {
             interfaces.ipv6.push({
-              name:key,
-              address:details.address,
-            })
+              name: key,
+              address: details.address,
+            });
+            break;
+          }
+          default: {
             break;
           }
         }
@@ -30,4 +33,4 @@ export default function getLocalAddress() {
     });
   });
   return interfaces;
-};
+}

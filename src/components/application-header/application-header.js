@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 
 import {Link} from 'components/link';
 import {IconButton} from 'components/icon-button';
@@ -9,7 +9,7 @@ export class ApplicationHeader extends Component {
       <section className="application-header">
         <Link href="/setting" className="setting-link">
           <div className="setting-link-content">
-            <img src={this.props.imageUrl} />
+            <img src={this.props.imageUrl}/>
           </div>
         </Link>
         <Link href="/labels" className="labels-link">
@@ -20,4 +20,6 @@ export class ApplicationHeader extends Component {
   }
 }
 
-ApplicationHeader.propTypes = {};
+ApplicationHeader.propTypes = {
+  imageUrl: PropTypes.string,
+};

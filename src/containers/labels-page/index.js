@@ -84,11 +84,11 @@ export class LabelsPage extends Container {
                     >
                     <ListItemLeftBackground>
                       {(label.visibled) ?
-                        (<Icon>visibility_off</Icon>):
+                        (<Icon>visibility_off</Icon>) :
                         (<Icon>visibility</Icon>)
                       }
                     </ListItemLeftBackground>
-                    <ListItemContent className={classNames({"list-item-content__unvisibled": !label.visibled})}>{label.name}</ListItemContent>
+                    <ListItemContent className={classNames({'list-item-content__unvisibled': !label.visibled})}>{label.name}</ListItemContent>
                     <ListItemRightBackground>
                       <Icon>delete</Icon>
                     </ListItemRightBackground>
@@ -101,18 +101,18 @@ export class LabelsPage extends Container {
             className="add-label-button" onClick={() => {
               this.setState({showLabelModal: true, name: '', selectedLabelId: null});
             }}
-            ><Icon>add</Icon>Add Label</div>
+                                         ><Icon>add</Icon>Add Label</div>
         </section>
         <Modal show={this.state.showLabelModal}>
           <ModalHeader
             onClickCloseButton={() => this.setState({showLabelModal: false})}
-          >
+            >
             <IconButton
               onClick={() => {
-                if (this.state.selectedLabelId !== null) {
-                  updateLabel(this.dispatch, this.state.selectedLabelId, this.state.name);
-                } else {
+                if (this.state.selectedLabelId === null) {
                   createLabel(this.dispatch, this.state.name);
+                } else {
+                  updateLabel(this.dispatch, this.state.selectedLabelId, this.state.name);
                 }
                 this.setState({showLabelModal: false});
               }}
@@ -128,7 +128,8 @@ export class LabelsPage extends Container {
                 value={this.state.name}
                 onChange={event => {
                   this.setState({name: event.target.value});
-                }}/>
+                }}
+                />
             </div>
           </section>
         </Modal>

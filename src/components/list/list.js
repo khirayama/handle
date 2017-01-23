@@ -27,7 +27,7 @@ export class List extends Component {
   render() {
     return (
       <section
-        className={classNames("list", this.props.className)}
+        className={classNames('list', this.props.className)}
         ref={this.setListElement}
         >
         <div className="list-content">
@@ -44,6 +44,7 @@ export class List extends Component {
 }
 
 List.propTypes = {
+  className: PropTypes.string,
   children: PropTypes.node,
   onSort: PropTypes.func,
 };

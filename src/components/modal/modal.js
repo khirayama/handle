@@ -3,11 +3,12 @@ import classNames from 'classnames';
 
 export class Modal extends Component {
   render() {
+    const openClassName = 'modal__open';
     return (
       <div
         className={classNames(
           'modal',
-          {modal__open: this.props.show}
+          {[openClassName]: this.props.show}
         )}
         >{(this.props.show) ? this.props.children : null}</div>
     );
