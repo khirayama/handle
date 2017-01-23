@@ -32,8 +32,8 @@
     "lint:scripts": "eslint --ignore-path .gitignore src",
     "lint:scripts:fix": "eslint --ignore-path .gitignore --fix src",
     "lint:styles": "stylelint --config .stylelintrc src/**/*.css",
-    "db:create": "mysql -u root < config/db.sql",
-    "db:migrate": "sequelize db:migrate",
+    "db:create": "mysql -u root < src/config/db.sql",
+    "db:migrate": "sequelize db:migrate --config src/config/config.json",
     "migration:create": "sequelize migration:create --name"
   },
   "dependencies": {
