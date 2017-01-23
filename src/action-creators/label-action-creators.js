@@ -28,39 +28,39 @@ export function createLabel(dispatch, name) {
 }
 
 export function updateLabel(dispatch, labelId, name) {
-  Label.update({
+  const label = {
     id: labelId,
     name,
-  }).then(label => {
-    dispatch({
-      type: actionTypes.UPDATE_LABEL,
-      label,
-    });
+  };
+  dispatch({
+    type: actionTypes.UPDATE_LABEL,
+    label,
   });
+  Label.update(label);
 }
 
 export function unvisibledLabel(dispatch, labelId) {
-  Label.update({
+  const label = {
     id: labelId,
     visibled: false,
-  }).then(label => {
-    dispatch({
-      type: actionTypes.UPDATE_LABEL,
-      label,
-    });
+  };
+  dispatch({
+    type: actionTypes.UPDATE_LABEL,
+    label,
   });
+  Label.update(label);
 }
 
 export function visibledLabel(dispatch, labelId) {
-  Label.update({
+  const label = {
     id: labelId,
     visibled: true,
-  }).then(label => {
-    dispatch({
-      type: actionTypes.UPDATE_LABEL,
-      label,
-    });
+  };
+  dispatch({
+    type: actionTypes.UPDATE_LABEL,
+    label,
   });
+  Label.update(label);
 }
 
 export function deleteLabel(dispatch, labelId) {
@@ -81,6 +81,7 @@ export function deleteLabel(dispatch, labelId) {
     }
     return label;
   });
+
   dispatch({
     type: actionTypes.DELETE_LABEL,
     labels: newLabels,
