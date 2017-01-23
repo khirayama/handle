@@ -1,4 +1,5 @@
 import React from 'react';
+import classNames from 'classnames';
 import {Container} from 'libs/container';
 
 import {
@@ -12,6 +13,7 @@ import {
 
 import {Link} from 'components/link';
 import {IconButton} from 'components/icon-button';
+import {Icon} from 'components/icon';
 import {
   List,
   ListItem,
@@ -48,6 +50,7 @@ export class LabelsPage extends Container {
           </header>
           <div className="list-container">
             <List
+              className="label-list"
               onSort={(from, to) => {
                 sortLabels(this.dispatch, this.state.labels[from].id, to);
               }}
@@ -80,11 +83,14 @@ export class LabelsPage extends Container {
                     througnRight={false}
                     >
                     <ListItemLeftBackground>
-                      <div>L</div>
+                      {(label.visibled) ?
+                        (<Icon>visibility_off</Icon>):
+                        (<Icon>visibility</Icon>)
+                      }
                     </ListItemLeftBackground>
-                    <ListItemContent>{label.name}</ListItemContent>
+                    <ListItemContent className={classNames({"list-item-content__unvisibled": !label.visibled})}>{label.name}</ListItemContent>
                     <ListItemRightBackground>
-                      <div>R</div>
+                      <Icon>delete</Icon>
                     </ListItemRightBackground>
                   </ListItem>
                 );

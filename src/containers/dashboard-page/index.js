@@ -11,9 +11,8 @@ import {
   sortTasks,
 } from 'action-creators/task-action-creators';
 
-import {
-  ApplicationHeader,
-} from 'components/application-header';
+import {ApplicationHeader} from 'components/application-header';
+import {Icon} from 'components/icon';
 import {
   List,
   ListItem,
@@ -75,6 +74,7 @@ export class DashboardPage extends Container {
         <TabContentListItem key={index} index={index}>
           <div className="list-container">
             <List
+              className="task-list"
               onSort={(from, to) => {
                 sortTasks(this.dispatch, filterdTasks[from].id, to);
               }}
@@ -103,13 +103,13 @@ export class DashboardPage extends Container {
                     througnRight={false}
                     >
                     <ListItemLeftBackground>
-                      <div>L</div>
+                      <Icon>check</Icon>
                     </ListItemLeftBackground>
                     <ListItemContent
                       className={classNames({'list-item-content__completed': task.completed})}
                       >{task.content}</ListItemContent>
                     <ListItemRightBackground>
-                      <div>R</div>
+                      <Icon>delete</Icon>
                     </ListItemRightBackground>
                   </ListItem>
                 );
@@ -132,7 +132,7 @@ export class DashboardPage extends Container {
     return (
       <section className="page dashboard-page">
         <section className="page-content">
-          <ApplicationHeader/>
+          <ApplicationHeader imageUrl={state.user.imageUrl}/>
           <section className="tab-container">
             <Tab>
               <TabList>{labelTabElements}</TabList>
