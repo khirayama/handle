@@ -7,6 +7,7 @@ import passport from 'passport';
 import useragent from 'express-useragent';
 
 import i18n from 'libs/micro-i18n';
+import getLocalAddress from 'libs/get-local-address';
 
 import apiRouter from 'config/routers/api-router';
 import authRouter from 'config/routers/auth-router';
@@ -17,6 +18,7 @@ import 'config/passport';
 const app = express();
 
 const port = process.env.PORT || 3000;
+const {ipv4} = getLocalAddress();
 
 // middleware
 app.use(express.static(path.join(__dirname, 'assets')));
@@ -48,5 +50,5 @@ app.use(authRouter);
 app.use(uiRouter);
 
 app.listen(port, '0.0.0.0', () => {
-  console.log(`open http://0.0.0.0:${port}`);
+  console.log(`open http://${ipv4[0].address}:${port}`);
 });
