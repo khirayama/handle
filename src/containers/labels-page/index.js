@@ -101,7 +101,7 @@ export class LabelsPage extends Container {
             className="add-label-button" onClick={() => {
               this.setState({showLabelModal: true, name: '', selectedLabelId: null});
             }}
-                                         >Add label</div>
+            ><Icon>add</Icon>Add Label</div>
         </section>
         <Modal show={this.state.showLabelModal}>
           <ModalHeader onClickCloseButton={() => this.setState({showLabelModal: false})}/>

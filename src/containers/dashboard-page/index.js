@@ -124,7 +124,7 @@ export class DashboardPage extends Container {
                 content: '',
               });
             }}
-                                        >Add task</div>
+            ><Icon>add</Icon>Add Task</div>
         </TabContentListItem>
       );
     });
@@ -169,7 +169,7 @@ export class DashboardPage extends Container {
                   this.setState({showTaskModal: false});
                 }
               }}
-              >Add task</button>
+              ><Icon>add</Icon>Add Task</button>
           </div>
         </Modal>
       </section>

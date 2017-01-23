@@ -71,6 +71,7 @@ body {
   font-style: normal;
   font-size: inherit;
   font-family: 'Material Icons';
+  font-weight: normal;
   text-rendering: optimizeLegibility;
   font-feature-settings: 'liga';
 }
