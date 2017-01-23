@@ -1,9 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 
-import {
-  TRANSITION_TIME,
-  THRESHOLD_DELTAX,
-} from '../constants';
+import {THRESHOLD_DELTAX} from '../constants';
 
 export class TabContentList extends Component {
   constructor() {

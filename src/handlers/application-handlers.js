@@ -11,8 +11,6 @@ import {getUI} from 'helpers';
 
 import reducer from 'reducers';
 
-import {User} from '../../models';
-
 const PAGE_TRANSITION_TIME = 600;
 
 export function applicationHandler(req, res) {
@@ -45,7 +43,7 @@ export function applicationHandler(req, res) {
     serializedCookies += (cookieKey + '=' + req.cookies[cookieKey] + ';');
   });
   data.config = {
-    headers: {'cookie': serializedCookies}
+    headers: {cookie: serializedCookies},
   };
   data.dispatch = store.dispatch.bind(store);
 

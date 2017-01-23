@@ -71,9 +71,9 @@ export class LabelsPage extends Container {
                     }}
                     onSwipeRight={() => {
                       if (label.visibled) {
-                        unvisibledLabel(this.dispatch, label.id)
+                        unvisibledLabel(this.dispatch, label.id);
                       } else {
-                        visibledLabel(this.dispatch, label.id)
+                        visibledLabel(this.dispatch, label.id);
                       }
                     }}
                     througnLeft={false}
@@ -94,20 +94,27 @@ export class LabelsPage extends Container {
           <div
             className="add-label-button" onClick={() => {
               this.setState({showLabelModal: true, name: '', selectedLabelId: null});
-            }}>Add label</div>
+            }}
+                                         >Add label</div>
         </section>
         <Modal show={this.state.showLabelModal}>
           <ModalHeader onClickCloseButton={() => this.setState({showLabelModal: false})}/>
           <div>
-            <input type="text" value={this.state.name} onChange={(event) => {this.setState({name: event.target.value})}}/>
-            <button onClick={() => {
-              if (this.state.selectedLabelId !== null) {
-                updateLabel(this.dispatch, this.state.selectedLabelId, this.state.name);
-              } else {
-                createLabel(this.dispatch, this.state.name);
-              }
-              this.setState({showLabelModal: false});
-            }}>Add label</button>
+            <input
+              type="text" value={this.state.name} onChange={event => {
+                this.setState({name: event.target.value});
+              }}
+                                                  />
+            <button
+              onClick={() => {
+                if (this.state.selectedLabelId !== null) {
+                  updateLabel(this.dispatch, this.state.selectedLabelId, this.state.name);
+                } else {
+                  createLabel(this.dispatch, this.state.name);
+                }
+                this.setState({showLabelModal: false});
+              }}
+              >Add label</button>
           </div>
         </Modal>
       </section>

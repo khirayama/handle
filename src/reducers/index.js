@@ -1,15 +1,5 @@
 import actionTypes from 'constants/action-types';
 
-function find(items, id) {
-  for (let index = 0; index < items.length; index++) {
-    const item = items[index];
-    if (item.id === id) {
-      return item;
-    }
-  }
-  return null;
-}
-
 export default function reducer(state, action) {
   switch (action.type) {
     case actionTypes.INITIALIZE_DASHBOARD_PAGE: {
@@ -29,7 +19,7 @@ export default function reducer(state, action) {
       break;
     }
     case actionTypes.UPDATE_TASKS: {
-      state.tasks = action.tasks
+      state.tasks = action.tasks;
       break;
     }
     case actionTypes.UPDATE_TASK: {

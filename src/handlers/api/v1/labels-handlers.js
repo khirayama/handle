@@ -36,9 +36,9 @@ export function labelsCreateHandler(req, res) {
 export function labelsUpdateHandler(req, res) {
   Label.findById(req.params.id).then(label => {
     label.update({
-      name: (req.body.name !== undefined) ? req.body.name : label.name,
-      priority: (req.body.priority !== undefined) ? req.body.priority : label.priority,
-      visibled: (req.body.visibled !== undefined) ? req.body.visibled : label.visibled,
+      name: (req.body.name === undefined) ? label.name : req.body.name,
+      priority: (req.body.priority === undefined) ? label.priority : req.body.priority,
+      visibled: (req.body.visibled === undefined) ? label.visibled : req.body.visibled,
     }).then(() => {
       res.json(omit(label));
     });

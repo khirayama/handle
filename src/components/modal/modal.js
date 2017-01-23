@@ -16,4 +16,5 @@ export class Modal extends Component {
 
 Modal.propTypes = {
   show: PropTypes.bool.isRequired,
+  children: PropTypes.node,
 };

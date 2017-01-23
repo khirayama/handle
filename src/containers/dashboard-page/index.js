@@ -37,7 +37,7 @@ export class DashboardPage extends Container {
   constructor(props) {
     super(props);
 
-    const activeLabels = this.state.labels.filter((label) => {
+    const activeLabels = this.state.labels.filter(label => {
       return label.visibled;
     }).sort((labelA, labelB) => {
       return (labelA.priority > labelB.priority) ? 1 : -1;
@@ -56,7 +56,7 @@ export class DashboardPage extends Container {
     const labelTabElements = [];
     const labelTabContentElements = [];
 
-    const activeLabels = state.labels.filter((label) => {
+    const activeLabels = state.labels.filter(label => {
       return label.visibled;
     }).sort((labelA, labelB) => {
       return (labelA.priority > labelB.priority) ? 1 : -1;
@@ -123,7 +123,8 @@ export class DashboardPage extends Container {
                 selectedTaskId: null,
                 content: '',
               });
-            }}>Add task</div>
+            }}
+                                        >Add task</div>
         </TabContentListItem>
       );
     });
@@ -131,7 +132,7 @@ export class DashboardPage extends Container {
     return (
       <section className="page dashboard-page">
         <section className="page-content">
-          <ApplicationHeader />
+          <ApplicationHeader/>
           <section className="tab-container">
             <Tab>
               <TabList>{labelTabElements}</TabList>
@@ -145,22 +146,30 @@ export class DashboardPage extends Container {
             {(this.state.selectedLabelId) ? (
               <select
                 value={this.state.selectedLabelId}
-                onChange={(event) => {this.setState({selectedLabelId: Number(event.target.value)})}}
+                onChange={event => {
+                  this.setState({selectedLabelId: Number(event.target.value)});
+                }}
                 >
                 {activeLabels.map(label => <option key={label.id} value={label.id}>{label.name}</option>)}
               </select>
             ) : null}
-            <input type="text" value={this.state.content} onChange={(event) => {this.setState({content: event.target.value})}}/>
-            <button onClick={() => {
-              if (this.state.content !== '') {
-                if (this.state.selectedTaskId !== null) {
-                  updateTask(this.dispatch, this.state.selectedTaskId, this.state.content, this.state.selectedLabelId);
-                } else {
-                  createTask(this.dispatch, this.state.content, this.state.selectedLabelId);
+            <input
+              type="text" value={this.state.content} onChange={event => {
+                this.setState({content: event.target.value});
+              }}
+                                                     />
+            <button
+              onClick={() => {
+                if (this.state.content !== '') {
+                  if (this.state.selectedTaskId !== null) {
+                    updateTask(this.dispatch, this.state.selectedTaskId, this.state.content, this.state.selectedLabelId);
+                  } else {
+                    createTask(this.dispatch, this.state.content, this.state.selectedLabelId);
+                  }
+                  this.setState({showTaskModal: false});
                 }
-                this.setState({showTaskModal: false});
-              }
-            }}>Add task</button>
+              }}
+              >Add task</button>
           </div>
         </Modal>
       </section>

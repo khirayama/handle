@@ -20,11 +20,11 @@ export function authHandler(req, res) {
 
 export function authCallbackHandler(req, res, next) {
   const provider = req.params.provider;
-  const authenticate = passport.authenticate(provider, (err, user, info) => {
+  const authenticate = passport.authenticate(provider, (err, user) => {
     if (!user || err) {
       return res.redirect('/');
     }
-    req.login(user, (err) => {
+    req.login(user, err => {
       if (err) {
         return next(err);
       }

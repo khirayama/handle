@@ -38,10 +38,10 @@ export function tasksCreateHandler(req, res) {
 export function tasksUpdateHandler(req, res) {
   Task.findById(req.params.id).then(task => {
     task.update({
-      labelId: (req.body.labelId !== undefined) ? req.body.labelId : task.labelId,
-      content: (req.body.content !== undefined) ? req.body.content : task.content,
-      priority: (req.body.priority !== undefined) ? req.body.priority : task.priority,
-      completed: (req.body.completed !== undefined) ? req.body.completed : task.completed,
+      labelId: (req.body.labelId === undefined) ? task.labelId : req.body.labelId,
+      content: (req.body.content === undefined) ? task.content : req.body.content,
+      priority: (req.body.priority === undefined) ? task.priority : req.body.priority,
+      completed: (req.body.completed === undefined) ? task.completed : req.body.completed,
     }).then(() => {
       res.json(omit(task));
     });
