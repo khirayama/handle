@@ -8,10 +8,12 @@ export class ApplicationHeader extends Component {
     return (
       <section className="application-header">
         <Link href="/setting" className="setting-link">
-          <div className="setting-link-content"/>
+          <div className="setting-link-content">
+            <img src={this.props.imageUrl} />
+          </div>
         </Link>
         <Link href="/labels" className="labels-link">
-          <IconButton>add</IconButton>
+          <IconButton>edit</IconButton>
         </Link>
       </section>
     );
