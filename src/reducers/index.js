@@ -3,13 +3,13 @@ import actionTypes from 'constants/action-types';
 export default function reducer(state, action) {
   switch (action.type) {
     case actionTypes.INITIALIZE_DASHBOARD_PAGE: {
-      state.tasks = (state.tasks.length) ? state.tasks : action.tasks;
-      state.labels = (state.labels.length) ? state.labels : action.labels;
+      state.tasks = action.tasks;
+      state.labels = action.labels;
       break;
     }
 
     case actionTypes.INITIALIZE_LABELS_PAGE: {
-      state.labels = (state.labels.length) ? state.labels : action.labels;
+      state.labels = action.labels;
       break;
     }
 
