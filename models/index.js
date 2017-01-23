@@ -7,22 +7,27 @@ var basename  = path.basename(module.filename);
 var env       = process.env.NODE_ENV || 'development';
 var config    = require(__dirname + '/../config/config.json')[env];
 var db        = {};
+var sequelize = null;
 
 if (config.use_env_variable) {
-  var sequelize = new Sequelize(process.env[config.use_env_variable]);
+  if (process.env.CLEARDB_DATABASE_URL) {
+    sequelize = new Sequelize(process.env.CLEARDB_DATABASE_URL, {
+      dialect: 'mysql',
+      protocol: 'mysql',
+      host: process.env.DATABASE_HOST,
+      logging: false,
+    })
+  }
 } else {
-  var sequelize = new Sequelize(config.database, config.username, config.password, config);
+  sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
 
-fs
-  .readdirSync(__dirname)
-  .filter(function(file) {
-    return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js');
-  })
-  .forEach(function(file) {
-    var model = sequelize['import'](path.join(__dirname, file));
-    db[model.name] = model;
-  });
+fs.readdirSync(__dirname).filter(function(file) {
+  return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js');
+}).forEach(function(file) {
+  var model = sequelize['import'](path.join(__dirname, file));
+  db[model.name] = model;
+});
 
 Object.keys(db).forEach(function(modelName) {
   if (db[modelName].associate) {

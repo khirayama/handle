@@ -1,1 +1,1 @@
-web: npm run production
+web: npm run db:migrate && npm run production

@@ -1,3 +1,7 @@
+export HOSTNAME=
+export DATABASE_HOST=
+export CLEARDB_DATABASE_URL=
+
 export SECRET_KEY=
 
 export TWITTER_KEY=
