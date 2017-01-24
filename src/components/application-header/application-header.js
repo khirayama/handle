@@ -7,7 +7,7 @@ export class ApplicationHeader extends Component {
   render() {
     return (
       <section className="application-header">
-        <Link href="/setting" className="setting-link">
+        <Link href="/profile" className="setting-link">
           <div className="setting-link-content">
             <img src={this.props.imageUrl}/>
           </div>

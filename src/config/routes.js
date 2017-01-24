@@ -2,6 +2,7 @@ import {dispatch} from '@khirayama/circuit';
 
 import {HomePage} from 'containers/home-page';
 import {DashboardPage} from 'containers/dashboard-page';
+import {ProfilePage} from 'containers/profile-page';
 import {LabelsPage} from 'containers/labels-page';
 import {NotFoundPage} from 'containers/not-found-page';
 
@@ -31,7 +32,14 @@ const routes = [{
   path: '/labels',
   initialize: initializeLabelsPage,
   component: LabelsPage,
-  head: {title: 'Labels | Handle'},
+  head: {title: 'Labels'},
+  options: {
+    data: {dispatch},
+  },
+}, {
+  path: '/profile',
+  component: ProfilePage,
+  head: {title: 'Your Profile'},
   options: {
     data: {dispatch},
   },
