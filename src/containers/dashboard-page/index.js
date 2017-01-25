@@ -22,6 +22,10 @@ import {
   ListItemRightBackground,
 } from 'components/list';
 import {
+  SortableList,
+  SortableListItem,
+} from 'components/sortable-list';
+import {
   Tab,
   TabList,
   TabListItem,
@@ -68,55 +72,85 @@ export class DashboardPage extends Container {
       }).sort((taskA, taskB) => {
         return (taskA.priority > taskB.priority) ? 1 : -1;
       });
+      let labelTabContentList = null;
 
       labelTabElements.push(<TabListItem key={index} index={index}>{label.name}</TabListItem>);
 
+      if (this.state.ui === 'desktop') {
+        labelTabContentList = (
+          <SortableList
+            className="task-list"
+            onSort={(from, to) => {
+              sortTasks(this.dispatch, filterdTasks[from].id, to);
+            }}
+            >
+            {filterdTasks.map(task => {
+              return (
+                <SortableListItem
+                  key={task.id}
+                  onClick={() => {
+                    this.setState({
+                      showTaskModal: true,
+                      content: task.content,
+                      selectedTaskId: task.id,
+                      selectedLabelId: label.id,
+                    });
+                  }}
+                  >{task.content}
+                </SortableListItem>
+              );
+            })}</SortableList>
+        );
+      } else if (this.state.ui === 'mobile') {
+        labelTabContentList = (
+          <List
+            className="task-list"
+            onSort={(from, to) => {
+              sortTasks(this.dispatch, filterdTasks[from].id, to);
+            }}
+            >
+            {filterdTasks.map(task => {
+              return (
+                <ListItem
+                  key={task.id}
+                  onClick={() => {
+                    this.setState({
+                      showTaskModal: true,
+                      content: task.content,
+                      selectedTaskId: task.id,
+                      selectedLabelId: label.id,
+                    });
+                  }}
+                  onSwipeLeft={() => {
+                    deleteTask(this.dispatch, task.id);
+                  }}
+                  onSwipeRight={() => {
+                    if (task.completed) {
+                      uncompletedTask(this.dispatch, task.id);
+                    } else {
+                      completedTask(this.dispatch, task.id);
+                    }
+                  }}
+                  througnRight={false}
+                  >
+                  <ListItemLeftBackground>
+                    <Icon>check</Icon>
+                  </ListItemLeftBackground>
+                  <ListItemContent
+                    className={classNames({'list-item-content__completed': task.completed})}
+                    >{task.content}</ListItemContent>
+                  <ListItemRightBackground>
+                    <Icon>delete</Icon>
+                  </ListItemRightBackground>
+                </ListItem>
+              );
+            })}</List>
+        );
+      }
+
       labelTabContentElements.push(
         <TabContentListItem key={index} index={index}>
-          <div className="list-container">
-            <List
-              className="task-list"
-              onSort={(from, to) => {
-                sortTasks(this.dispatch, filterdTasks[from].id, to);
-              }}
-              >
-              {filterdTasks.map(task => {
-                return (
-                  <ListItem
-                    key={task.id}
-                    onClick={() => {
-                      this.setState({
-                        showTaskModal: true,
-                        content: task.content,
-                        selectedTaskId: task.id,
-                        selectedLabelId: label.id,
-                      });
-                    }}
-                    onSwipeLeft={() => {
-                      deleteTask(this.dispatch, task.id);
-                    }}
-                    onSwipeRight={() => {
-                      if (task.completed) {
-                        uncompletedTask(this.dispatch, task.id);
-                      } else {
-                        completedTask(this.dispatch, task.id);
-                      }
-                    }}
-                    througnRight={false}
-                    >
-                    <ListItemLeftBackground>
-                      <Icon>check</Icon>
-                    </ListItemLeftBackground>
-                    <ListItemContent
-                      className={classNames({'list-item-content__completed': task.completed})}
-                      >{task.content}</ListItemContent>
-                    <ListItemRightBackground>
-                      <Icon>delete</Icon>
-                    </ListItemRightBackground>
-                  </ListItem>
-                );
-              })}</List>
-          </div>
+          <div className="list-container">{labelTabContentList}</div>
           <div
             className="add-task-button"
             onClick={() => {
