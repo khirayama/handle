@@ -59,7 +59,7 @@ passport.use(new TwitterStrategy(config.twitter,
           visibled: true,
         }]).then(() => {
           Label.findOne({
-            where: {userId: user.id, priority: 0}
+            where: {userId: user.id, priority: 0},
           }).then(label => {
             Task.bulkCreate([{
               userId: user.id,

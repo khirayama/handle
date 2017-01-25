@@ -1,8 +1,6 @@
 import React from 'react';
 import {Container} from 'libs/container';
 
-import i18n from 'libs/micro-i18n';
-
 import {Link} from 'components/link';
 import {IconButton} from 'components/icon-button';
 
