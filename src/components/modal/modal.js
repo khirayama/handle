@@ -10,7 +10,11 @@ export class Modal extends Component {
           'modal',
           {[openClassName]: this.props.show}
         )}
-        >{(this.props.show) ? this.props.children : null}</div>
+        >
+        <div className="modal-content">
+          {(this.props.show) ? this.props.children : null}
+        </div>
+      </div>
     );
   }
 }

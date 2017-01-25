@@ -16,4 +16,9 @@
     /* top: 0; */
     transform: translateY(0);
   }
+
+  .modal-content {
+    width: 100%;
+    height: 100%;
+  }
 }

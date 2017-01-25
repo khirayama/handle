@@ -1,5 +1,15 @@
 .labels-page {
-  position: relative;
+  .page-content {
+    position: relative;
+    max-width: 680px;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+  .modal-content {
+    max-width: 680px;
+    margin: 0 auto;
+    overflow: hidden;
+  }
 
   .labels-header {
     position: relative;
