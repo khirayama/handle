@@ -22,6 +22,10 @@ import {
   ListItemRightBackground,
 } from 'components/list';
 import {
+  SortableList,
+  SortableListItem,
+} from 'components/sortable-list';
+import {
   Modal,
   ModalHeader,
 } from 'components/modal';
@@ -37,6 +41,86 @@ export class LabelsPage extends Container {
     });
   }
   render() {
+    let labelList = null;
+
+    if (this.state.ui === 'desktop') {
+      labelList = (
+        <SortableList
+          className="label-list"
+          onSort={(from, to) => {
+            sortLabels(this.dispatch, this.state.labels[from].id, to);
+          }}
+          >{this.state.labels.sort((labelA, labelB) => {
+            return (labelA.priority > labelB.priority) ? 1 : -1;
+          }).map(label => {
+            return (
+              <SortableListItem
+                key={label.id}
+                onClick={() => {
+                  this.setState({
+                    showLabelModal: true,
+                    selectedLabelId: label.id,
+                    name: label.name,
+                  });
+                }}
+                >{label.name}
+              </SortableListItem>
+            );
+          })}
+        </SortableList>
+      );
+    } else if (this.state.ui === 'mobile') {
+      labelList = (
+        <List
+          className="label-list"
+          onSort={(from, to) => {
+            sortLabels(this.dispatch, this.state.labels[from].id, to);
+          }}
+          >{this.state.labels.sort((labelA, labelB) => {
+            return (labelA.priority > labelB.priority) ? 1 : -1;
+          }).map(label => {
+            return (
+              <ListItem
+                key={label.id}
+                onClick={() => {
+                  this.setState({
+                    showLabelModal: true,
+                    selectedLabelId: label.id,
+                    name: label.name,
+                  });
+                }}
+                onSwipeLeft={() => {
+                  if (confirm('Delete it?')) {
+                    deleteLabel(this.dispatch, label.id);
+                  }
+                }}
+                onSwipeRight={() => {
+                  if (label.visibled) {
+                    unvisibledLabel(this.dispatch, label.id);
+                  } else {
+                    visibledLabel(this.dispatch, label.id);
+                  }
+                }}
+                througnLeft={false}
+                througnRight={false}
+                >
+                <ListItemLeftBackground>
+                  {(label.visibled) ?
+                    (<Icon>visibility_off</Icon>) :
+                    (<Icon>visibility</Icon>)
+                  }
+                </ListItemLeftBackground>
+                <ListItemContent className={classNames({'list-item-content__unvisibled': !label.visibled})}>{label.name}</ListItemContent>
+                <ListItemRightBackground>
+                  <Icon>delete</Icon>
+                </ListItemRightBackground>
+              </ListItem>
+            );
+          })}
+        </List>
+      );
+    }
+
     return (
       <section className="page labels-page">
         <section className="page-content">
@@ -48,55 +132,7 @@ export class LabelsPage extends Container {
               <IconButton>arrow_back</IconButton>
             </Link>
           </header>
-          <div className="list-container">
-            <List
-              className="label-list"
-              onSort={(from, to) => {
-                sortLabels(this.dispatch, this.state.labels[from].id, to);
-              }}
-              >{this.state.labels.sort((labelA, labelB) => {
-                return (labelA.priority > labelB.priority) ? 1 : -1;
-              }).map(label => {
-                return (
-                  <ListItem
-                    key={label.id}
-                    onClick={() => {
-                      this.setState({
-                        showLabelModal: true,
-                        selectedLabelId: label.id,
-                        name: label.name,
-                      });
-                    }}
-                    onSwipeLeft={() => {
-                      if (confirm('Delete it?')) {
-                        deleteLabel(this.dispatch, label.id);
-                      }
-                    }}
-                    onSwipeRight={() => {
-                      if (label.visibled) {
-                        unvisibledLabel(this.dispatch, label.id);
-                      } else {
-                        visibledLabel(this.dispatch, label.id);
-                      }
-                    }}
-                    througnLeft={false}
-                    througnRight={false}
-                    >
-                    <ListItemLeftBackground>
-                      {(label.visibled) ?
-                        (<Icon>visibility_off</Icon>) :
-                        (<Icon>visibility</Icon>)
-                      }
-                    </ListItemLeftBackground>
-                    <ListItemContent className={classNames({'list-item-content__unvisibled': !label.visibled})}>{label.name}</ListItemContent>
-                    <ListItemRightBackground>
-                      <Icon>delete</Icon>
-                    </ListItemRightBackground>
-                  </ListItem>
-                );
-              })}
-            </List>
-          </div>
+          <div className="list-container">{labelList}</div>
           <div
             className="add-label-button" onClick={() => {
               this.setState({showLabelModal: true, name: '', selectedLabelId: null});

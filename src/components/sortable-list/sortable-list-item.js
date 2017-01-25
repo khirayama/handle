@@ -11,6 +11,7 @@ export class SortableListItem extends Component {
   constructor() {
     super();
 
+    this.clickable = true;
     this.touch = {
       down: false,
       startX: null,
@@ -57,33 +58,22 @@ export class SortableListItem extends Component {
     this._updateTouchEndView();
 
     const {currentIndex, targetIndex} = this._calcIndex();
+
+    this.clickable = (currentIndex === null || targetIndex === null);
     if (currentIndex !== null && targetIndex !== null && this.context.onSort) {
       this.context.onSort(currentIndex, targetIndex);
-      // stop onClick
-      setTimeout(() => {
-        this.touch = {
-          down: false,
-          startX: null,
-          startY: null,
-          startScrollTop: null,
-          startTime: new Date(),
-          endX: null,
-          endY: null,
-          endTime: new Date(),
-        };
-      }, 0);
-    } else {
-      this.touch = {
-        down: false,
-        startX: null,
-        startY: null,
-        startScrollTop: null,
-        startTime: new Date(),
-        endX: null,
-        endY: null,
-        endTime: new Date(),
-      };
     }
+
+    this.touch = {
+      down: false,
+      startX: null,
+      startY: null,
+      startScrollTop: null,
+      startTime: new Date(),
+      endX: null,
+      endY: null,
+      endTime: new Date(),
+    };
   }
 
   // update views
@@ -275,9 +265,10 @@ export class SortableListItem extends Component {
         onMouseMove={this.handleTouchMove}
         onMouseUp={this.handleTouchEnd}
         onClick={event => {
-          if (!this.touch.down) {
+          if (this.clickable) {
             this.props.onClick(event);
           }
+          this.clickable = true;
         }}
         >{this.props.children}</div>
     );
