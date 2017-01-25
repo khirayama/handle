@@ -1,4 +1,10 @@
 .dashboard-page {
+  .page-content {
+    max-width: 680px;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+
   .tab-container {
     /* 56px - application header height */
     height: calc(100% - 56px);
@@ -9,12 +15,6 @@
     .list-container {
       height: calc(100% - 56px);
     }
-  }
-
-  .page-content {
-    max-width: 680px;
-    margin: 0 auto;
-    overflow: hidden;
   }
 
   &.page-transition-enter {

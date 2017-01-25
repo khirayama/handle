@@ -1,4 +1,50 @@
 .profile-page {
+  position: relative;
+
+  .page-content {
+    max-width: 680px;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+
+  .profile-header {
+    position: relative;
+    z-index: 2;
+    height: 56px;
+    .close-profile-button {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 44px;
+      height: 44px;
+      font-size: 24px;
+      &.link {
+        padding: 0;
+      }
+    }
+  }
+
+  .profile {
+    text-align: center;
+    .profile-image-container {
+      width: 80px;
+      height: 80px;
+      margin: 32px auto;
+      border-radius: 40px;
+      overflow: hidden;
+      img {
+        width: 100%;
+      }
+    }
+    .profile-action-list {
+      text-align: left;
+      padding: 48px 16px;
+      li {
+        padding: 8px 0;
+      }
+    }
+  }
+
   &.page-transition-enter {
     z-index: 1;
     transform: translateY(100%);

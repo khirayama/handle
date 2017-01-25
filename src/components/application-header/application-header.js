@@ -13,7 +13,7 @@ export class ApplicationHeader extends Component {
           </div>
         </Link>
         <Link href="/labels" className="labels-link">
-          <IconButton>edit</IconButton>
+          <IconButton>label</IconButton>
         </Link>
       </section>
     );
