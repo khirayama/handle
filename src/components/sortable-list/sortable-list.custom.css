@@ -15,3 +15,30 @@
     }
   }
 }
+
+.sortable-list.task-list {
+  .sortable-list-content {
+    .sortable-list-item {
+      display: flex;
+
+      &__completed {
+        background-color: $color-divider;
+      }
+      .task-list-content,
+      .task-list-left-icon,
+      .task-list-right-icon {
+        flex: 1;
+      }
+    }
+  }
+}
+
+.sortable-list.label-list {
+  .sortable-list-content {
+    .sortable-list-item {
+      &__unvisibled {
+        background-color: $color-divider;
+      }
+    }
+  }
+}

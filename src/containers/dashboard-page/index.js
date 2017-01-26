@@ -88,15 +88,35 @@ export class DashboardPage extends Container {
               return (
                 <SortableListItem
                   key={task.id}
-                  onClick={() => {
-                    this.setState({
-                      showTaskModal: true,
-                      content: task.content,
-                      selectedTaskId: task.id,
-                      selectedLabelId: label.id,
-                    });
-                  }}
-                  >{task.content}
+                  className={classNames({'sortable-list-item__completed': task.completed})}
+                  >
+                  <div
+                    className="task-list-left-icon"
+                    onClick={() => {
+                      if (task.completed) {
+                        uncompletedTask(this.dispatch, task.id);
+                      } else {
+                        completedTask(this.dispatch, task.id);
+                      }
+                    }
+                  }>done</div>
+                  <div
+                    className="task-list-content"
+                    onClick={() => {
+                      this.setState({
+                        showTaskModal: true,
+                        content: task.content,
+                        selectedTaskId: task.id,
+                        selectedLabelId: label.id,
+                      });
+                    }}
+                  >{task.content}</div>
+                  <div
+                    className="task-list-right-icon"
+                    onClick={() => {
+                      deleteTask(this.dispatch, task.id);
+                    }}
+                    >delete</div>
                 </SortableListItem>
               );
             })}</SortableList>
