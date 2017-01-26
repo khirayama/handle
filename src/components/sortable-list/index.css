@@ -1,11 +1,7 @@
 /* reset */
 .sortable-list,
 .sortable-list-content,
-.sortable-list-item,
-.sortable-list-item-content ,
-.sortable-list-item-background,
-.sortable-list-item-left-background,
-.sortable-list-item-right-background {
+.sortable-list-item {
   box-sizing: border-box;
   margin: 0;
   padding: 0;

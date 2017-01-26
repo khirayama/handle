@@ -95,11 +95,8 @@ export class SortableListItem extends Component {
     for (let index = 0; index < listItemElements.length; index++) {
       const listItemElement = listItemElements[index];
 
-      listItemElement.style.transitionProperty = transitionProperties.NONE;
       listItemElement.style.transform = 'translateY(0px)';
-      setTimeout(() => {
-        listItemElement.style.transitionProperty = transitionProperties.HEIGHT;
-      }, TRANSITION_TIME);
+      listItemElement.style.transitionProperty = transitionProperties.HEIGHT;
     }
   }
 
