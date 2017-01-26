@@ -56,6 +56,7 @@ export class LabelsPage extends Container {
             return (
               <SortableListItem
                 key={label.id}
+                className={classNames({'sortable-list-item__unvisibled': !label.visibled})}
                 onClick={() => {
                   this.setState({
                     showLabelModal: true,
@@ -63,7 +64,28 @@ export class LabelsPage extends Container {
                     name: label.name,
                   });
                 }}
-                >{label.name}
+                >
+                <IconButton
+                  className="label-list-left-icon"
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    if (label.visibled) {
+                      unvisibledLabel(this.dispatch, label.id);
+                    } else {
+                      visibledLabel(this.dispatch, label.id);
+                    }
+                  }
+                }>visibility</IconButton>
+                <div className="label-list-item-content">{label.name}</div>
+                <IconButton
+                  className="label-list-right-icon"
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    if (confirm('Delete it?')) {
+                      deleteLabel(this.dispatch, label.id);
+                    }
+                  }}
+                  >delete</IconButton>
               </SortableListItem>
             );
           })}

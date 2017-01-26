@@ -6,7 +6,6 @@
     .sortable-list-item {
       border-bottom: $border;
       background-color: $color-white;
-      padding: 18px 12px;
 
       &__sorting {
         box-shadow: 0 1px 1px 1px $color-ui-shadow;
@@ -19,15 +18,28 @@
 .sortable-list.task-list {
   .sortable-list-content {
     .sortable-list-item {
-      display: flex;
+      position: relative;
 
       &__completed {
         background-color: $color-divider;
       }
-      .task-list-content,
+      .task-list-item-content {
+        width: 100%;
+        padding: 18px 56px;
+      }
       .task-list-left-icon,
       .task-list-right-icon {
-        flex: 1;
+        position: absolute;
+        top: 0;
+        width: 44px;
+        height: 100%;
+        font-size: 24px;
+      }
+      .task-list-left-icon {
+        left: 0;
+      }
+      .task-list-right-icon {
+        right: 0;
       }
     }
   }
@@ -38,6 +50,24 @@
     .sortable-list-item {
       &__unvisibled {
         background-color: $color-divider;
+      }
+      .label-list-item-content {
+        width: 100%;
+        padding: 18px 56px;
+      }
+      .label-list-left-icon,
+      .label-list-right-icon {
+        position: absolute;
+        top: 0;
+        width: 44px;
+        height: 100%;
+        font-size: 24px;
+      }
+      .label-list-left-icon {
+        left: 0;
+      }
+      .label-list-right-icon {
+        right: 0;
       }
     }
   }

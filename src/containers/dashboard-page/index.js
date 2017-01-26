@@ -89,34 +89,34 @@ export class DashboardPage extends Container {
                 <SortableListItem
                   key={task.id}
                   className={classNames({'sortable-list-item__completed': task.completed})}
+                  onClick={() => {
+                    this.setState({
+                      showTaskModal: true,
+                      content: task.content,
+                      selectedTaskId: task.id,
+                      selectedLabelId: label.id,
+                    });
+                  }}
                   >
-                  <div
+                  <IconButton
                     className="task-list-left-icon"
-                    onClick={() => {
+                    onClick={(event) => {
+                      event.stopPropagation();
                       if (task.completed) {
                         uncompletedTask(this.dispatch, task.id);
                       } else {
                         completedTask(this.dispatch, task.id);
                       }
                     }
-                  }>done</div>
-                  <div
-                    className="task-list-content"
-                    onClick={() => {
-                      this.setState({
-                        showTaskModal: true,
-                        content: task.content,
-                        selectedTaskId: task.id,
-                        selectedLabelId: label.id,
-                      });
-                    }}
-                  >{task.content}</div>
-                  <div
+                  }>done</IconButton>
+                  <div className="task-list-item-content">{task.content}</div>
+                  <IconButton
                     className="task-list-right-icon"
-                    onClick={() => {
+                    onClick={(event) => {
+                      event.stopPropagation();
                       deleteTask(this.dispatch, task.id);
                     }}
-                    >delete</div>
+                    >delete</IconButton>
                 </SortableListItem>
               );
             })}</SortableList>
