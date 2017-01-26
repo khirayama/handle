@@ -40,6 +40,19 @@
       }
       .task-list-right-icon {
         right: 0;
+        opacity: 0;
+        transition-duration: $time-fast;
+        transition-timing-function: ease-out;
+        transition-property: opacity;
+        &:focus {
+          opacity: 1;
+        }
+      }
+
+      &:hover {
+        .task-list-right-icon {
+          opacity: 1;
+        }
       }
     }
   }
@@ -68,6 +81,19 @@
       }
       .label-list-right-icon {
         right: 0;
+        opacity: 0;
+        transition-duration: $time-fast;
+        transition-timing-function: ease-out;
+        transition-property: opacity;
+        &:focus {
+          opacity: 1;
+        }
+      }
+
+      &:hover {
+        .label-list-right-icon {
+          opacity: 1;
+        }
       }
     }
   }
