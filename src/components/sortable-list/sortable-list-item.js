@@ -13,6 +13,7 @@ export class SortableListItem extends Component {
 
     this.mouse = {
       down: false,
+      clickable: true,
       startX: null,
       startY: null,
       startScrollTop: null,
@@ -42,6 +43,7 @@ export class SortableListItem extends Component {
   _handleMouseMove(event) {
     if (this.mouse.down) {
       this.mouse = Object.assign({}, this.mouse, {
+        clickable: false,
         endX: event.clientX,
         endY: event.clientY,
       });
@@ -60,12 +62,16 @@ export class SortableListItem extends Component {
 
     this.mouse = {
       down: false,
+      clickable: this.mouse.clickable,
       startX: null,
       startY: null,
       startScrollTop: null,
       endX: null,
       endY: null,
     };
+    setTimeout(() => {
+      this.mouse.clickable = true;
+    }, 0);
   }
 
   // update views
@@ -248,6 +254,11 @@ export class SortableListItem extends Component {
         onMouseDown={this.handleMouseDown}
         onMouseMove={this.handleMouseMove}
         onMouseUp={this.handleMouseUp}
+        onClick={(event) => {
+          if (this.mouse.clickable && this.props.onClick) {
+            this.props.onClick(event);
+          }
+        }}
         >{this.props.children}</div>
     );
   }
