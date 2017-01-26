@@ -75,7 +75,7 @@ export class LabelsPage extends Container {
                       visibledLabel(this.dispatch, label.id);
                     }
                   }
-                }>visibility</IconButton>
+                }>{(label.visibled) ? "visibility" : "visibility_off"}</IconButton>
                 <div className="label-list-item-content">{label.name}</div>
                 <IconButton
                   className="label-list-right-icon"
