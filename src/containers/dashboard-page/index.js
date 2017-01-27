@@ -100,7 +100,7 @@ export class DashboardPage extends Container {
                   >
                   <IconButton
                     className="task-list-left-icon"
-                    onClick={(event) => {
+                    onClick={event => {
                       event.stopPropagation();
                       if (task.completed) {
                         uncompletedTask(this.dispatch, task.id);
@@ -108,11 +108,12 @@ export class DashboardPage extends Container {
                         completedTask(this.dispatch, task.id);
                       }
                     }
-                  }>done</IconButton>
+                  }
+                    >done</IconButton>
                   <div className="task-list-item-content">{task.content}</div>
                   <IconButton
                     className="task-list-right-icon"
-                    onClick={(event) => {
+                    onClick={event => {
                       event.stopPropagation();
                       deleteTask(this.dispatch, task.id);
                     }}
@@ -203,9 +204,9 @@ export class DashboardPage extends Container {
               onClick={() => {
                 if (this.state.content !== '') {
                   if (this.state.selectedTaskId === null) {
-                    createTask(this.dispatch, this.state.content, this.state.selectedLabelId);
+                    createTask(this.dispatch, this.state.content.trim(), this.state.selectedLabelId);
                   } else {
-                    updateTask(this.dispatch, this.state.selectedTaskId, this.state.content, this.state.selectedLabelId);
+                    updateTask(this.dispatch, this.state.selectedTaskId, this.state.content.trim(), this.state.selectedLabelId);
                   }
                   this.setState({showTaskModal: false});
                 }
@@ -235,6 +236,34 @@ export class DashboardPage extends Container {
                 value={this.state.content}
                 onChange={event => {
                   this.setState({content: event.target.value});
+                }}
+                onKeyDown={event => {
+                  const keyCode = event.keyCode;
+                  const shift = event.shiftKey;
+                  const ctrl = event.metaKey;
+
+                  const ENTER_KEY = 13;
+                  const ESC_KEY = 27;
+
+                  switch(true) {
+                    case (keyCode === ENTER_KEY && !shift && !ctrl):
+                    case (keyCode === ENTER_KEY && shift && !ctrl):
+                    case (keyCode === ENTER_KEY && !shift && ctrl): {
+                      if (this.state.content !== '') {
+                        if (this.state.selectedTaskId === null) {
+                          createTask(this.dispatch, this.state.content.trim(), this.state.selectedLabelId);
+                        } else {
+                          updateTask(this.dispatch, this.state.selectedTaskId, this.state.content.trim(), this.state.selectedLabelId);
+                        }
+                        this.setState({showTaskModal: false});
+                      }
+                    }
+                    case (keyCode === ESC_KEY && !shift && !ctrl):
+                    case (keyCode === ESC_KEY && shift && !ctrl):
+                    case (keyCode === ESC_KEY && !shift && ctrl): {
+                      this.setState({showTaskModal: false});
+                    }
+                  }
                 }}
                 />
             </div>

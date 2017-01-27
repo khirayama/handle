@@ -67,7 +67,7 @@ export class LabelsPage extends Container {
                 >
                 <IconButton
                   className="label-list-left-icon"
-                  onClick={(event) => {
+                  onClick={event => {
                     event.stopPropagation();
                     if (label.visibled) {
                       unvisibledLabel(this.dispatch, label.id);
@@ -75,11 +75,12 @@ export class LabelsPage extends Container {
                       visibledLabel(this.dispatch, label.id);
                     }
                   }
-                }>{(label.visibled) ? "visibility" : "visibility_off"}</IconButton>
+                }
+                  >{(label.visibled) ? 'visibility' : 'visibility_off'}</IconButton>
                 <div className="label-list-item-content">{label.name}</div>
                 <IconButton
                   className="label-list-right-icon"
-                  onClick={(event) => {
+                  onClick={event => {
                     event.stopPropagation();
                     if (confirm('Delete it?')) {
                       deleteLabel(this.dispatch, label.id);
@@ -168,9 +169,9 @@ export class LabelsPage extends Container {
             <IconButton
               onClick={() => {
                 if (this.state.selectedLabelId === null) {
-                  createLabel(this.dispatch, this.state.name);
+                  createLabel(this.dispatch, this.state.name.trim());
                 } else {
-                  updateLabel(this.dispatch, this.state.selectedLabelId, this.state.name);
+                  updateLabel(this.dispatch, this.state.selectedLabelId, this.state.name.trim());
                 }
                 this.setState({showLabelModal: false});
               }}
@@ -186,6 +187,32 @@ export class LabelsPage extends Container {
                 value={this.state.name}
                 onChange={event => {
                   this.setState({name: event.target.value});
+                }}
+                onKeyDown={event => {
+                  const keyCode = event.keyCode;
+                  const shift = event.shiftKey;
+                  const ctrl = event.metaKey;
+
+                  const ENTER_KEY = 13;
+                  const ESC_KEY = 27;
+
+                  switch(true) {
+                    case (keyCode === ENTER_KEY && !shift && !ctrl):
+                    case (keyCode === ENTER_KEY && shift && !ctrl):
+                    case (keyCode === ENTER_KEY && !shift && ctrl): {
+                      if (this.state.selectedLabelId === null) {
+                        createLabel(this.dispatch, this.state.name.trim());
+                      } else {
+                        updateLabel(this.dispatch, this.state.selectedLabelId, this.state.name.trim());
+                      }
+                      this.setState({showLabelModal: false});
+                    }
+                    case (keyCode === ESC_KEY && !shift && !ctrl):
+                    case (keyCode === ESC_KEY && shift && !ctrl):
+                    case (keyCode === ESC_KEY && !shift && ctrl): {
+                      this.setState({showLabelModal: false});
+                    }
+                  }
                 }}
                 />
             </div>

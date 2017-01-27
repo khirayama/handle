@@ -21,6 +21,7 @@ export class SortableListItem extends Component {
       endY: null,
     };
 
+    this.handleClick = this._handleClick.bind(this);
     this.handleMouseDown = this._handleMouseDown.bind(this);
     this.handleMouseMove = this._handleMouseMove.bind(this);
     this.handleMouseUp = this._handleMouseUp.bind(this);
@@ -32,6 +33,11 @@ export class SortableListItem extends Component {
   }
 
   // handling event
+  _handleClick(event) {
+    if (this.mouse.clickable && this.props.onClick) {
+      this.props.onClick(event);
+    }
+  }
   _handleMouseDown(event) {
     this.mouse = Object.assign({}, this.mouse, {
       down: true,
@@ -251,11 +257,7 @@ export class SortableListItem extends Component {
         onMouseDown={this.handleMouseDown}
         onMouseMove={this.handleMouseMove}
         onMouseUp={this.handleMouseUp}
-        onClick={(event) => {
-          if (this.mouse.clickable && this.props.onClick) {
-            this.props.onClick(event);
-          }
-        }}
+        onClick={this.handleClick}
         >{this.props.children}</div>
     );
   }

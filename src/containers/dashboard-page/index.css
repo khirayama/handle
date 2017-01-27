@@ -84,6 +84,12 @@
       background-color: $color-white;
       border-radius: 0;
       padding: 0 4px;
+      &:active {
+        background-color: $color-ui-active;
+      }
+      &:focus {
+        background-color: $color-ui-focus;
+      }
     }
   }
   .task-form-content-textarea-container {
