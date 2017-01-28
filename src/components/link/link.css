@@ -11,24 +11,12 @@
   transition-duration: $time-basic;
   transition-property: background;
   user-select: none;
-}
 
-.link__plain {
-  padding: 0;
-}
-
-.link {
   .icon {
     color: $color-text-secondary;
     transition-timing-function: $ease-out-expo;
     transition-duration: $time-basic;
     transition-property: background, color;
-  }
-}
-
-.mobile {
-  .link {
-    padding: 8px;
   }
 }
 

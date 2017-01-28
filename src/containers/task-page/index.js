@@ -104,8 +104,10 @@ export class TaskPage extends Container {
                     case (keyCode === ENTER_KEY && !shift && ctrl): {
                       if (this.state.content !== '') {
                         if (this.state.selectedTaskId === null) {
+                          event.preventDefault();
                           createTask(this.dispatch, this.state.content.trim(), this.state.selectedLabelId);
                         } else {
+                          event.preventDefault();
                           updateTask(this.dispatch, this.state.selectedTaskId, this.state.content.trim(), this.state.selectedLabelId);
                         }
                         this.props.changeLocation(`/dashboard?tab-index=${tabIndex}`);

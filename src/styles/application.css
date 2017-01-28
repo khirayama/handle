@@ -1,5 +1,5 @@
 $ease-out: ease-out;
-$ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+$ease-out-expo: cubic-bezier(0.19, 1, 0.32, 1);
 
 $timing-transition: 600ms $ease-out-expo;
 

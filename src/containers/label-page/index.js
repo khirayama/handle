@@ -69,8 +69,10 @@ export class LabelPage extends Container {
                     case (keyCode === ENTER_KEY && shift && !ctrl):
                     case (keyCode === ENTER_KEY && !shift && ctrl): {
                       if (this.state.selectedLabelId === null) {
+                        event.preventDefault();
                         createLabel(this.dispatch, this.state.name.trim());
                       } else {
+                        event.preventDefault();
                         updateLabel(this.dispatch, this.state.selectedLabelId, this.state.name.trim());
                       }
                       this.props.changeLocation('/labels');
