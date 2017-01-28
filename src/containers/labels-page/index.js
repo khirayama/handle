@@ -3,8 +3,6 @@ import classNames from 'classnames';
 import {Container} from 'libs/container';
 
 import {
-  createLabel,
-  updateLabel,
   unvisibledLabel,
   visibledLabel,
   deleteLabel,
@@ -81,7 +79,7 @@ export class LabelsPage extends Container {
                       this.props.changeLocation(`/labels/${label.id}/edit`);
                     }
                   }}
-                >{label.name}</div>
+                  >{label.name}</div>
                 <IconButton
                   className="label-list-right-icon"
                   onClick={event => {

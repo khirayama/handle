@@ -60,7 +60,8 @@ export class TaskPage extends Container {
                   }
                   this.props.changeLocation(`/dashboard?tab-index=${tabIndex}`);
                 }
-              }}>add</IconButton>
+              }}
+              >add</IconButton>
             <Link
               href={`/dashboard?tab-index=${tabIndex}`}
               className="close-task-button"
@@ -115,6 +116,9 @@ export class TaskPage extends Container {
                     case (keyCode === ESC_KEY && shift && !ctrl):
                     case (keyCode === ESC_KEY && !shift && ctrl): {
                       this.props.changeLocation(`/dashboard?tab-index=${tabIndex}`);
+                      break;
+                    }
+                    default: {
                       break;
                     }
                   }

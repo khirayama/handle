@@ -24,10 +24,6 @@ export class LabelPage extends Container {
     });
   }
   render() {
-    const state = this.state;
-
-    const tabIndex = 0;
-
     return (
       <section className="page label-page">
         <section className="page-content">
@@ -78,11 +74,16 @@ export class LabelPage extends Container {
                         updateLabel(this.dispatch, this.state.selectedLabelId, this.state.name.trim());
                       }
                       this.props.changeLocation('/labels');
+                      break;
                     }
                     case (keyCode === ESC_KEY && !shift && !ctrl):
                     case (keyCode === ESC_KEY && shift && !ctrl):
                     case (keyCode === ESC_KEY && !shift && ctrl): {
                       this.props.changeLocation('/labels');
+                      break;
+                    }
+                    default: {
+                      break;
                     }
                   }
                 }}
