@@ -1,71 +1,74 @@
-.dashboard-page {
-  .page-content {
-    position: relative;
-    max-width: 680px;
-    margin: 0 auto;
-    overflow: hidden;
-  }
-
-  .tab-container {
-    /* 56px - application header height */
-    height: calc(100% - 56px);
-    .tab-list {
+.desktop,
+.mobile {
+  .dashboard-page {
+    .page-content {
       position: relative;
-      z-index: 2;
+      max-width: 680px;
+      margin: 0 auto;
+      overflow: hidden;
     }
-    .list-container {
+
+    .tab-container {
+      /* 56px - application header height */
       height: calc(100% - 56px);
-    }
-  }
-}
-
-.tab-content-list-item {
-  position: relative;
-  .add-task-button {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    padding: 0;
-    line-height: 52px;
-    height: 56px;
-    z-index: 1;
-    box-shadow: 0 -1px 1px $color-ui-shadow;
-    font-weight: $font-weight-bold;
-    background-color: $color-white;
-    text-align: center;
-  }
-}
-
-/* transition */
-.dashboard-page {
-  /* scale in */
-  &.page-transition-enter {
-    .page-content {
-      transform: scale(.9)
-    }
-  }
-  &.page-transition-enter.page-transition-enter-active {
-    .page-content {
-      transform: scale(1);
-      transition: $timing-transition;
-      transition-property: transform;
-      will-change: transform;
+      .tab-list {
+        position: relative;
+        z-index: 2;
+      }
+      .list-container {
+        height: calc(100% - 56px);
+      }
     }
   }
 
-  /* scale out */
-  &.page-transition-leave {
-    .page-content {
-      z-index: -1;
-      transform: scale(1);
+  .tab-content-list-item {
+    position: relative;
+    .add-task-button {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      padding: 0;
+      line-height: 52px;
+      height: 56px;
+      z-index: 1;
+      box-shadow: 0 -1px 1px $color-ui-shadow;
+      font-weight: $font-weight-bold;
+      background-color: $color-white;
+      text-align: center;
     }
   }
-  &.page-transition-leave.page-transition-leave-active {
-    .page-content {
-      transform: scale(.9);
-      transition: $timing-transition;
-      transition-property: transform;
-      will-change: transform;
+
+  /* transition */
+  .dashboard-page {
+    /* scale in */
+    &.page-transition-enter {
+      .page-content {
+        transform: scale(.9)
+      }
+    }
+    &.page-transition-enter.page-transition-enter-active {
+      .page-content {
+        transform: scale(1);
+        transition: $timing-transition;
+        transition-property: transform;
+        will-change: transform;
+      }
+    }
+
+    /* scale out */
+    &.page-transition-leave {
+      .page-content {
+        z-index: -1;
+        transform: scale(1);
+      }
+    }
+    &.page-transition-leave.page-transition-leave-active {
+      .page-content {
+        transform: scale(.9);
+        transition: $timing-transition;
+        transition-property: transform;
+        will-change: transform;
+      }
     }
   }
 }

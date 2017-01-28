@@ -16,15 +16,19 @@
   transition-property: color, background;
   text-rendering: optimizeLegibility;
   font-feature-settings: 'liga';
+}
 
-  &:hover,
-  &:focus {
-    background-color: $color-ui-focus;
-    color: $color-text;
-  }
+.desktop {
+  .icon-button {
+    &:hover,
+    &:focus {
+      background-color: $color-ui-focus;
+      color: $color-text;
+    }
 
-  &:active {
-    background-color: $color-ui-active;
-    color: $color-text;
+    &:active {
+      background-color: $color-ui-active;
+      color: $color-text;
+    }
   }
 }
