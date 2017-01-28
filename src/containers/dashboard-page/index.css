@@ -5,11 +5,6 @@
     margin: 0 auto;
     overflow: hidden;
   }
-  .modal-content {
-    max-width: 680px;
-    margin: 0 auto;
-    overflow: hidden;
-  }
 
   .tab-container {
     /* 56px - application header height */

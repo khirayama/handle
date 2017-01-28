@@ -31,7 +31,7 @@
 
   .task-form {
     width: 100%;
-    /* 56px - modal header height */
+    /* 56px - header height */
     height: calc(100% - 56px);
     .task-form-label-select-container {
       height: 51px;

@@ -5,11 +5,6 @@
     margin: 0 auto;
     overflow: hidden;
   }
-  .modal-content {
-    max-width: 680px;
-    margin: 0 auto;
-    overflow: hidden;
-  }
 
   .labels-header {
     position: relative;
@@ -48,7 +43,7 @@
 
 .label-form {
   width: 100%;
-  /* 56px - modal header height */
+  /* 56px - header height */
   height: calc(100% - 56px);
   .label-form-content-textarea-container {
     width: 100%;
