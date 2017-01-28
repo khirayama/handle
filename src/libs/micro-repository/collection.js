@@ -120,12 +120,14 @@ export class Collection {
 
   // for cache
   _clear() {
+    return; // disable
     this._cache = {
       response: null,
       configString: '{}',
     };
   }
   _save(config = {}, response = null) {
+    return; // disable
     this._cache.response = response;
     this._cache.configString = JSON.stringify(config);
   }
