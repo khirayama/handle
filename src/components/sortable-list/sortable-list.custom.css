@@ -24,8 +24,13 @@
         background-color: $color-divider;
       }
       .task-list-item-content {
-        width: 100%;
-        padding: 18px 56px;
+        .link {
+          font-weight: $font-weight-normal;
+          padding: 18px 56px;
+          width: 100%;
+          height: 100%;
+          text-align: left;
+        }
       }
       .task-list-left-icon,
       .task-list-right-icon {
@@ -65,8 +70,13 @@
         background-color: $color-divider;
       }
       .label-list-item-content {
-        width: 100%;
-        padding: 18px 56px;
+        .link {
+          font-weight: $font-weight-normal;
+          padding: 18px 56px;
+          width: 100%;
+          height: 100%;
+          text-align: left;
+        }
       }
       .label-list-left-icon,
       .label-list-right-icon {
