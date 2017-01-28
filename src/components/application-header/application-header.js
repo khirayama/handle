@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 
 import {Link} from 'components/link';
-import {IconButton} from 'components/icon-button';
+import {Icon} from 'components/icon';
 
 export class ApplicationHeader extends Component {
   render() {
@@ -13,7 +13,7 @@ export class ApplicationHeader extends Component {
           </div>
         </Link>
         <Link href="/labels" className="labels-link">
-          <IconButton>label</IconButton>
+          <Icon>label</Icon>
         </Link>
       </section>
     );

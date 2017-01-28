@@ -153,9 +153,7 @@ export class LabelsPage extends Container {
             <Link
               className="close-labels-button"
               href="/dashboard"
-              >
-              <IconButton>arrow_back</IconButton>
-            </Link>
+              ><Icon>arrow_back</Icon></Link>
           </header>
           <div className="list-container">{labelList}</div>
           <Link

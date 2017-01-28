@@ -2,7 +2,7 @@ import React from 'react';
 import {Container} from 'libs/container';
 
 import {Link} from 'components/link';
-import {IconButton} from 'components/icon-button';
+import {Icon} from 'components/icon';
 
 export class ProfilePage extends Container {
   render() {
@@ -15,9 +15,7 @@ export class ProfilePage extends Container {
             <Link
               className="close-profile-button"
               href="/dashboard"
-              >
-              <IconButton>close</IconButton>
-            </Link>
+              ><Icon>close</Icon></Link>
           </header>
           <section className="profile">
             <div className="profile-image-container">

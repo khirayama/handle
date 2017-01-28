@@ -7,6 +7,7 @@ import {
 } from 'action-creators/label-action-creators';
 
 import {Link} from 'components/link';
+import {Icon} from 'components/icon';
 import {IconButton} from 'components/icon-button';
 
 export class LabelPage extends Container {
@@ -47,7 +48,7 @@ export class LabelPage extends Container {
             <Link
               href="/labels"
               className="close-label-button"
-              ><IconButton>close</IconButton></Link>
+              ><Icon>close</Icon></Link>
           </header>
           <section className="label-form">
             <div className="label-form-content-textarea-container">

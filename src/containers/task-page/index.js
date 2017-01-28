@@ -7,6 +7,7 @@ import {
 } from 'action-creators/task-action-creators';
 
 import {Link} from 'components/link';
+import {Icon} from 'components/icon';
 import {IconButton} from 'components/icon-button';
 
 export class TaskPage extends Container {
@@ -59,12 +60,11 @@ export class TaskPage extends Container {
                   }
                   this.props.changeLocation(`/dashboard?tab-index=${tabIndex}`);
                 }
-              }}
-              >add</IconButton>
+              }}>add</IconButton>
             <Link
               href={`/dashboard?tab-index=${tabIndex}`}
               className="close-task-button"
-              ><IconButton>close</IconButton></Link>
+              ><Icon>close</Icon></Link>
           </header>
           <section className="task-form">
             <div className="task-form-label-select-container">
