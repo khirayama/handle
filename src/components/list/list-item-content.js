@@ -283,6 +283,7 @@ export class ListItemContent extends Component {
   render() {
     return (
       <div
+        {...this.props}
         className={classNames(this.props.className, 'list-item-content')}
         ref={this.setListItemContent}
         onTouchStart={this.handleTouchStart}

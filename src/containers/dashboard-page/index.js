@@ -81,9 +81,31 @@ export class DashboardPage extends Container {
                     }
                   }
                     >done</IconButton>
-                  <div className="task-list-item-content">
-                    <Link href={`/tasks/${task.id}/edit`}>{task.content}</Link>
-                  </div>
+                  <div
+                    className="task-list-item-content"
+                    onMouseDown={() => {
+                      this.down = true;
+                      this.clickable = true;
+                    }}
+                    onMouseMove={() => {
+                      if (this.down) {
+                        this.clickable = false;
+                      } else {
+                        this.clickable = true;
+                      }
+                    }}
+                    onMouseUp={() => {
+                      setTimeout(() => {
+                        this.down = false;
+                        this.clickable = true;
+                      }, 0);
+                    }}
+                    onClick={() => {
+                      if (this.clickable) {
+                        this.props.changeLocation(`/tasks/${task.id}/edit`);
+                      }
+                    }}
+                    >{task.content}</div>
                   <IconButton
                     className="task-list-right-icon"
                     onClick={event => {
@@ -123,10 +145,11 @@ export class DashboardPage extends Container {
                     <Icon>check</Icon>
                   </ListItemLeftBackground>
                   <ListItemContent
+                    onClick={() => {
+                      this.props.changeLocation(`/tasks/${task.id}/edit`);
+                    }}
                     className={classNames({'list-item-content__completed': task.completed})}
-                    >
-                    <Link href={`/tasks/${task.id}/edit`}>{task.content}</Link>
-                  </ListItemContent>
+                    >{task.content}</ListItemContent>
                   <ListItemRightBackground>
                     <Icon>delete</Icon>
                   </ListItemRightBackground>

@@ -57,7 +57,31 @@ export class LabelsPage extends Container {
                   }
                 }
                   >{(label.visibled) ? 'visibility' : 'visibility_off'}</IconButton>
-                <div className="label-list-item-content"><Link href={`/labels/${label.id}/edit`}>{label.name}</Link></div>
+                <div
+                  className="label-list-item-content"
+                  onMouseDown={() => {
+                    this.down = true;
+                    this.clickable = true;
+                  }}
+                  onMouseMove={() => {
+                    if (this.down) {
+                      this.clickable = false;
+                    } else {
+                      this.clickable = true;
+                    }
+                  }}
+                  onMouseUp={() => {
+                    setTimeout(() => {
+                      this.down = false;
+                      this.clickable = true;
+                    }, 0);
+                  }}
+                  onClick={() => {
+                    if (this.clickable) {
+                      this.props.changeLocation(`/labels/${label.id}/edit`);
+                    }
+                  }}
+                >{label.name}</div>
                 <IconButton
                   className="label-list-right-icon"
                   onClick={event => {
@@ -85,12 +109,6 @@ export class LabelsPage extends Container {
             return (
               <ListItem
                 key={label.id}
-                onClick={() => {
-                  this.setState({
-                    selectedLabelId: label.id,
-                    name: label.name,
-                  });
-                }}
                 onSwipeLeft={() => {
                   if (confirm('Delete it?')) {
                     deleteLabel(this.dispatch, label.id);
@@ -114,7 +132,10 @@ export class LabelsPage extends Container {
                 </ListItemLeftBackground>
                 <ListItemContent
                   className={classNames({'list-item-content__unvisibled': !label.visibled})}
-                  ><Link href={`/labels/${label.id}/edit`}>{label.name}</Link></ListItemContent>
+                  onClick={() => {
+                    this.props.changeLocation(`/labels/${label.id}/edit`);
+                  }}
+                  >{label.name}</ListItemContent>
                 <ListItemRightBackground>
                   <Icon>delete</Icon>
                 </ListItemRightBackground>
