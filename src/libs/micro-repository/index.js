@@ -3,5 +3,5 @@ import {Collection} from './collection';
 
 export {
   Entry,
-  Collection
+  Collection,
 };
