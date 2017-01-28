@@ -1,17 +1,22 @@
-.profile-page {
-  position: relative;
-
+.label-page {
   .page-content {
     max-width: 680px;
     margin: 0 auto;
     overflow: hidden;
   }
-
-  .profile-header {
+  .label-page-header {
     position: relative;
-    z-index: 2;
     height: 56px;
-    .close-profile-button {
+    box-shadow: 0 1px 1px $color-ui-shadow;
+    .add-label-button {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      width: 44px;
+      height: 44px;
+      font-size: 24px;
+    }
+    .close-label-button {
       position: absolute;
       top: 8px;
       right: 8px;
@@ -24,30 +29,25 @@
     }
   }
 
-  .profile {
-    text-align: center;
-    .profile-image-container {
-      width: 80px;
-      height: 80px;
-      margin: 32px auto;
-      border-radius: 40px;
-      overflow: hidden;
-      img {
+  .label-form {
+    width: 100%;
+    /* 56px - modal header height */
+    height: calc(100% - 56px);
+    .label-form-content-textarea-container {
+      width: 100%;
+      height: calc(100% - 51px);
+      padding: 12px;
+      .label-form-content-textarea {
         width: 100%;
-      }
-    }
-    .profile-action-list {
-      text-align: left;
-      padding: 48px 16px;
-      li {
-        padding: 8px 0;
+        height: 100%;
+        resize: none;
       }
     }
   }
 }
 
 /* transition */
-.profile-page {
+.label-page {
   /* pop up */
   &.page-transition-enter {
     z-index: 1;

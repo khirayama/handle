@@ -25,21 +25,8 @@ import {
   SortableList,
   SortableListItem,
 } from 'components/sortable-list';
-import {
-  Modal,
-  ModalHeader,
-} from 'components/modal';
 
 export class LabelsPage extends Container {
-  constructor(props) {
-    super(props);
-
-    this.state = Object.assign({}, this.state, {
-      showLabelModal: false,
-      selectedLabelId: null,
-      name: '',
-    });
-  }
   render() {
     let labelList = null;
 
@@ -57,13 +44,6 @@ export class LabelsPage extends Container {
               <SortableListItem
                 key={label.id}
                 className={classNames({'sortable-list-item__unvisibled': !label.visibled})}
-                onClick={() => {
-                  this.setState({
-                    showLabelModal: true,
-                    selectedLabelId: label.id,
-                    name: label.name,
-                  });
-                }}
                 >
                 <IconButton
                   className="label-list-left-icon"
@@ -77,7 +57,7 @@ export class LabelsPage extends Container {
                   }
                 }
                   >{(label.visibled) ? 'visibility' : 'visibility_off'}</IconButton>
-                <div className="label-list-item-content">{label.name}</div>
+                <div className="label-list-item-content"><Link href={`/labels/${label.id}/edit`}>{label.name}</Link></div>
                 <IconButton
                   className="label-list-right-icon"
                   onClick={event => {
@@ -107,7 +87,6 @@ export class LabelsPage extends Container {
                 key={label.id}
                 onClick={() => {
                   this.setState({
-                    showLabelModal: true,
                     selectedLabelId: label.id,
                     name: label.name,
                   });
@@ -133,7 +112,9 @@ export class LabelsPage extends Container {
                     (<Icon>visibility</Icon>)
                   }
                 </ListItemLeftBackground>
-                <ListItemContent className={classNames({'list-item-content__unvisibled': !label.visibled})}>{label.name}</ListItemContent>
+                <ListItemContent
+                  className={classNames({'list-item-content__unvisibled': !label.visibled})}
+                  ><Link href={`/labels/${label.id}/edit`}>{label.name}</Link></ListItemContent>
                 <ListItemRightBackground>
                   <Icon>delete</Icon>
                 </ListItemRightBackground>
@@ -156,68 +137,11 @@ export class LabelsPage extends Container {
             </Link>
           </header>
           <div className="list-container">{labelList}</div>
-          <div
-            className="add-label-button" onClick={() => {
-              this.setState({showLabelModal: true, name: '', selectedLabelId: null});
-            }}
-                                         ><Icon>add</Icon>Add Label</div>
+          <Link
+            href="/labels/new"
+            className="add-label-button"
+            ><Icon>add</Icon>Add Label</Link>
         </section>
-        <Modal show={this.state.showLabelModal}>
-          <ModalHeader
-            onClickCloseButton={() => this.setState({showLabelModal: false})}
-            >
-            <IconButton
-              onClick={() => {
-                if (this.state.selectedLabelId === null) {
-                  createLabel(this.dispatch, this.state.name.trim());
-                } else {
-                  updateLabel(this.dispatch, this.state.selectedLabelId, this.state.name.trim());
-                }
-                this.setState({showLabelModal: false});
-              }}
-              className="action-button"
-              >add</IconButton>
-          </ModalHeader>
-          <section className="label-form">
-            <div className="label-form-content-textarea-container">
-              <textarea
-                autoFocus
-                className="label-form-content-textarea"
-                placeholder="Name"
-                value={this.state.name}
-                onChange={event => {
-                  this.setState({name: event.target.value});
-                }}
-                onKeyDown={event => {
-                  const keyCode = event.keyCode;
-                  const shift = event.shiftKey;
-                  const ctrl = event.metaKey;
-
-                  const ENTER_KEY = 13;
-                  const ESC_KEY = 27;
-
-                  switch(true) {
-                    case (keyCode === ENTER_KEY && !shift && !ctrl):
-                    case (keyCode === ENTER_KEY && shift && !ctrl):
-                    case (keyCode === ENTER_KEY && !shift && ctrl): {
-                      if (this.state.selectedLabelId === null) {
-                        createLabel(this.dispatch, this.state.name.trim());
-                      } else {
-                        updateLabel(this.dispatch, this.state.selectedLabelId, this.state.name.trim());
-                      }
-                      this.setState({showLabelModal: false});
-                    }
-                    case (keyCode === ESC_KEY && !shift && !ctrl):
-                    case (keyCode === ESC_KEY && shift && !ctrl):
-                    case (keyCode === ESC_KEY && !shift && ctrl): {
-                      this.setState({showLabelModal: false});
-                    }
-                  }
-                }}
-                />
-            </div>
-          </section>
-        </Modal>
       </section>
     );
   }

@@ -44,27 +44,6 @@
     background-color: $color-white;
     text-align: center;
   }
-
-  &.page-transition-enter {
-    z-index: 1;
-    transform: translateX(100%);
-  }
-  &.page-transition-enter.page-transition-enter-active {
-    transform: translateX(0);
-    transition: $timing-transition;
-    transition-property: transform;
-    will-change: transform;
-  }
-  &.page-transition-leave {
-    transform: translateX(0);
-  }
-  &.page-transition-leave.page-transition-leave-active {
-    z-index: 1;
-    transform: translateX(100%);
-    transition: $timing-transition;
-    transition-property: transform;
-    will-change: transform;
-  }
 }
 
 .label-form {
@@ -79,6 +58,71 @@
       width: 100%;
       height: 100%;
       resize: none;
+    }
+  }
+}
+
+/* transition */
+.connector-dashboard {
+  .labels-page {
+    /* slide in */
+    &.page-transition-enter {
+      z-index: 1;
+      transform: translateX(100%);
+    }
+    &.page-transition-enter.page-transition-enter-active {
+      transform: translateX(0);
+      transition: $timing-transition;
+      transition-property: transform;
+      will-change: transform;
+    }
+
+    /* slide out */
+    &.page-transition-leave {
+      transform: translateX(0);
+    }
+    &.page-transition-leave.page-transition-leave-active {
+      z-index: 1;
+      transform: translateX(100%);
+      transition: $timing-transition;
+      transition-property: transform;
+      will-change: transform;
+    }
+  }
+}
+
+.connector-labels-new,
+.connector-labels-edit {
+  .labels-page {
+    /* scale in */
+    &.page-transition-enter {
+      .page-content {
+        transform: scale(.9)
+      }
+    }
+    &.page-transition-enter.page-transition-enter-active {
+      .page-content {
+        transform: scale(1);
+        transition: $timing-transition;
+        transition-property: transform;
+        will-change: transform;
+      }
+    }
+
+    /* scale out */
+    &.page-transition-leave {
+      .page-content {
+        z-index: -1;
+        transform: scale(1);
+      }
+    }
+    &.page-transition-leave.page-transition-leave-active {
+      .page-content {
+        transform: scale(.9);
+        transition: $timing-transition;
+        transition-property: transform;
+        will-change: transform;
+      }
     }
   }
 }

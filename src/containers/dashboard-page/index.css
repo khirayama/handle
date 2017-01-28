@@ -22,34 +22,6 @@
       height: calc(100% - 56px);
     }
   }
-
-  &.page-transition-enter {
-    .page-content {
-      transform: scale(.9)
-    }
-  }
-  &.page-transition-enter.page-transition-enter-active {
-    .page-content {
-      transform: scale(1);
-      transition: $timing-transition;
-      transition-property: transform;
-      will-change: transform;
-    }
-  }
-  &.page-transition-leave {
-    .page-content {
-      z-index: -1;
-      transform: scale(1);
-    }
-  }
-  &.page-transition-leave.page-transition-leave-active {
-    .page-content {
-      transform: scale(.9);
-      transition: $timing-transition;
-      transition-property: transform;
-      will-change: transform;
-    }
-  }
 }
 
 .tab-content-list-item {
@@ -68,38 +40,36 @@
   }
 }
 
-.task-form {
-  width: 100%;
-  /* 56px - modal header height */
-  height: calc(100% - 56px);
-  .task-form-label-select-container {
-    height: 51px;
-    padding: 12px;
-    border-bottom: $border;
-    .task-form-label-select-label {
-      color: $color-text-secondary;
-      padding-right: 12px;
-    }
-    select {
-      background-color: $color-white;
-      border-radius: 0;
-      padding: 0 4px;
-      &:active {
-        background-color: $color-ui-active;
-      }
-      &:focus {
-        background-color: $color-ui-focus;
-      }
+/* transition */
+.dashboard-page {
+  /* scale in */
+  &.page-transition-enter {
+    .page-content {
+      transform: scale(.9)
     }
   }
-  .task-form-content-textarea-container {
-    width: 100%;
-    height: calc(100% - 51px);
-    padding: 12px;
-    .task-form-content-textarea {
-      width: 100%;
-      height: 100%;
-      resize: none;
+  &.page-transition-enter.page-transition-enter-active {
+    .page-content {
+      transform: scale(1);
+      transition: $timing-transition;
+      transition-property: transform;
+      will-change: transform;
+    }
+  }
+
+  /* scale out */
+  &.page-transition-leave {
+    .page-content {
+      z-index: -1;
+      transform: scale(1);
+    }
+  }
+  &.page-transition-leave.page-transition-leave-active {
+    .page-content {
+      transform: scale(.9);
+      transition: $timing-transition;
+      transition-property: transform;
+      will-change: transform;
     }
   }
 }

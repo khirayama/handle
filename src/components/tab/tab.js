@@ -1,11 +1,11 @@
 import React, {Component, PropTypes} from 'react';
 
 export class Tab extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
-      currentIndex: 0,
+      currentIndex: props.index || 0,
     };
 
     this.setCurrentIndex = this._setCurrentIndex.bind(this);

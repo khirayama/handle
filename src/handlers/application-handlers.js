@@ -26,6 +26,9 @@ export function applicationHandler(req, res) {
   const initialState = {
     lang: req.getLocale(),
     ui: getUI(req.useragent),
+    dashboardTabIndex: 0,
+    selectedTaskId: null,
+    selectedLabelId: null,
     tasks: [],
     labels: [],
   };
@@ -52,6 +55,7 @@ export function applicationHandler(req, res) {
     headers: {cookie: serializedCookies},
   };
   data.dispatch = store.dispatch.bind(store);
+  data.query = req.query;
 
   router.initialize(pathname, data).then(() => {
     const state = store.getState();

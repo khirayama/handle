@@ -3,8 +3,6 @@ import classNames from 'classnames';
 import {Container} from 'libs/container';
 
 import {
-  createTask,
-  updateTask,
   deleteTask,
   uncompletedTask,
   completedTask,
@@ -12,6 +10,7 @@ import {
 } from 'action-creators/task-action-creators';
 
 import {ApplicationHeader} from 'components/application-header';
+import {Link} from 'components/link';
 import {Icon} from 'components/icon';
 import {IconButton} from 'components/icon-button';
 import {
@@ -32,28 +31,8 @@ import {
   TabContentList,
   TabContentListItem,
 } from 'components/tab';
-import {
-  Modal,
-  ModalHeader,
-} from 'components/modal';
 
 export class DashboardPage extends Container {
-  constructor(props) {
-    super(props);
-
-    const activeLabels = this.state.labels.filter(label => {
-      return label.visibled;
-    }).sort((labelA, labelB) => {
-      return (labelA.priority > labelB.priority) ? 1 : -1;
-    });
-
-    this.state = Object.assign({}, this.state, {
-      showTaskModal: false,
-      content: '',
-      selectedTaskId: null,
-      selectedLabelId: (activeLabels[0] || {}).id || null,
-    });
-  }
   render() {
     const state = this.state;
 
@@ -89,14 +68,6 @@ export class DashboardPage extends Container {
                 <SortableListItem
                   key={task.id}
                   className={classNames({'sortable-list-item__completed': task.completed})}
-                  onClick={() => {
-                    this.setState({
-                      showTaskModal: true,
-                      content: task.content,
-                      selectedTaskId: task.id,
-                      selectedLabelId: label.id,
-                    });
-                  }}
                   >
                   <IconButton
                     className="task-list-left-icon"
@@ -110,7 +81,9 @@ export class DashboardPage extends Container {
                     }
                   }
                     >done</IconButton>
-                  <div className="task-list-item-content">{task.content}</div>
+                  <div className="task-list-item-content">
+                    <Link href={`/tasks/${task.id}/edit`}>{task.content}</Link>
+                  </div>
                   <IconButton
                     className="task-list-right-icon"
                     onClick={event => {
@@ -134,14 +107,6 @@ export class DashboardPage extends Container {
               return (
                 <ListItem
                   key={task.id}
-                  onClick={() => {
-                    this.setState({
-                      showTaskModal: true,
-                      content: task.content,
-                      selectedTaskId: task.id,
-                      selectedLabelId: label.id,
-                    });
-                  }}
                   onSwipeLeft={() => {
                     deleteTask(this.dispatch, task.id);
                   }}
@@ -159,7 +124,9 @@ export class DashboardPage extends Container {
                   </ListItemLeftBackground>
                   <ListItemContent
                     className={classNames({'list-item-content__completed': task.completed})}
-                    >{task.content}</ListItemContent>
+                    >
+                    <Link href={`/tasks/${task.id}/edit`}>{task.content}</Link>
+                  </ListItemContent>
                   <ListItemRightBackground>
                     <Icon>delete</Icon>
                   </ListItemRightBackground>
@@ -172,17 +139,10 @@ export class DashboardPage extends Container {
       labelTabContentElements.push(
         <TabContentListItem key={index} index={index}>
           <div className="list-container">{labelTabContentList}</div>
-          <div
+          <Link
+            href={`/tasks/new?label-id=${label.id}`}
             className="add-task-button"
-            onClick={() => {
-              this.setState({
-                showTaskModal: true,
-                selectedLabelId: label.id,
-                selectedTaskId: null,
-                content: '',
-              });
-            }}
-            ><Icon>add</Icon>Add Task</div>
+            ><Icon>add</Icon>Add Task</Link>
         </TabContentListItem>
       );
     });
@@ -192,83 +152,12 @@ export class DashboardPage extends Container {
         <section className="page-content">
           <ApplicationHeader imageUrl={state.profile.imageUrl}/>
           <section className="tab-container">
-            <Tab>
+            <Tab index={state.dashboardTabIndex}>
               <TabList>{labelTabElements}</TabList>
               <TabContentList>{labelTabContentElements}</TabContentList>
             </Tab>
           </section>
         </section>
-        <Modal show={this.state.showTaskModal}>
-          <ModalHeader onClickCloseButton={() => this.setState({showTaskModal: false})}>
-            <IconButton
-              onClick={() => {
-                if (this.state.content !== '') {
-                  if (this.state.selectedTaskId === null) {
-                    createTask(this.dispatch, this.state.content.trim(), this.state.selectedLabelId);
-                  } else {
-                    updateTask(this.dispatch, this.state.selectedTaskId, this.state.content.trim(), this.state.selectedLabelId);
-                  }
-                  this.setState({showTaskModal: false});
-                }
-              }}
-              className="action-button"
-              >add</IconButton>
-          </ModalHeader>
-          <section className="task-form">
-            <div className="task-form-label-select-container">
-              <span className="task-form-label-select-label">Label</span>
-              {(this.state.selectedLabelId) ? (
-                <select
-                  value={this.state.selectedLabelId}
-                  onChange={event => {
-                    this.setState({selectedLabelId: Number(event.target.value)});
-                  }}
-                  >
-                  {activeLabels.map(label => <option key={label.id} value={label.id}>{label.name}</option>)}
-                </select>
-              ) : null}
-            </div>
-            <div className="task-form-content-textarea-container">
-              <textarea
-                autoFocus
-                className="task-form-content-textarea"
-                placeholder="Content"
-                value={this.state.content}
-                onChange={event => {
-                  this.setState({content: event.target.value});
-                }}
-                onKeyDown={event => {
-                  const keyCode = event.keyCode;
-                  const shift = event.shiftKey;
-                  const ctrl = event.metaKey;
-
-                  const ENTER_KEY = 13;
-                  const ESC_KEY = 27;
-
-                  switch(true) {
-                    case (keyCode === ENTER_KEY && !shift && !ctrl):
-                    case (keyCode === ENTER_KEY && shift && !ctrl):
-                    case (keyCode === ENTER_KEY && !shift && ctrl): {
-                      if (this.state.content !== '') {
-                        if (this.state.selectedTaskId === null) {
-                          createTask(this.dispatch, this.state.content.trim(), this.state.selectedLabelId);
-                        } else {
-                          updateTask(this.dispatch, this.state.selectedTaskId, this.state.content.trim(), this.state.selectedLabelId);
-                        }
-                        this.setState({showTaskModal: false});
-                      }
-                    }
-                    case (keyCode === ESC_KEY && !shift && !ctrl):
-                    case (keyCode === ESC_KEY && shift && !ctrl):
-                    case (keyCode === ESC_KEY && !shift && ctrl): {
-                      this.setState({showTaskModal: false});
-                    }
-                  }
-                }}
-                />
-            </div>
-          </section>
-        </Modal>
       </section>
     );
   }
