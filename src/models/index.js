@@ -10,10 +10,12 @@ let sequelize = null;
 
 if (config.use_env_variable) {
   if (process.env.CLEARDB_DATABASE_URL) {
-    sequelize = new Sequelize(process.env.CLEARDB_DATABASE_URL, {
+    const dbUrl = process.env.CLEARDB_DATABASE_URL;
+    const dbHost = dbUrl.match(/@([0-9,A-Z,a-z][0-9,a-z,A-Z,_,.,-]+\.net)/)[1];
+    sequelize = new Sequelize(dbUrl, {
       dialect: 'mysql',
       protocol: 'mysql',
-      host: process.env.DATABASE_HOST,
+      host: dbHost,
       logging: true,
     });
   }
