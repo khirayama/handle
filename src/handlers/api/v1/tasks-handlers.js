@@ -14,8 +14,8 @@ function omit(task) {
 
 export function tasksIndexHandler(req, res) {
   Task.findAll({
-    where: {UserId: req.user.id},
-    order: [['LabelId', 'ASC'], ['priority', 'ASC']],
+    where: {userId: req.user.id},
+    order: [['labelId', 'ASC'], ['priority', 'ASC']],
   }).then(tasks => {
     res.json(tasks.map(task => {
       return omit(task);

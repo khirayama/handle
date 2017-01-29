@@ -3,13 +3,15 @@ module.exports = (sequelize, DataTypes) => {
     userId: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      field: 'user_id',
     },
     labelId: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      field: 'label_id',
     },
     content: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false,
     },
     priority: {
@@ -21,5 +23,17 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       defaultValue: false,
     },
+    createdAt: {
+      type: DataTypes.DATE,
+      field: 'created_at',
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      field: 'updated_at',
+    },
+  }, {
+    tableName: 'tasks',
+    timestamps: true,
+    underscored: true,
   });
 };

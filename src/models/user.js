@@ -15,6 +15,19 @@ module.exports = (sequelize, DataTypes) => {
     imageUrl: {
       type: DataTypes.STRING,
       allowNull: false,
+      field: 'image_url',
     },
+    createdAt: {
+      type: DataTypes.DATE,
+      field: 'created_at',
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      field: 'updated_at',
+    },
+  }, {
+    tableName: 'users',
+    timestamps: true,
+    underscored: true,
   });
 };
