@@ -5,6 +5,3 @@ export SECRET_KEY=
 
 export TWITTER_KEY=
 export TWITTER_SECRET=
-
-export INSTAGRAM_KEY=
-export INSTAGRAM_SECRET=

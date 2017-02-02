@@ -8,7 +8,7 @@
     "node": ">=7.2"
   },
   "scripts": {
-    "start": "npm run development",
+    "start": "NODE_ENV=production npm run db:migrate && npm run development",
     "clean": "rm -rf dist",
     "server": "NODE_PATH=dist node dist/server.js",
     "server:watch": "NODE_PATH=dist nodemon --config .nodemonrc.json dist/server.js",
@@ -62,7 +62,6 @@
     "mysql": "^2.13.0",
     "nodemon": "^1.11.0",
     "passport": "^0.3.2",
-    "passport-instagram": "^1.0.0",
     "passport-twitter": "^1.0.4",
     "postcss-cli": "^2.6.0",
     "postcss-easy-import": "^2.0.0",

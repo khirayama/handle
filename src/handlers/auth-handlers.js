@@ -4,15 +4,6 @@ export function authHandler(req, res) {
   const provider = req.params.provider;
 
   let scope = null;
-
-  switch (provider) {
-    case 'instagram':
-      scope = ['basic', 'public_content', 'follower_list', 'comments', 'relationships', 'likes'];
-      break;
-    default:
-      break;
-  }
-
   const authenticate = passport.authenticate(provider, {scope});
 
   authenticate(req, res);

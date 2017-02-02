@@ -1,6 +1,5 @@
 import passport from 'passport';
 import {Strategy as TwitterStrategy} from 'passport-twitter';
-import {Strategy as InstagramStrategy} from 'passport-instagram';
 
 import getLocalAddress from 'libs/get-local-address';
 
@@ -14,11 +13,6 @@ const config = {
     consumerKey: process.env.TWITTER_KEY,
     consumerSecret: process.env.TWITTER_SECRET,
     callbackURL: `${hostname}/auth/twitter/callback`,
-  },
-  instagram: {
-    clientID: process.env.INSTAGRAM_KEY,
-    clientSecret: process.env.INSTAGRAM_SECRET,
-    callbackURL: `${hostname}/auth/instagram/callback`,
   },
 };
 
@@ -93,22 +87,6 @@ passport.use(new TwitterStrategy(config.twitter,
       } else {
         done(null, user);
       }
-    });
-  }
-));
-
-passport.use(new InstagramStrategy(config.instagram,
-  (token, tokenSecret, profile, done) => {
-    User.findOrCreate({where: {
-      provider: profile.provider,
-      uid: profile.id,
-    }, defaults: {
-      provider: profile.provider,
-      uid: profile.id,
-      username: profile.username,
-      imageUrl: profile._json.data.profile_picture,
-    }}).spread(user => {
-      done(null, user);
     });
   }
 ));
