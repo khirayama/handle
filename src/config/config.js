@@ -23,7 +23,7 @@ module.exports = {
     database: process.env.MYSQL_DATABASE,
     dialect: 'mysql',
     dialectOptions: {
-      socketPath: '/cloudsql/' + process.env.MYSQL_SOCKETPATH,
+      socketPath: process.env.MYSQL_SOCKETPATH,
     },
     migrationStorage: 'json',
     migrationStoragePath: 'sequelize-meta.json',

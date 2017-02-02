@@ -50,6 +50,7 @@ app.use(authRouter);
 app.use(uiRouter);
 
 app.listen(port, '0.0.0.0', () => {
+  console.log(`NODE_ENV: ${process.env.NODE_ENV}.`);
   console.log(`open http://${ipv4[0].address}:${port}`);
   console.log(`open http://${ipv4[0].address}:${port}/dashboard`);
 });
