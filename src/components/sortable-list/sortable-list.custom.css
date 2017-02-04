@@ -4,12 +4,16 @@
   overflow: scroll;
   .sortable-list-content {
     .sortable-list-item {
+      cursor: pointer;
       border-bottom: $border;
       background-color: $color-white;
 
       &__sorting {
         box-shadow: 0 1px 1px 1px $color-ui-shadow;
         transition-property: box-shadow;
+      }
+      &:active {
+        cursor: move;
       }
     }
   }
