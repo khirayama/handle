@@ -59,17 +59,31 @@ export function destroyTaskHandler(req, res) {
 export function updateTasksHandler(req, res) {
   const tasks = req.body;
 
-  sequelize.transaction(t => {
-    return tasks.map(newTask => {
-      return Task.findById(newTask.id).then(task => {
-        return task.update({
+  sequelize.transaction().then(t => {
+    let count = 0;
+    tasks.forEach(newTask => {
+      Task.findById(newTask.id, {transaction: t}).then(task => {
+        task.update({
           labelId: (newTask.labelId === undefined) ? task.labelId : newTask.labelId,
           content: (newTask.content === undefined) ? task.content : newTask.content,
           priority: (newTask.priority === undefined) ? task.priority : newTask.priority,
           completed: (newTask.completed === undefined) ? task.completed : newTask.completed,
+        }, {transaction: t}).then(task_ => {
+          count += 1;
+          if (count === tasks.length) {
+            t.commit();
+          }
         });
       });
     });
+  }).then(() => {
+    Task.findAll({
+      where: {userId: req.user.id},
+      order: [['labelId', 'ASC'], ['priority', 'ASC']],
+    }).then(tasks => {
+      res.json(tasks.map(task => {
+        return omit(task);
+      }));
+    });
   });
-  res.json();
 }

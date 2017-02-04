@@ -56,16 +56,30 @@ export function destroyLabelHandler(req, res) {
 export function updateLabelsHandler(req, res) {
   const labels = req.body;
 
-  sequelize.transaction(() => {
+  sequelize.transaction().then(t => {
+    let count = 0;
     labels.forEach(newLabel => {
-      Label.findById(newLabel.id).then(label => {
+      Label.findById(newLabel.id, {transaction: t}).then(label => {
         label.update({
           name: (newLabel.name === undefined) ? label.name : newLabel.name,
           priority: (newLabel.priority === undefined) ? label.priority : newLabel.priority,
           visibled: (newLabel.visibled === undefined) ? label.visibled : newLabel.visibled,
+        }, {transaction: t}).then(label_ => {
+          count += 1;
+          if (count === labels.length) {
+            t.commit();
+          }
         });
       });
     });
+  }).then(() => {
+    Label.findAll({
+      where: {userId: req.user.id},
+      order: [['priority', 'ASC']],
+    }).then(labels => {
+      res.json(labels.map(label => {
+        return omit(label);
+      }));
+    });
   });
-  res.json();
 }
