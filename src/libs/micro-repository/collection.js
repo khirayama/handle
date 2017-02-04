@@ -33,7 +33,7 @@ export class Collection {
     });
   }
   find(id, config, cache = true) {
-    if (this._cache.response !== null) {
+    if (cache && this._cache.response !== null) {
       return new Promise((resolve, reject) => {
         for (let index = 0; index < this._cache.response.length; index++) {
           const item = this._cache.response[index];
@@ -128,15 +128,14 @@ export class Collection {
 
   // for cache
   _clear() {
-    return; // disable
-    this._cache = {
-      response: null,
-      configString: '{}',
-    };
+    // this._cache = {
+    //   response: null,
+    //   configString: '{}',
+    // };
   }
-  _save(config = {}, response = null) {
-    return; // disable
-    this._cache.response = response;
-    this._cache.configString = JSON.stringify(config);
+  // _save(config = {}, response = null) {
+  _save() {
+    // this._cache.response = response;
+    // this._cache.configString = JSON.stringify(config);
   }
 }

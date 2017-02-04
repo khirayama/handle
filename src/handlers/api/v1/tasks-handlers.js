@@ -1,4 +1,4 @@
-import {sequelize, Task} from 'models';
+import {Task} from 'models';
 
 function omit(task) {
   return {
@@ -72,24 +72,15 @@ export function destroyTaskHandler(req, res) {
 export function updateTasksHandler(req, res) {
   const tasks = req.body;
 
-  sequelize.transaction().then(t => {
-    let count = 0;
-    tasks.forEach(newTask => {
-      Task.findById(newTask.id, {transaction: t}).then(task => {
-        task.update({
-          labelId: (newTask.labelId === undefined) ? task.labelId : newTask.labelId,
-          content: (newTask.content === undefined) ? task.content : newTask.content,
-          priority: (newTask.priority === undefined) ? task.priority : newTask.priority,
-          completed: (newTask.completed === undefined) ? task.completed : newTask.completed,
-        }, {transaction: t}).then(task_ => {
-          count += 1;
-          if (count === tasks.length) {
-            t.commit();
-          }
-        });
+  tasks.forEach(newTask => {
+    Task.findById(newTask.id).then(task => {
+      task.update({
+        labelId: (newTask.labelId === undefined) ? task.labelId : newTask.labelId,
+        content: (newTask.content === undefined) ? task.content : newTask.content,
+        priority: (newTask.priority === undefined) ? task.priority : newTask.priority,
+        completed: (newTask.completed === undefined) ? task.completed : newTask.completed,
       });
     });
-  }).then(() => {
-    res.json();
   });
+  res.json();
 }

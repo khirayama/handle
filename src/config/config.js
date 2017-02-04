@@ -27,5 +27,5 @@ module.exports = {
     },
     migrationStorage: 'json',
     migrationStoragePath: 'sequelize-meta.json',
-  }
-}
+  },
+};

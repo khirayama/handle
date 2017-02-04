@@ -3,7 +3,7 @@ import passport from 'passport';
 export function authHandler(req, res) {
   const provider = req.params.provider;
 
-  let scope = null;
+  const scope = null;
   const authenticate = passport.authenticate(provider, {scope});
 
   authenticate(req, res);

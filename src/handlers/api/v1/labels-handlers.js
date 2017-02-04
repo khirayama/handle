@@ -1,4 +1,4 @@
-import {sequelize, Label} from 'models';
+import {Label} from 'models';
 
 function omit(label) {
   return {
@@ -69,23 +69,14 @@ export function destroyLabelHandler(req, res) {
 export function updateLabelsHandler(req, res) {
   const labels = req.body;
 
-  sequelize.transaction().then(t => {
-    let count = 0;
-    labels.forEach(newLabel => {
-      Label.findById(newLabel.id, {transaction: t}).then(label => {
-        label.update({
-          name: (newLabel.name === undefined) ? label.name : newLabel.name,
-          priority: (newLabel.priority === undefined) ? label.priority : newLabel.priority,
-          visibled: (newLabel.visibled === undefined) ? label.visibled : newLabel.visibled,
-        }, {transaction: t}).then(label_ => {
-          count += 1;
-          if (count === labels.length) {
-            t.commit();
-          }
-        });
+  labels.forEach(newLabel => {
+    Label.findById(newLabel.id).then(label => {
+      label.update({
+        name: (newLabel.name === undefined) ? label.name : newLabel.name,
+        priority: (newLabel.priority === undefined) ? label.priority : newLabel.priority,
+        visibled: (newLabel.visibled === undefined) ? label.visibled : newLabel.visibled,
       });
     });
-  }).then(() => {
-    res.json();
   });
+  res.json();
 }

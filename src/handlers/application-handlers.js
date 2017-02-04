@@ -76,14 +76,14 @@ export function applicationHandler(req, res) {
           const head = router.getHead(req.path);
           const content = ReactDOM.renderToString(
             <Connector
-            router={router}
-            path={req.path}
-            store={store}
+              router={router}
+              path={req.path}
+              store={store}
 
-            transitionName="page-transition"
-            transitionEnterTimeout={PAGE_TRANSITION_TIME}
-            transitionLeaveTimeout={PAGE_TRANSITION_TIME}
-            />
+              transitionName="page-transition"
+              transitionEnterTimeout={PAGE_TRANSITION_TIME}
+              transitionLeaveTimeout={PAGE_TRANSITION_TIME}
+              />
           );
 
           res.send(`
@@ -119,14 +119,14 @@ export function applicationHandler(req, res) {
       const head = router.getHead(req.path);
       const content = ReactDOM.renderToString(
         <Connector
-        router={router}
-        path={req.path}
-        store={store}
+          router={router}
+          path={req.path}
+          store={store}
 
-        transitionName="page-transition"
-        transitionEnterTimeout={PAGE_TRANSITION_TIME}
-        transitionLeaveTimeout={PAGE_TRANSITION_TIME}
-        />
+          transitionName="page-transition"
+          transitionEnterTimeout={PAGE_TRANSITION_TIME}
+          transitionLeaveTimeout={PAGE_TRANSITION_TIME}
+          />
       );
 
       res.send(`

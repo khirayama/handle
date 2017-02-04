@@ -1,8 +1,5 @@
 import actionTypes from 'constants/action-types';
 
-import Task from 'repositories/task';
-import Label from 'repositories/label';
-
 export function initializeHomePage(params, {dispatch}) {
   return new Promise(resolve => {
     dispatch({type: actionTypes.INITIALIZE_HOME_PAGE});
@@ -10,7 +7,7 @@ export function initializeHomePage(params, {dispatch}) {
   });
 }
 
-export function initializeDashboardPage(params, {dispatch, config, query}) {
+export function initializeDashboardPage(params, {dispatch, query}) {
   return new Promise(resolve => {
     const dashboardTabIndex = (query['tab-index']) ? Number(query['tab-index']) : 0;
     dispatch({
@@ -21,7 +18,7 @@ export function initializeDashboardPage(params, {dispatch, config, query}) {
   });
 }
 
-export function initializeTaskPage(params, {dispatch, config, query}) {
+export function initializeTaskPage(params, {dispatch, query}) {
   return new Promise(resolve => {
     const selectedTaskId = (params.id) ? Number(params.id[0]) : null;
     const selectedLabelId = (query['label-id']) ? Number(query['label-id']) : null;
@@ -34,7 +31,7 @@ export function initializeTaskPage(params, {dispatch, config, query}) {
   });
 }
 
-export function initializeLabelsPage(params, {dispatch, config}) {
+export function initializeLabelsPage(params, {dispatch}) {
   return new Promise(resolve => {
     dispatch({
       type: actionTypes.INITIALIZE_LABELS_PAGE,
@@ -43,7 +40,7 @@ export function initializeLabelsPage(params, {dispatch, config}) {
   });
 }
 
-export function initializeLabelPage(params, {dispatch, config}) {
+export function initializeLabelPage(params, {dispatch}) {
   return new Promise(resolve => {
     const selectedLabelId = (params.id) ? Number(params.id[0]) : null;
     dispatch({
