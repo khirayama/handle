@@ -11,7 +11,7 @@ function omit(label) {
   };
 }
 
-export function labelsIndexHandler(req, res) {
+export function indexLabelsHandler(req, res) {
   Label.findAll({
     where: {userId: req.user.id},
     order: [['priority', 'ASC']],
@@ -22,7 +22,7 @@ export function labelsIndexHandler(req, res) {
   });
 }
 
-export function labelsCreateHandler(req, res) {
+export function createLabelHandler(req, res) {
   Label.create({
     userId: req.user.id,
     name: req.body.name,
@@ -33,7 +33,7 @@ export function labelsCreateHandler(req, res) {
   });
 }
 
-export function labelsUpdateHandler(req, res) {
+export function updateLabelHandler(req, res) {
   Label.findById(req.params.id).then(label => {
     label.update({
       name: (req.body.name === undefined) ? label.name : req.body.name,
@@ -45,7 +45,7 @@ export function labelsUpdateHandler(req, res) {
   });
 }
 
-export function labelsDeleteHandler(req, res) {
+export function destroyLabelHandler(req, res) {
   Label.findById(req.params.id).then(label => {
     label.destroy().then(destroyedLabel => {
       res.json(omit(destroyedLabel));

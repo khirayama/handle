@@ -1,31 +1,31 @@
 import {Router} from 'express';
 
 import {
-  tasksIndexHandler,
-  tasksCreateHandler,
-  tasksUpdateHandler,
-  tasksDeleteHandler,
+  indexTasksHandler,
+  createTaskHandler,
+  updateTaskHandler,
+  destroyTaskHandler,
 } from 'handlers/api/v1/tasks-handlers';
 import {
-  labelsIndexHandler,
-  labelsCreateHandler,
-  labelsUpdateHandler,
-  labelsDeleteHandler,
+  indexLabelsHandler,
+  createLabelHandler,
+  updateLabelHandler,
+  destroyLabelHandler,
 } from 'handlers/api/v1/labels-handlers';
 
 const router = new Router();
 
 router.use('/api', new Router()
   .use('/v1', new Router()
-    .get('/tasks', tasksIndexHandler)
-    .post('/tasks', tasksCreateHandler)
-    .put('/tasks/:id', tasksUpdateHandler)
-    .delete('/tasks/:id', tasksDeleteHandler)
+    .get('/tasks', indexTasksHandler)
+    .post('/tasks', createTaskHandler)
+    .put('/tasks/:id', updateTaskHandler)
+    .delete('/tasks/:id', destroyTaskHandler)
 
-    .get('/labels', labelsIndexHandler)
-    .post('/labels', labelsCreateHandler)
-    .put('/labels/:id', labelsUpdateHandler)
-    .delete('/labels/:id', labelsDeleteHandler)
+    .get('/labels', indexLabelsHandler)
+    .post('/labels', createLabelHandler)
+    .put('/labels/:id', updateLabelHandler)
+    .delete('/labels/:id', destroyLabelHandler)
   )
 );
 

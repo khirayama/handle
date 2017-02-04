@@ -12,7 +12,7 @@ function omit(task) {
   };
 }
 
-export function tasksIndexHandler(req, res) {
+export function indexTasksHandler(req, res) {
   Task.findAll({
     where: {userId: req.user.id},
     order: [['labelId', 'ASC'], ['priority', 'ASC']],
@@ -23,7 +23,7 @@ export function tasksIndexHandler(req, res) {
   });
 }
 
-export function tasksCreateHandler(req, res) {
+export function createTaskHandler(req, res) {
   Task.create({
     userId: req.user.id,
     labelId: req.body.labelId,
@@ -35,7 +35,7 @@ export function tasksCreateHandler(req, res) {
   });
 }
 
-export function tasksUpdateHandler(req, res) {
+export function updateTaskHandler(req, res) {
   Task.findById(req.params.id).then(task => {
     task.update({
       labelId: (req.body.labelId === undefined) ? task.labelId : req.body.labelId,
@@ -48,7 +48,7 @@ export function tasksUpdateHandler(req, res) {
   });
 }
 
-export function tasksDeleteHandler(req, res) {
+export function destroyTaskHandler(req, res) {
   Task.findById(req.params.id).then(task => {
     task.destroy().then(destroyedTask => {
       res.json(omit(destroyedTask));
