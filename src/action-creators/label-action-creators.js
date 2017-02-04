@@ -68,19 +68,16 @@ export function deleteLabel(dispatch, labelId) {
 
   const targetLabel = find(state.labels, labelId);
   const newLabels = state.labels.filter(label => {
-    if (label.id === labelId) {
-      Label.delete(labelId);
-      return false;
-    }
-    return true;
+    return label.id !== labelId;
   }).map(label => {
     if (label.priority > targetLabel.priority) {
       const newLabel = Object.assign({}, label, {priority: label.priority - 1});
-      Label.update(newLabel);
       return newLabel;
     }
     return label;
   });
+
+  Label.delete(labelId);
 
   dispatch({
     type: actionTypes.DELETE_LABEL,

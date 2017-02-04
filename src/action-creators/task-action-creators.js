@@ -101,21 +101,18 @@ export function deleteTask(dispatch, taskId) {
 
   const targetTask = find(state.tasks, taskId);
   const newTasks = state.tasks.filter(task => {
-    if (task.id === taskId) {
-      Task.delete(taskId);
-      return false;
-    }
-    return true;
+    return task.id !== taskId;
   }).map(task => {
     if (task.labelId === targetTask.labelId) {
       if (task.priority > targetTask.priority) {
         const newTask = Object.assign({}, task, {priority: task.priority - 1});
-        Task.update(newTask);
         return newTask;
       }
     }
     return task;
   });
+
+  Task.delete(taskId);
 
   dispatch({
     type: actionTypes.DELETE_TASK,

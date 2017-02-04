@@ -47,6 +47,19 @@ export function updateLabelHandler(req, res) {
 
 export function destroyLabelHandler(req, res) {
   Label.findById(req.params.id).then(label => {
+    Label.findAll({
+      where: {
+        userId: req.user.id,
+        priority: {
+          $gt: label.priority,
+        },
+      },
+    }).then(labels => {
+      labels.forEach(label_ => {
+        label_.update({priority: label_.priority - 1});
+      });
+    });
+
     label.destroy().then(destroyedLabel => {
       res.json(omit(destroyedLabel));
     });
@@ -73,13 +86,6 @@ export function updateLabelsHandler(req, res) {
       });
     });
   }).then(() => {
-    Label.findAll({
-      where: {userId: req.user.id},
-      order: [['priority', 'ASC']],
-    }).then(labels => {
-      res.json(labels.map(label => {
-        return omit(label);
-      }));
-    });
+    res.json();
   });
 }

@@ -50,6 +50,19 @@ export function updateTaskHandler(req, res) {
 
 export function destroyTaskHandler(req, res) {
   Task.findById(req.params.id).then(task => {
+    Task.findAll({
+      where: {
+        userId: req.user.id,
+        priority: {
+          $gt: task.priority,
+        },
+      },
+    }).then(tasks => {
+      tasks.forEach(task_ => {
+        task_.update({priority: task_.priority - 1});
+      });
+    });
+
     task.destroy().then(destroyedTask => {
       res.json(omit(destroyedTask));
     });
@@ -77,13 +90,6 @@ export function updateTasksHandler(req, res) {
       });
     });
   }).then(() => {
-    Task.findAll({
-      where: {userId: req.user.id},
-      order: [['labelId', 'ASC'], ['priority', 'ASC']],
-    }).then(tasks => {
-      res.json(tasks.map(task => {
-        return omit(task);
-      }));
-    });
+    res.json();
   });
 }
