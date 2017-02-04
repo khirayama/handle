@@ -8,7 +8,7 @@
     "node": ">=7.2"
   },
   "scripts": {
-    "deploy": "rm sequelize-meta.json && node create-app-yaml.js && gcloud app deploy",
+    "deploy": "rm -rf sequelize-meta.json && node create-app-yaml.js && gcloud app deploy",
     "start": "export NODE_ENV=production && npm run db:migrate && npm run production",
     "clean": "rm -rf dist",
     "server": "NODE_PATH=dist node dist/server.js",

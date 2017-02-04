@@ -16,6 +16,8 @@ env_variables:
 
 beta_settings:
   cloud_sql_instances: '${process.env.CLOUD_SQL_INSTANCES}'
-` , (err) => {
-  console.log(err);
+`, (err) => {
+  if (err) {
+    console.log(err);
+  }
 });
