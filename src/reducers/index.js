@@ -2,33 +2,33 @@ import actionTypes from 'constants/action-types';
 
 export default function reducer(state, action) {
   switch (action.type) {
+    case actionTypes.SET_INITIAL_VALUE: {
+      state.tasks = action.tasks;
+      state.labels = action.labels;
+      break;
+    }
+
     case actionTypes.INITIALIZE_DASHBOARD_PAGE: {
       state.dashboardTabIndex = action.dashboardTabIndex;
       state.selectedTaskId = null;
       state.selectedLabelId = null;
-      state.tasks = action.tasks;
-      state.labels = action.labels;
       break;
     }
 
     case actionTypes.INITIALIZE_TASK_PAGE: {
       state.selectedTaskId = action.selectedTaskId;
       state.selectedLabelId = action.selectedLabelId;
-      state.tasks = action.tasks;
-      state.labels = action.labels;
       break;
     }
 
     case actionTypes.INITIALIZE_LABELS_PAGE: {
       state.selectedTaskId = null;
       state.selectedLabelId = null;
-      state.labels = action.labels;
       break;
     }
 
     case actionTypes.INITIALIZE_LABEL_PAGE: {
       state.selectedLabelId = action.selectedLabelId;
-      state.labels = action.labels;
       break;
     }
 
