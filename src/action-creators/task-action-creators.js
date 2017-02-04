@@ -37,6 +37,8 @@ export function updateTask(dispatch, taskId, content, labelId) {
   let newTasks = [];
   const state = getState();
 
+  const updatedTasks = [];
+
   const targetTask = find(state.tasks, taskId);
   if (labelId && targetTask.labelId !== labelId) {
     const priority = state.tasks.filter(task => {
@@ -45,12 +47,12 @@ export function updateTask(dispatch, taskId, content, labelId) {
     newTasks = state.tasks.map(task => {
       if (task.id === taskId) {
         const newTask = Object.assign({}, task, {labelId, content, priority});
-        Task.update(newTask);
+        updatedTasks.push(newTask);
         return newTask;
       } else if (task.labelId === targetTask.labelId) {
         if (task.priority > targetTask.priority) {
           const newTask = Object.assign({}, task, {priority: task.priority - 1});
-          Task.update(newTask);
+          updatedTasks.push(newTask);
           return newTask;
         }
       }
@@ -60,12 +62,15 @@ export function updateTask(dispatch, taskId, content, labelId) {
     newTasks = state.tasks.map(task => {
       if (task.id === taskId) {
         const newTask = Object.assign({}, task, {labelId, content});
-        Task.update(newTask);
+        updatedTasks.push(newTask);
         return newTask;
       }
       return task;
     });
   }
+
+  Task.bulkUpdate(updatedTasks);
+
   dispatch({
     type: actionTypes.UPDATE_TASKS,
     tasks: newTasks,
