@@ -1,4 +1,4 @@
-import {Label} from 'models';
+import {sequelize, Label} from 'models';
 
 function omit(label) {
   return {
@@ -51,4 +51,21 @@ export function destroyLabelHandler(req, res) {
       res.json(omit(destroyedLabel));
     });
   });
+}
+
+export function updateLabelsHandler(req, res) {
+  const labels = req.body;
+
+  sequelize.transaction(() => {
+    labels.forEach(newLabel => {
+      Label.findById(newLabel.id).then(label => {
+        label.update({
+          name: (newLabel.name === undefined) ? label.name : newLabel.name,
+          priority: (newLabel.priority === undefined) ? label.priority : newLabel.priority,
+          visibled: (newLabel.visibled === undefined) ? label.visibled : newLabel.visibled,
+        });
+      });
+    });
+  });
+  res.json();
 }

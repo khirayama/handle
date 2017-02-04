@@ -91,6 +91,8 @@ export function deleteLabel(dispatch, labelId) {
 export function sortLabels(dispatch, labelId, to) {
   const state = getState();
 
+  const updatedLabels = [];
+
   const targetLabel = find(state.labels, labelId);
   const labels = state.labels.sort((labelA, labelB) => {
     return (labelA.priority > labelB.priority) ? 1 : -1;
@@ -101,18 +103,18 @@ export function sortLabels(dispatch, labelId, to) {
     for (let index = to; index < from; index++) {
       const label_ = labels[index];
       label_.priority += 1;
-      Label.update(label_);
+      updatedLabels.push(label_);
     }
     labels[from].priority = to;
-    Label.update(labels[from]);
+    updatedLabels.push(labels[from]);
   } else if (from < to) {
     for (let index = from + 1; index <= to; index++) {
       const label_ = labels[index];
       label_.priority -= 1;
-      Label.update(label_);
+      updatedLabels.push(label_);
     }
     labels[from].priority = to;
-    Label.update(labels[from]);
+    updatedLabels.push(labels[from]);
   }
   const newLabels = state.labels.map(label => {
     for (let index = 0; index < labels.length; index++) {
@@ -122,6 +124,7 @@ export function sortLabels(dispatch, labelId, to) {
     }
     return label;
   });
+  Label.bulkUpdate(updatedLabels);
   dispatch({
     type: actionTypes.SORT_LABELS,
     labels: newLabels,

@@ -126,6 +126,8 @@ export function deleteTask(dispatch, taskId) {
 export function sortTasks(dispatch, taskId, to) {
   const state = getState();
 
+  const updatedTasks = [];
+
   const targetTask = find(state.tasks, taskId);
   const tasks = state.tasks.filter(task => {
     return (task.labelId === targetTask.labelId);
@@ -138,18 +140,18 @@ export function sortTasks(dispatch, taskId, to) {
     for (let index = to; index < from; index++) {
       const task_ = tasks[index];
       task_.priority += 1;
-      Task.update(task_);
+      updatedTasks.push(task_);
     }
     tasks[from].priority = to;
-    Task.update(tasks[from]);
+    updatedTasks.push(tasks[from]);
   } else if (from < to) {
     for (let index = from + 1; index <= to; index++) {
       const task_ = tasks[index];
       task_.priority -= 1;
-      Task.update(task_);
+      updatedTasks.push(task_);
     }
     tasks[from].priority = to;
-    Task.update(tasks[from]);
+    updatedTasks.push(tasks[from]);
   }
   const newTasks = state.tasks.map(task => {
     for (let index = 0; index < tasks.length; index++) {
@@ -159,6 +161,7 @@ export function sortTasks(dispatch, taskId, to) {
     }
     return task;
   });
+  Task.bulkUpdate(updatedTasks);
   dispatch({
     type: actionTypes.SORT_TASKS,
     tasks: newTasks,

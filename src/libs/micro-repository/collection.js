@@ -90,6 +90,14 @@ export class Collection {
       }).catch(error => reject(error));
     });
   }
+  bulkUpdate(data, config) {
+    this._clear();
+    return new Promise((resolve, reject) => {
+      this._request.put(this._url(), data, config).then(({data}) => {
+        resolve(data);
+      }).catch(error => reject(error));
+    });
+  }
   delete(id, config) {
     // return new Promise((resolve, reject) => {
     //   if (this._cache.response !== null) {
