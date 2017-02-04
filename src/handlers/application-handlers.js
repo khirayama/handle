@@ -71,7 +71,6 @@ export function applicationHandler(req, res) {
       });
       router.initialize(pathname, data).then(() => {
         const state = store.getState();
-        console.log(state);
 
         const head = router.getHead(req.path);
         const content = ReactDOM.renderToString(
