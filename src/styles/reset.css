@@ -99,6 +99,7 @@ select,
 button,
 a {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-user-select: auto;
 }
 
 a {
