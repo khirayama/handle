@@ -7,6 +7,7 @@ import {
   uncompletedTask,
   completedTask,
   sortTasks,
+  fixTaskPriorities,
 } from 'action-creators/task-action-creators';
 
 import {ApplicationHeader} from 'components/application-header';
@@ -33,6 +34,10 @@ import {
 } from 'components/tab';
 
 export class DashboardPage extends Container {
+  componentDidMount() {
+    super.componentDidMount();
+    fixTaskPriorities(this.dispatch);
+  }
   render() {
     const state = this.state;
 

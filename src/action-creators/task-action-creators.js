@@ -169,3 +169,46 @@ export function sortTasks(dispatch, taskId, to) {
     tasks: newTasks,
   });
 }
+
+export function fixTaskPriorities(dispatch) {
+  const state = getState();
+
+  const fixedTasks = [];
+
+  state.labels.forEach(label => {
+    const filterdTasks = state.tasks.filter(task => {
+      return (task.labelId === label.id);
+    }).sort((taskA, taskB) => {
+      return (taskA.priority > taskB.priority) ? 1 : -1;
+    });
+
+    filterdTasks.forEach((task, index) => {
+      if (task.priority !== index) {
+        fixedTasks.push(Object.assign({}, task, {
+          priority: index,
+        }));
+      }
+    });
+  });
+
+
+  if (fixedTasks.length) {
+    console.warn('Fix task priorities...');
+
+    const newTasks = state.tasks.map(task => {
+      for (let index = 0; index < fixedTasks.length; index++) {
+        if (task.id === fixedTasks[index].id) {
+          return fixedTasks[index];
+        }
+      }
+      return task;
+    });
+
+    Task.bulkUpdate(fixedTasks);
+
+    dispatch({
+      type: actionTypes.SORT_TASKS,
+      tasks: newTasks,
+    });
+  }
+}
