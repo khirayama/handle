@@ -18,6 +18,31 @@ import Label from 'repositories/label';
 
 const PAGE_TRANSITION_TIME = 600;
 
+function template(head, state, content) {
+  return (`
+    <!DOCTYPE html>
+    <html lang="${state.lang}">
+      <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+        <title>${head.title}</title>
+
+        <!-- standalone for android-->
+        <link rel="manifest" href="/manifest.json">
+        <!-- standalone for ios-->
+        <meta name="apple-mobile-web-app-capable" content="yes">
+
+        <link rel="stylesheet" href="/index.css">
+        <script src="/bundle.js" defer></script>
+      </head>
+      <body>
+        <section class="application ${state.ui}">${content}</section>
+      </body>
+      <script>var state = ${JSON.stringify(state)}</script>
+    </html>
+  `);
+}
+
 export function applicationHandler(req, res) {
   if (!req.isAuthenticated() && req.path !== '/') {
     res.redirect('/');
@@ -86,29 +111,7 @@ export function applicationHandler(req, res) {
               />
           );
 
-          res.send(`
-            <!DOCTYPE html>
-            <html lang="${state.lang}">
-              <head>
-                <meta charset="utf-8">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-                <title>${head.title}</title>
-
-                <!-- standalone for android-->
-                <link rel="manifest" href="/manifest.json">
-                <!-- standalone for ios-->
-                <meta name="apple-mobile-web-app-capable" content="yes">
-
-                <link rel="stylesheet" href="/index.css">
-                <script src="/bundle.js" defer></script>
-              </head>
-              <body>
-                <section class="application ${state.ui}">${content}</section>
-              </body>
-              <script>var state = ${JSON.stringify(state)}</script>
-            </html>
-          `
-          );
+          res.send(template(head, state, content));
         }).catch(error => console.log(error));
       }).catch(error => console.log(error));
     }).catch(error => console.log(error));
@@ -129,29 +132,7 @@ export function applicationHandler(req, res) {
           />
       );
 
-      res.send(`
-        <!DOCTYPE html>
-        <html lang="${state.lang}">
-          <head>
-            <meta charset="utf-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-            <title>${head.title}</title>
-
-            <!-- standalone for android-->
-            <link rel="manifest" href="/manifest.json">
-            <!-- standalone for ios-->
-            <meta name="apple-mobile-web-app-capable" content="yes">
-
-            <link rel="stylesheet" href="/index.css">
-            <script src="/bundle.js" defer></script>
-          </head>
-          <body>
-            <section class="application ${state.ui}">${content}</section>
-          </body>
-          <script>var state = ${JSON.stringify(state)}</script>
-        </html>
-      `
-      );
+      res.send(template(head, state, content));
     }).catch(error => console.log(error));
   }
 }
