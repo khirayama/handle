@@ -40,7 +40,6 @@ export class TabContentList extends Component {
   }
   _handleTouchMove(event) {
     event.stopPropagation();
-    event.preventDefault();
 
     this.touch = Object.assign({}, this.touch, {
       endX: event.touches[0].clientX,
