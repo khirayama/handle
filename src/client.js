@@ -15,6 +15,10 @@ window.addEventListener('contextmenu', event => {
   event.preventDefault();
 });
 
+window.addEventListener('scroll', event => {
+  document.querySelector('body').scrollTop = 0;
+});
+
 window.addEventListener('DOMContentLoaded', () => {
   i18n.setLocale(window.state.lang);
 
