@@ -236,14 +236,14 @@ export class ListItemContent extends Component {
     const leftBackgroundElement = listItemElement.querySelector('.list-item-left-background');
     const rightBackgroundElement = listItemElement.querySelector('.list-item-right-background');
 
-    if (diff.x > 0) {
+    if (diff.x > 1 && Math.abs(diff.x) > Math.abs(diff.y)) {
       if (leftBackgroundElement) {
         leftBackgroundElement.style.display = 'inline-block';
       }
       if (rightBackgroundElement) {
         rightBackgroundElement.style.display = 'none';
       }
-    } else if (diff.x < 0) {
+    } else if (diff.x < 0 && Math.abs(diff.x) > Math.abs(diff.y)) {
       if (leftBackgroundElement) {
         leftBackgroundElement.style.display = 'none';
       }
