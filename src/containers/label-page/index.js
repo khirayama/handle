@@ -53,9 +53,6 @@ export class LabelPage extends Container {
                 className="label-form-content-textarea"
                 placeholder="Name"
                 value={this.state.name}
-                onFocus={() => {
-                  document.querySelector('body').scrollTop = 0;
-                }}
                 onChange={event => {
                   this.setState({name: event.target.value});
                 }}
