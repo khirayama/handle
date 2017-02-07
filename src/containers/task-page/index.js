@@ -87,6 +87,9 @@ export class TaskPage extends Container {
                 className="task-form-content-textarea"
                 placeholder="Content"
                 value={this.state.content}
+                onFocus={() => {
+                  document.querySelector('body').scrollTop = 0;
+                }}
                 onChange={event => {
                   this.setState({content: event.target.value});
                 }}
