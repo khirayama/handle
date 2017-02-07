@@ -85,7 +85,7 @@ export class TaskPage extends Container {
               <textarea
                 autoFocus
                 className="task-form-content-textarea"
-                placeholder="Content"
+                placeholder="Task Content"
                 value={this.state.content}
                 onChange={event => {
                   this.setState({content: event.target.value});

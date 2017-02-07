@@ -51,7 +51,7 @@ export class LabelPage extends Container {
               <textarea
                 autoFocus
                 className="label-form-content-textarea"
-                placeholder="Name"
+                placeholder="Label Name"
                 value={this.state.name}
                 onChange={event => {
                   this.setState({name: event.target.value});
