@@ -32,6 +32,9 @@ export class ListItem extends Component {
     this.setListItem = this._setListItem.bind(this);
   }
   componentDidMount() {
+    // can't prevent event passive in Chrome.
+    // because not use onTouchMove
+    this.listItem.addEventListener('touchmove', this.handleTouchMove);
     this._enterListItemAnimation();
   }
   getChildContext() {
@@ -307,7 +310,6 @@ export class ListItem extends Component {
         className={classNames(this.props.className, 'list-item')}
         ref={this.setListItem}
         onTouchStart={this.handleTouchStart}
-        onTouchMove={this.handleTouchMove}
         onTouchEnd={this.handleTouchEnd}
         >{this.props.children}</div>
     );
