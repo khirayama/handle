@@ -25,7 +25,7 @@
   .list-content {
     .list-item {
       .list-item-content {
-        padding: 18px 12px;
+        padding: 0;
 
         &__swipe_right {
           background-color: $color-divider;
@@ -38,13 +38,15 @@
           }
         }
 
-        .task-list-item-content-schedule {
-          position: relative;
+        .task-list-item-content-text {
           display: inline-block;
-          width: 100%;
-          font-size: 12px;
-          top: -8px;
-          color: $color-text-secondary;
+          padding: 18px 12px;
+        }
+        .task-list-item-content-schedule-container {
+          display: inline-block;
+          margin: 8px 0 0 12px;
+          overflow: hidden;
+          vertical-align: top;
         }
       }
       .list-item-background {

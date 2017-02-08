@@ -28,14 +28,17 @@
         background-color: $color-divider;
       }
       .task-list-item-content {
-        padding: 18px 56px;
-        .task-list-item-content-schedule {
-          position: relative;
+        padding: 0 48px;
+
+        .task-list-item-content-text {
           display: inline-block;
-          width: 100%;
-          font-size: 12px;
-          top: -8px;
-          color: $color-text-secondary;
+          padding: 18px 12px;
+        }
+        .task-list-item-content-schedule-container {
+          display: inline-block;
+          margin: 8px 0 0 12px;
+          overflow: hidden;
+          vertical-align: top;
         }
       }
       .task-list-left-icon,

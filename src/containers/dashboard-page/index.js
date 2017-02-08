@@ -58,12 +58,10 @@ export class DashboardPage extends Container {
         return (taskA.priority > taskB.priority) ? 1 : -1;
       }).map(task => {
         const {schedule, text} = parseTextToItem(task.content, new Date(task.createdAt));
-        const newTask = (schedule) ? {
+        return Object.assign({}, task, {
           content: text,
-          schedule: `${('0' + schedule.month).slice(-2)}/${('0' + schedule.date).slice(-2)}(${schedule.shortDayName}.)`,
-        } : {};
-
-        return Object.assign({}, task, newTask);
+          schedule,
+        });
       });
       let labelTabContentList = null;
 
@@ -119,7 +117,24 @@ export class DashboardPage extends Container {
                         this.props.changeLocation(`/tasks/${task.id}/edit`);
                       }
                     }}
-                    >{(task.schedule) ? <span className="task-list-item-content-schedule">{task.schedule}</span> : null}{task.content}</div>
+                    >
+                    {(task.schedule) ? (
+                      <span className="task-list-item-content-schedule-container">
+                        <span className={`task-list-item-content-schedule task-list-item-content-schedule__${task.schedule.shortMonthName.toLowerCase()}`}>
+                          <span className="task-list-item-content-schedule-month">
+                            {task.schedule.shortMonthName}
+                          </span>
+                          <span className="task-list-item-content-schedule-date">
+                            {task.schedule.date}
+                          </span>
+                          <span className="task-list-item-content-schedule-day">
+                            {task.schedule.shortDayName}
+                          </span>
+                        </span>
+                      </span>
+                    ) : null}
+                    <span className="task-list-item-content-text">{task.content}</span>
+                  </div>
                   <IconButton
                     className="task-list-right-icon"
                     onClick={event => {
@@ -163,7 +178,24 @@ export class DashboardPage extends Container {
                       this.props.changeLocation(`/tasks/${task.id}/edit`);
                     }}
                     className={classNames({'list-item-content__completed': task.completed})}
-                    >{(task.schedule) ? <span className="task-list-item-content-schedule">{task.schedule}</span> : null}{task.content}</ListItemContent>
+                    >
+                    {(task.schedule) ? (
+                      <span className="task-list-item-content-schedule-container">
+                        <span className={`task-list-item-content-schedule task-list-item-content-schedule__${task.schedule.shortMonthName.toLowerCase()}`}>
+                          <span className="task-list-item-content-schedule-month">
+                            {task.schedule.shortMonthName}
+                          </span>
+                          <span className="task-list-item-content-schedule-date">
+                            {task.schedule.date}
+                          </span>
+                          <span className="task-list-item-content-schedule-day">
+                            {task.schedule.shortDayName}
+                          </span>
+                        </span>
+                      </span>
+                    ) : null}
+                    <span className="task-list-item-content-text">{task.content}</span>
+                  </ListItemContent>
                   <ListItemRightBackground>
                     <Icon>delete</Icon>
                   </ListItemRightBackground>
