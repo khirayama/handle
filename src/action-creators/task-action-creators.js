@@ -191,7 +191,6 @@ export function fixTaskPriorities(dispatch) {
     });
   });
 
-
   if (fixedTasks.length) {
     console.warn('Fix task priorities...');
 

@@ -9,8 +9,6 @@ import routes from 'config/routes';
 
 import reducer from 'reducers';
 
-import actionTypes from 'constants/action-types';
-
 const PAGE_TRANSITION_TIME = 600;
 
 window.addEventListener('contextmenu', event => {
