@@ -150,12 +150,10 @@ export class ListItem extends Component {
 
   // animation
   _enterListItemAnimation() {
-    const el = this.listItem;
-    const height = el.offsetHeight;
-
-    this.listItem.style.transitionProperty = transitionProperties.HEIGHT;
-    this.listItem.style.height = height + 'px';
     setTimeout(() => {
+      const el = this.listItem;
+      const height = el.offsetHeight;
+      this.listItem.style.height = height + 'px';
       if (el.classList.contains('list-item-transition-enter')) {
         this.listItem.style.transitionProperty = transitionProperties.MAX_HEIGHT;
         this.listItem.style.maxHeight = height + 'px';

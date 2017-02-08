@@ -43,10 +43,23 @@
           padding: 18px 12px;
         }
         .task-list-item-content-schedule-container {
+          position: absolute;
+          top: 0;
+          left: 0;
           display: inline-block;
-          margin: 8px 0 0 12px;
+          width: 56px;
+          height: 100%;
+          padding: 8px 12px 0;
           overflow: hidden;
           vertical-align: top;
+          .task-list-item-content-schedule {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+          }
+          & + .task-list-item-content-text {
+            padding-left: 68px;
+          }
         }
       }
       .list-item-background {
