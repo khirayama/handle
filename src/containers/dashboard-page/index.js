@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import {Container} from 'libs/container';
+import {parseTextToItem} from 'libs/parse-text-to-item';
 
 import {
   deleteTask,
@@ -55,6 +56,14 @@ export class DashboardPage extends Container {
         return (task.labelId === label.id);
       }).sort((taskA, taskB) => {
         return (taskA.priority > taskB.priority) ? 1 : -1;
+      }).map(task => {
+        const {schedule, text} = parseTextToItem(task.content, new Date(task.createdAt));
+        const newTask = (schedule) ? {
+          content: text,
+          schedule: `${('0' + schedule.month).slice(-2)}/${('0' + schedule.date).slice(-2)}(${schedule.shortDayName}.)`,
+        } : {};
+
+        return Object.assign({}, task, newTask);
       });
       let labelTabContentList = null;
 
@@ -110,7 +119,7 @@ export class DashboardPage extends Container {
                         this.props.changeLocation(`/tasks/${task.id}/edit`);
                       }
                     }}
-                    >{task.content}</div>
+                    >{(task.schedule) ? <span className="task-list-item-content-schedule">{task.schedule}</span> : null}{task.content}</div>
                   <IconButton
                     className="task-list-right-icon"
                     onClick={event => {
@@ -154,7 +163,7 @@ export class DashboardPage extends Container {
                       this.props.changeLocation(`/tasks/${task.id}/edit`);
                     }}
                     className={classNames({'list-item-content__completed': task.completed})}
-                    >{task.content}</ListItemContent>
+                    >{(task.schedule) ? <span className="task-list-item-content-schedule">{task.schedule}</span> : null}{task.content}</ListItemContent>
                   <ListItemRightBackground>
                     <Icon>delete</Icon>
                   </ListItemRightBackground>

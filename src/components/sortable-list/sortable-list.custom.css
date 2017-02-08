@@ -29,6 +29,14 @@
       }
       .task-list-item-content {
         padding: 18px 56px;
+        .task-list-item-content-schedule {
+          position: relative;
+          display: inline-block;
+          width: 100%;
+          font-size: 12px;
+          top: -8px;
+          color: $color-text-secondary;
+        }
       }
       .task-list-left-icon,
       .task-list-right-icon {
