@@ -1,5 +1,15 @@
 import React, {Component, PropTypes} from 'react';
 
+function updateQueryStringParameter(uri, key, value) {
+  const re = new RegExp('([?&])' + key + '=.*?(&|$)', 'i');
+  const separator = uri.indexOf('?') === -1 ? '?' : '&';
+
+  if (uri.match(re)) {
+    return uri.replace(re, '$1' + key + '=' + value + '$2');
+  }
+  return uri + separator + key + '=' + value;
+}
+
 export class Tab extends Component {
   constructor(props) {
     super(props);
@@ -11,6 +21,10 @@ export class Tab extends Component {
     this.setCurrentIndex = this._setCurrentIndex.bind(this);
   }
   _setCurrentIndex(index) {
+    if (history) {
+      const href = updateQueryStringParameter(location.href, 'tab-index', index);
+      history.replaceState(null, null, href);
+    }
     this.setState({currentIndex: index});
   }
   getChildContext() {
