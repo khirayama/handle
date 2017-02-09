@@ -25,6 +25,7 @@
   .list-content {
     .list-item {
       .list-item-content {
+        position: relative;
         padding: 0;
 
         &__swipe_right {

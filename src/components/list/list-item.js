@@ -156,6 +156,7 @@ export class ListItem extends Component {
     setTimeout(() => {
       const el = this.listItem;
       const height = el.offsetHeight;
+
       this.listItem.style.height = height + 'px';
       if (el.classList.contains('list-item-transition-enter')) {
         this.listItem.style.transitionProperty = transitionProperties.MAX_HEIGHT;

@@ -88,6 +88,8 @@
 .sortable-list.label-list {
   .sortable-list-content {
     .sortable-list-item {
+      position: relative;
+
       &__unvisibled {
         background-color: $color-divider;
       }
