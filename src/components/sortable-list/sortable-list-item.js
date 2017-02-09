@@ -230,6 +230,7 @@ export class SortableListItem extends Component {
         currentIndex = index;
       }
       if (
+        this.mouse.endX !== null && this.mouse.endY !== null &&
         targetRect.top - scrollTop < this.mouse.endY &&
         this.mouse.endY < targetRect.top + targetRect.height - scrollTop
       ) {
