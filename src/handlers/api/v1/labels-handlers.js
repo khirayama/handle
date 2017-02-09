@@ -1,4 +1,4 @@
-import {Label} from 'models';
+import {Label, Task} from 'models';
 
 function omit(label) {
   return {
@@ -57,6 +57,16 @@ export function destroyLabelHandler(req, res) {
     }).then(labels => {
       labels.forEach(label_ => {
         label_.update({priority: label_.priority - 1});
+      });
+    });
+
+    Task.findAll({
+      where: {
+        labelId: label.id,
+      }
+    }).then(tasks => {
+      tasks.forEach(task => {
+        task.destroy();
       });
     });
 
