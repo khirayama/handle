@@ -108,11 +108,11 @@ export class SortableListItem extends Component {
 
   // animation
   _enterListItemAnimation() {
-    setTimeout(() => {
-      const el = this.listItem;
-      const height = el.offsetHeight;
+    const el = this.listItem;
+    const height = el.offsetHeight;
 
-      this.listItem.style.height = height + 'px';
+    this.listItem.style.height = height + 'px';
+    setTimeout(() => {
       if (el.classList.contains('sortable-list-item-transition-enter')) {
         this.listItem.style.transitionProperty = transitionProperties.MAX_HEIGHT;
         this.listItem.style.maxHeight = height + 'px';
