@@ -31,7 +31,7 @@ export function createTaskHandler(req, res) {
     priority: req.body.priority,
     completed: false,
   }).then(task => {
-    res.json(task);
+    res.json(omit(task));
   });
 }
 
