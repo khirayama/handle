@@ -177,3 +177,42 @@ body {
 .size__spread {
   width: 100%;
 }
+
+.__promise-confirm {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, .8);
+  z-index: 1000000;
+  &-content {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 200px;
+    max-width: 280px;
+    background: $color-white;
+    border: $border;
+    border-radius: $radius;
+    padding: 12px;
+    &-message {
+      padding: 0 0 24px;
+    }
+    &-buttons {
+      text-align: right;
+    }
+    &-approval-button,
+    &-denial-button {
+      appearance: none;
+      background: $color-white;
+      padding: 4px 8px;
+      font-weight: $font-weight-bold;
+      border-radius: $radius;
+      &:focus {
+        background: $color-ui-focus;
+      }
+    }
+  }
+}
