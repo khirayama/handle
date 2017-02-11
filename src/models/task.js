@@ -32,6 +32,8 @@ module.exports = (sequelize, DataTypes) => {
       field: 'updated_at',
     },
   }, {
+    charset: 'utf8mb4',
+    collate: 'utf8mb4_general_ci',
     tableName: 'tasks',
     timestamps: true,
     underscored: true,

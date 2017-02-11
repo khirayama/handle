@@ -36,6 +36,9 @@ module.exports = {
         type: Sequelize.DATE,
         allowNull: false
       },
+    }, {
+      charset: 'utf8mb4',
+      collate: 'utf8mb4_general_ci',
     });
   },
   down: (queryInterface, Sequelize) => {
