@@ -1,5 +1,7 @@
 import passport from 'passport';
 
+import {User, Task, Label} from 'models';
+
 export function authHandler(req, res) {
   const provider = req.params.provider;
 
@@ -28,5 +30,34 @@ export function authCallbackHandler(req, res, next) {
 
 export function logoutHandler(req, res) {
   req.logout();
+  res.redirect('/');
+}
+
+export function destroyUserHandler(req, res) {
+  if (req.user) {
+    const userId = req.user.id;
+    Task.findAll({
+      where: {userId},
+    }).then(tasks => {
+      tasks.forEach(task => {
+        task.destroy();
+      });
+    });
+
+    Label.findAll({
+      where: {userId},
+    }).then(labels => {
+      labels.forEach(label => {
+        label.destroy();
+      });
+    });
+
+    User.findById(userId).then(user => {
+      user.destroy();
+    });
+
+    req.logout();
+  }
+
   res.redirect('/');
 }

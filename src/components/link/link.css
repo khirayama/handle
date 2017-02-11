@@ -40,3 +40,7 @@
     }
   }
 }
+
+.link__attention {
+  color: $color-accent-attention;
+}
