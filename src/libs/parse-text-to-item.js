@@ -60,7 +60,9 @@ export function getDayNum(dateText) {
   const _day = getDay(dateText);
 
   for (let index = 0; index < DAY_LIST.length; index++) {
-    if (DAY_LIST[index].toUpperCase().indexOf(_day.toUpperCase()) !== -1) return index;
+    if (DAY_LIST[index].toUpperCase().indexOf(_day.toUpperCase()) !== -1) {
+      return index;
+    }
   }
 
   return -1;
@@ -142,18 +144,22 @@ export function textToSchedule(dateText, referenceDate) {
     } else if (dateText.match(/this/i)) {
       // this week
       _dayNum = getDayNum(dateText);
-      if (_dayNum !== -1) date = moment(referenceDate).day(_dayNum);
+      if (_dayNum !== -1) {
+        date = moment(referenceDate).day(_dayNum);
+      }
     } else if (dateText.match(/next/i)) {
       // next week
       _dayNum = getDayNum(dateText);
-      if (_dayNum !== -1) date = moment(referenceDate).day(_dayNum).add(7, 'days');
+      if (_dayNum !== -1) {
+        date = moment(referenceDate).day(_dayNum).add(7, 'days');
+      }
     } else if (dateText.match(/\//)) {
       // date
       _date = dateText.split('/');
       if (_date.length === 2) {
         _date.unshift(moment(referenceDate).year());
       }
-      _date[1] = +_date[1] - 1;
+      _date[1] = Number(_date[1]) - 1;
       date = moment(_date);
       if (date.isBefore(referenceDate.subtract(1, 'days'))) {
         date = moment(_date).add(1, 'years');
@@ -163,7 +169,7 @@ export function textToSchedule(dateText, referenceDate) {
       if (_date.length === 2) {
         _date.unshift(moment(referenceDate).year());
       }
-      _date[1] = +_date[1] - 1;
+      _date[1] = Number(_date[1]) - 1;
       date = moment(_date);
       if (date.isBefore(referenceDate.subtract(1, 'days'))) {
         date = moment(_date).add(1, 'years');
@@ -171,10 +177,16 @@ export function textToSchedule(dateText, referenceDate) {
     } else {
       // day
       _dayNum = getDayNum(dateText);
-      if (_dayNum !== -1) date = moment(referenceDate).day(_dayNum);
-      if (date && date.isBefore(referenceDate)) date = date.add(7, 'days');
+      if (_dayNum !== -1) {
+        date = moment(referenceDate).day(_dayNum);
+      }
+      if (date && date.isBefore(referenceDate)) {
+        date = date.add(7, 'days');
+      }
     }
-    if (date) schedule = getScheduleItem(date);
+    if (date) {
+      schedule = getScheduleItem(date);
+    }
   } else {
     return schedule;
   }
@@ -186,7 +198,7 @@ export function parseTextToItem(text, referenceDate) {
   const _referenceDate = moment(referenceDate);
   const splitedItem = splitTextToDateAndText(text);
   const schedule = textToSchedule(splitedItem.date, _referenceDate) || null;
-  const item = (schedule) ? { schedule, text: splitedItem.text } : { schedule, text };
+  const item = (schedule) ? {schedule, text: splitedItem.text} : {schedule, text};
 
   return item;
 }

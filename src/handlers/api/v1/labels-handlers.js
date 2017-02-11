@@ -63,7 +63,7 @@ export function destroyLabelHandler(req, res) {
     Task.findAll({
       where: {
         labelId: label.id,
-      }
+      },
     }).then(tasks => {
       tasks.forEach(task => {
         task.destroy();
