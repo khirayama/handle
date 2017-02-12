@@ -44,14 +44,14 @@ function template(head, state, content) {
 }
 
 export function applicationHandler(req, res) {
-  if (!req.isAuthenticated() && req.path !== '/') {
-    res.redirect('/');
-    return;
-  }
-
   i18n.setLocale(req.getLocale());
 
   const pathname = req.path;
+
+  if (!req.isAuthenticated() && pathname !== '/') {
+    res.redirect('/');
+    return;
+  }
 
   const initialState = {
     lang: req.getLocale(),
@@ -75,27 +75,26 @@ export function applicationHandler(req, res) {
 
   const router = new Router(routes);
 
-  const {data} = router.getOptions(pathname);
-
-  let serializedCookies = '';
-  Object.keys(req.cookies).forEach(cookieKey => {
-    serializedCookies += (cookieKey + '=' + req.cookies[cookieKey] + ';');
-  });
-  data.config = {
-    headers: {cookie: serializedCookies},
-  };
-  data.dispatch = store.dispatch.bind(store);
-  data.query = req.query;
-
   if (req.isAuthenticated()) {
-    Task.fetch(data.config).then(tasks => {
-      Label.fetch(data.config).then(labels => {
+    const {data} = router.getOptions(pathname);
+    const config = {
+      headers: {cookie: ''},
+    };
+    Object.keys(req.cookies).forEach(cookieKey => {
+      config.headers.cookie += (cookieKey + '=' + req.cookies[cookieKey] + ';');
+    });
+
+    Task.fetch(config).then(tasks => {
+      Label.fetch(config).then(labels => {
         store.dispatch({
           type: actionTypes.SET_INITIAL_VALUE,
           tasks,
           labels,
         });
-        router.initialize(pathname, data).then(() => {
+        router.initialize(pathname, Object.assign({}, data, {
+          dispatch: store.dispatch.bind(store),
+          query: req.query,
+        })).then(() => {
           const state = store.getState();
 
           const head = router.getHead(req.path);
@@ -116,7 +115,11 @@ export function applicationHandler(req, res) {
       }).catch(error => console.log(error));
     }).catch(error => console.log(error));
   } else {
-    router.initialize(pathname, data).then(() => {
+    const {data} = router.getOptions(pathname);
+    router.initialize(pathname, Object.assign({}, data, {
+      dispatch: store.dispatch.bind(store),
+      query: req.query,
+    })).then(() => {
       const state = store.getState();
 
       const head = router.getHead(req.path);
