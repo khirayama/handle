@@ -5,6 +5,7 @@ import bodyParser from 'body-parser';
 import session from 'cookie-session';
 import passport from 'passport';
 import useragent from 'express-useragent';
+import compression from 'compression';
 
 import i18n from 'libs/micro-i18n';
 import getLocalAddress from 'libs/get-local-address';
@@ -21,6 +22,11 @@ const port = process.env.PORT || 3000;
 const {ipv4} = getLocalAddress();
 
 // middleware
+app.use(compression({
+  threshold: 0,
+  level: 9,
+  memLevel: 9,
+}));
 app.use(express.static(path.join(__dirname, 'assets')));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(useragent.express());
