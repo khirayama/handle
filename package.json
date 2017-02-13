@@ -17,7 +17,7 @@
     "compile:scripts:watch": "babel src --out-dir dist -w --source-maps inline",
     "copy:files": "cpx 'src/**/*.{json,woff2}' dist && mkdir dist/public",
     "copy:files:watch": "cpx -w 'src/**/*.json' dist",
-    "bundle:scripts": "NODE_PATH=src browserify src/client.js -o dist/public/bundle.js -t babelify -t envify",
+    "bundle:scripts": "NODE_PATH=src browserify src/client.js -o dist/public/bundle.js -t babelify -t envify -t uglifyify",
     "bundle:scripts:watch": "NODE_PATH=src watchify src/client.js -o dist/public/bundle.js -v -t babelify -t envify --debug",
     "build:scripts": "npm run compile:scripts && npm run copy:files && npm run bundle:scripts",
     "watch:scripts": "npm run compile:scripts && npm run copy:files && (npm run compile:scripts:watch & npm run copy:files:watch & npm run bundle:scripts:watch)",
@@ -78,6 +78,7 @@
     "spectrometer": "^0.1.4",
     "stylelint": "^7.7.1",
     "stylelint-config-standard": "^16.0.0",
+    "uglifyify": "^3.0.4",
     "watchify": "^3.9.0"
   }
 }
