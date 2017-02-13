@@ -5,6 +5,7 @@ export default function reducer(state, action) {
     case actionTypes.SET_INITIAL_VALUE: {
       state.tasks = action.tasks;
       state.labels = action.labels;
+      state.profile = action.profile;
       break;
     }
 

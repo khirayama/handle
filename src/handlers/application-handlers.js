@@ -43,10 +43,40 @@ function template(head, state, content) {
   `);
 }
 
-export function applicationHandler(req, res) {
-  i18n.setLocale(req.getLocale());
+function setApplicationInitialState(req) {
+  return new Promise(resolve => {
+    if (req.isAuthenticated()) {
+      const config = {
+        headers: {cookie: ''},
+      };
+      Object.keys(req.cookies).forEach(cookieKey => {
+        config.headers.cookie += (cookieKey + '=' + req.cookies[cookieKey] + ';');
+      });
 
+      Task.fetch(config).then(tasks => {
+        Label.fetch(config).then(labels => {
+          const action = {
+            type: actionTypes.SET_INITIAL_VALUE,
+            tasks,
+            labels,
+            profile: {
+              username: req.user.username,
+              imageUrl: req.user.imageUrl,
+            },
+          };
+          resolve(action);
+        }).catch(error => console.log(error));
+      }).catch(error => console.log(error));
+    } else {
+      resolve(null);
+    }
+  });
+}
+
+export function applicationHandler(req, res) {
   const pathname = req.path;
+
+  i18n.setLocale(req.getLocale());
 
   if (!req.isAuthenticated() && pathname !== '/') {
     res.redirect('/');
@@ -56,6 +86,7 @@ export function applicationHandler(req, res) {
   const initialState = {
     lang: req.getLocale(),
     ui: getUI(req.useragent),
+    profile: null,
     dashboardTabIndex: 0,
     selectedTaskId: null,
     selectedLabelId: null,
@@ -63,59 +94,18 @@ export function applicationHandler(req, res) {
     labels: [],
   };
 
-  if (req.isAuthenticated()) {
-    initialState.profile = {
-      username: req.user.username,
-      imageUrl: req.user.imageUrl,
-    };
-  }
-
   // Can't use createStore. circuit store is singleton.
   const store = new Store(initialState, reducer);
-
   const router = new Router(routes);
 
-  if (req.isAuthenticated()) {
+
+  setApplicationInitialState(req).then(action => {
+    if (action !== null) {
+      store.dispatch(action);
+    }
+
     const {data} = router.getOptions(pathname);
-    const config = {
-      headers: {cookie: ''},
-    };
-    Object.keys(req.cookies).forEach(cookieKey => {
-      config.headers.cookie += (cookieKey + '=' + req.cookies[cookieKey] + ';');
-    });
 
-    Task.fetch(config).then(tasks => {
-      Label.fetch(config).then(labels => {
-        store.dispatch({
-          type: actionTypes.SET_INITIAL_VALUE,
-          tasks,
-          labels,
-        });
-        router.initialize(pathname, Object.assign({}, data, {
-          dispatch: store.dispatch.bind(store),
-          query: req.query,
-        })).then(() => {
-          const state = store.getState();
-
-          const head = router.getHead(req.path);
-          const content = ReactDOM.renderToString(
-            <Connector
-              router={router}
-              path={req.path}
-              store={store}
-
-              transitionName="page-transition"
-              transitionEnterTimeout={PAGE_TRANSITION_TIME}
-              transitionLeaveTimeout={PAGE_TRANSITION_TIME}
-              />
-          );
-
-          res.send(template(head, state, content));
-        }).catch(error => console.log(error));
-      }).catch(error => console.log(error));
-    }).catch(error => console.log(error));
-  } else {
-    const {data} = router.getOptions(pathname);
     router.initialize(pathname, Object.assign({}, data, {
       dispatch: store.dispatch.bind(store),
       query: req.query,
@@ -125,17 +115,17 @@ export function applicationHandler(req, res) {
       const head = router.getHead(req.path);
       const content = ReactDOM.renderToString(
         <Connector
-          router={router}
-          path={req.path}
-          store={store}
+        router={router}
+        path={req.path}
+        store={store}
 
-          transitionName="page-transition"
-          transitionEnterTimeout={PAGE_TRANSITION_TIME}
-          transitionLeaveTimeout={PAGE_TRANSITION_TIME}
-          />
+        transitionName="page-transition"
+        transitionEnterTimeout={PAGE_TRANSITION_TIME}
+        transitionLeaveTimeout={PAGE_TRANSITION_TIME}
+        />
       );
 
       res.send(template(head, state, content));
-    }).catch(error => console.log(error));
-  }
+    });
+  }).catch(error => console.log(error));
 }
