@@ -16,8 +16,6 @@ import reducer from 'reducers';
 import Task from 'repositories/task';
 import Label from 'repositories/label';
 
-const PAGE_TRANSITION_TIME = 600;
-
 function template(head, state, content) {
   return (`
     <!DOCTYPE html>
@@ -98,7 +96,6 @@ export function applicationHandler(req, res) {
   const store = new Store(initialState, reducer);
   const router = new Router(routes);
 
-
   setApplicationInitialState(req).then(action => {
     if (action !== null) {
       store.dispatch(action);
@@ -115,14 +112,10 @@ export function applicationHandler(req, res) {
       const head = router.getHead(req.path);
       const content = ReactDOM.renderToString(
         <Connector
-        router={router}
-        path={req.path}
-        store={store}
-
-        transitionName="page-transition"
-        transitionEnterTimeout={PAGE_TRANSITION_TIME}
-        transitionLeaveTimeout={PAGE_TRANSITION_TIME}
-        />
+          router={router}
+          path={req.path}
+          store={store}
+          />
       );
 
       res.send(template(head, state, content));
