@@ -18,4 +18,4 @@ SCRIPT
 trap "$mackerel_agent retire -conf $mackerel_agent_conf -force" TERM
 $mackerel_agent -conf $mackerel_agent_conf -v &
 
-npm run db:migrate && npm run production
+npm start
