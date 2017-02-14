@@ -33,6 +33,7 @@
         .task-list-item-content-text {
           display: inline-block;
           padding: 18px 12px;
+          word-break: break-all;
         }
         .task-list-item-content-schedule-container {
           position: absolute;
