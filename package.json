@@ -9,10 +9,8 @@
   },
   "scripts": {
     "deploy": "rm -rf sequelize-meta.json && node create-app-yaml.js && time gcloud app deploy --stop-previous-version --promote",
-    "start": "NODE_ENV=production npm run db:migrate && npm run production",
-    "development": "NODE_ENV=development npm run application",
-    "development:watch": "NODE_ENV=development npm run application:watch",
-    "production": "NODE_ENV=production npm run application",
+    "start": "NODE_ENV=production npm run db:migrate && NODE_ENV=production npm run application",
+    "dev": "NODE_ENV=development npm run application:watch",
     "clean": "rm -rf dist",
     "server": "NODE_PATH=dist node dist/server.js",
     "server:watch": "NODE_PATH=dist nodemon --config .nodemonrc.json dist/server.js",
