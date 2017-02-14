@@ -1,10 +1,11 @@
 export APPLICATION_URL=
-export CLOUD_SQL_INSTANCES=
+/* export CLOUD_SQL_INSTANCES= */
 
 export MYSQL_USER=
 export MYSQL_PASSWORD=
 export MYSQL_DATABASE=
-export MYSQL_SOCKETPATH=
+export MYSQL_HOST=
+/* export MYSQL_SOCKETPATH= */
 
 export SECRET_KEY=
 

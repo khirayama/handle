@@ -37,9 +37,9 @@ module.exports = {
     username: process.env.MYSQL_USER,
     password: process.env.MYSQL_PASSWORD,
     database: process.env.MYSQL_DATABASE,
+    host: process.env.MYSQL_HOST,
     dialect: 'mysql',
     dialectOptions: {
-      socketPath: process.env.MYSQL_SOCKETPATH,
       charset: 'utf8mb4',
       collate: 'utf8mb4_general_ci',
     },
