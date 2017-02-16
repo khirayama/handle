@@ -33,6 +33,11 @@ export default function reducer(state, action) {
       break;
     }
 
+    case actionTypes.UPDATE_DASHBOARD_TAB_INDEX: {
+      state.dashboardTabIndex = action.dashboardTabIndex;
+      break;
+    }
+
     // task
     case actionTypes.CREATE_TASK: {
       state.tasks.push(Object.assign({}, action.task));

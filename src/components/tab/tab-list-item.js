@@ -9,6 +9,9 @@ export class TabListItem extends Component {
   }
   _handleClick() {
     this.context.setCurrentIndex(Number(this.props.index));
+    if (this.props.onActive) {
+      this.props.onActive(this.props.index);
+    }
   }
   render() {
     const index = Number(this.props.index);
@@ -33,5 +36,6 @@ TabListItem.contextTypes = {
 TabListItem.propTypes = {
   index: PropTypes.number.isRequired,
   children: PropTypes.node,
+  onActive: PropTypes.func,
 };
 

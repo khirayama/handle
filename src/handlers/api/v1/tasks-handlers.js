@@ -28,7 +28,7 @@ export function createTaskHandler(req, res) {
     where: {
       userId: req.user.id,
       labelId: req.body.labelId,
-    }
+    },
   }).then(count => {
     Task.create({
       userId: req.user.id,
@@ -39,7 +39,7 @@ export function createTaskHandler(req, res) {
     }).then(task => {
       res.json(omit(task));
     });
-  })
+  });
 }
 
 export function updateTaskHandler(req, res) {

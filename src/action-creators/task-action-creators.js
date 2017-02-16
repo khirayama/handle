@@ -14,8 +14,6 @@ function find(items, id) {
 }
 
 export function createTask(dispatch, content, labelId) {
-  const state = getState();
-
   Task.create({
     content,
     labelId,

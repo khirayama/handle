@@ -4,6 +4,10 @@ import {Container} from 'libs/container';
 import {parseTextToItem} from 'libs/parse-text-to-item';
 
 import {
+  updateDashboardTabIndex,
+} from 'action-creators/page-initialize-action-creators';
+
+import {
   deleteTask,
   uncompletedTask,
   completedTask,
@@ -66,7 +70,7 @@ export class DashboardPage extends Container {
       });
       let labelTabContentList = null;
 
-      labelTabElements.push(<TabListItem key={index} index={index}>{label.name}</TabListItem>);
+      labelTabElements.push(<TabListItem key={index} index={index} onActive={() => updateDashboardTabIndex(this.dispatch, index)}>{label.name}</TabListItem>);
 
       if (this.state.ui === 'desktop') {
         labelTabContentList = (
@@ -134,7 +138,7 @@ export class DashboardPage extends Container {
                         </span>
                       </span>
                     ) : null}
-                    <span className="task-list-item-content-text"><LinkText text={task.content} /></span>
+                    <span className="task-list-item-content-text"><LinkText text={task.content}/></span>
                   </div>
                   <IconButton
                     className="task-list-right-icon"
@@ -195,7 +199,7 @@ export class DashboardPage extends Container {
                         </span>
                       </span>
                     ) : null}
-                    <span className="task-list-item-content-text"><LinkText text={task.content} /></span>
+                    <span className="task-list-item-content-text"><LinkText text={task.content}/></span>
                   </ListItemContent>
                   <ListItemRightBackground>
                     <Icon>delete</Icon>
