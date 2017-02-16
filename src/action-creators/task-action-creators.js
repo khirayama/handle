@@ -15,16 +15,10 @@ function find(items, id) {
 
 export function createTask(dispatch, content, labelId) {
   const state = getState();
-  const tasks = state.tasks.filter(task => {
-    return (task.labelId === labelId);
-  }).sort((taskA, taskB) => {
-    return (taskA.priority > taskB.priority) ? 1 : -1;
-  });
 
   Task.create({
     content,
     labelId,
-    priority: tasks.length,
   }).then(task => {
     dispatch({
       type: actionTypes.CREATE_TASK,

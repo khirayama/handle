@@ -24,15 +24,22 @@ export function indexTasksHandler(req, res) {
 }
 
 export function createTaskHandler(req, res) {
-  Task.create({
-    userId: req.user.id,
-    labelId: req.body.labelId,
-    content: req.body.content,
-    priority: req.body.priority,
-    completed: false,
-  }).then(task => {
-    res.json(omit(task));
-  });
+  Task.count({
+    where: {
+      userId: req.user.id,
+      labelId: req.body.labelId,
+    }
+  }).then(count => {
+    Task.create({
+      userId: req.user.id,
+      labelId: req.body.labelId,
+      content: req.body.content,
+      priority: count,
+      completed: false,
+    }).then(task => {
+      res.json(omit(task));
+    });
+  })
 }
 
 export function updateTaskHandler(req, res) {
