@@ -13,6 +13,7 @@ import {
 
 import {ApplicationHeader} from 'components/application-header';
 import {Link} from 'components/link';
+import {LinkText} from 'components/link-text';
 import {Icon} from 'components/icon';
 import {IconButton} from 'components/icon-button';
 import {
@@ -133,7 +134,7 @@ export class DashboardPage extends Container {
                         </span>
                       </span>
                     ) : null}
-                    <span className="task-list-item-content-text">{task.content}</span>
+                    <span className="task-list-item-content-text"><LinkText text={task.content} /></span>
                   </div>
                   <IconButton
                     className="task-list-right-icon"
@@ -194,7 +195,7 @@ export class DashboardPage extends Container {
                         </span>
                       </span>
                     ) : null}
-                    <span className="task-list-item-content-text">{task.content}</span>
+                    <span className="task-list-item-content-text"><LinkText text={task.content} /></span>
                   </ListItemContent>
                   <ListItemRightBackground>
                     <Icon>delete</Icon>

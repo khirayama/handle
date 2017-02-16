@@ -43,6 +43,9 @@
           display: inline-block;
           padding: 18px 12px;
           word-break: break-all;
+          a {
+            color: $color-primary-dark;
+          }
         }
         .task-list-item-content-schedule-container {
           position: absolute;
