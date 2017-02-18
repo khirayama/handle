@@ -16,7 +16,7 @@ export default function reducer(state, action) {
     }
 
     case actionTypes.INITIALIZE_TASK_PAGE: {
-      state.selectedLabelId = action.selectedLabelId;
+      state.selectedLabelId = action.selectedLabelId || state.selectedLabelId;
       state.selectedTaskId = action.selectedTaskId;
       break;
     }

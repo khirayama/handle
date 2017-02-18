@@ -51,12 +51,12 @@ export class TaskPage extends Container {
                   } else {
                     updateTask(this.dispatch, this.state.selectedTaskId, this.state.content.trim(), this.state.selectedLabelId);
                   }
-                  this.props.changeLocation(`/dashboard`);
+                  this.props.changeLocation(`/dashboard?label-id=${state.selectedLabelId}&task-id=${state.selectedTaskId}`);
                 }
               }}
               >add</IconButton>
             <Link
-              href={`/dashboard`}
+              href={`/dashboard?label-id=${state.selectedLabelId}&task-id=${state.selectedTaskId}`}
               className="close-task-button"
               ><Icon>close</Icon></Link>
           </header>
@@ -102,14 +102,14 @@ export class TaskPage extends Container {
                         } else {
                           updateTask(this.dispatch, this.state.selectedTaskId, this.state.content.trim(), this.state.selectedLabelId);
                         }
-                        this.props.changeLocation(`/dashboard`);
+                        this.props.changeLocation(`/dashboard?label-id=${state.selectedLabelId}&task-id=${state.selectedTaskId}`);
                       }
                       break;
                     }
                     case (keyCode === ESC_KEY && !shift && !ctrl):
                     case (keyCode === ESC_KEY && shift && !ctrl):
                     case (keyCode === ESC_KEY && !shift && ctrl): {
-                      this.props.changeLocation(`/dashboard`);
+                      this.props.changeLocation(`/dashboard?label-id=${state.selectedLabelId}&task-id=${state.selectedTaskId}`);
                       break;
                     }
                     default: {

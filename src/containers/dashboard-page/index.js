@@ -55,7 +55,13 @@ export class DashboardPage extends Container {
 
     fixTaskPriorities(this.dispatch);
 
-    const href = updateQueryStringParameter(location.href, 'label-id', this.state.selectedLabelId);
+    let href = updateQueryStringParameter(location.href, 'label-id', this.state.selectedLabelId);
+    href = updateQueryStringParameter(href, 'task-id', this.state.selectedTaskId);
+    history.replaceState(null, null, href);
+  }
+  componentDidUpdate() {
+    let href = updateQueryStringParameter(location.href, 'label-id', this.state.selectedLabelId);
+    href = updateQueryStringParameter(href, 'task-id', this.state.selectedTaskId);
     history.replaceState(null, null, href);
   }
   render() {
