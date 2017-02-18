@@ -21,7 +21,7 @@ export class Tab extends Component {
     this.setCurrentIndex = this._setCurrentIndex.bind(this);
   }
   _setCurrentIndex(index) {
-    if (history) {
+    if (history && this.props.enableQueryString) {
       const href = updateQueryStringParameter(location.href, 'tab-index', index);
       history.replaceState(null, null, href);
     }
@@ -50,4 +50,5 @@ Tab.childContextTypes = {
 Tab.propTypes = {
   index: PropTypes.number,
   children: PropTypes.node,
+  enableQueryString: PropTypes.bool,
 };

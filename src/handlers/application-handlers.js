@@ -85,7 +85,6 @@ export function applicationHandler(req, res) {
     lang: req.getLocale(),
     ui: getUI(req.useragent),
     profile: null,
-    dashboardTabIndex: 0,
     selectedTaskId: null,
     selectedLabelId: null,
     tasks: [],

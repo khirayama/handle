@@ -10,7 +10,6 @@ export default function reducer(state, action) {
     }
 
     case actionTypes.INITIALIZE_DASHBOARD_PAGE: {
-      state.dashboardTabIndex = action.dashboardTabIndex;
       state.selectedTaskId = null;
       state.selectedLabelId = null;
       break;
@@ -30,11 +29,6 @@ export default function reducer(state, action) {
 
     case actionTypes.INITIALIZE_LABEL_PAGE: {
       state.selectedLabelId = action.selectedLabelId;
-      break;
-    }
-
-    case actionTypes.UPDATE_DASHBOARD_TAB_INDEX: {
-      state.dashboardTabIndex = action.dashboardTabIndex;
       break;
     }
 

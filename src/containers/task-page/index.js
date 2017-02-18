@@ -38,13 +38,6 @@ export class TaskPage extends Container {
       return (labelA.priority > labelB.priority) ? 1 : -1;
     });
 
-    let tabIndex = 0;
-    activeLabels.forEach((label, index) => {
-      if (label.id === this.state.selectedLabelId) {
-        tabIndex = index;
-      }
-    });
-
     return (
       <section className="page task-page">
         <section className="page-content">
@@ -58,12 +51,12 @@ export class TaskPage extends Container {
                   } else {
                     updateTask(this.dispatch, this.state.selectedTaskId, this.state.content.trim(), this.state.selectedLabelId);
                   }
-                  this.props.changeLocation(`/dashboard?tab-index=${tabIndex}`);
+                  this.props.changeLocation(`/dashboard`);
                 }
               }}
               >add</IconButton>
             <Link
-              href={`/dashboard?tab-index=${tabIndex}`}
+              href={`/dashboard`}
               className="close-task-button"
               ><Icon>close</Icon></Link>
           </header>
@@ -109,14 +102,14 @@ export class TaskPage extends Container {
                         } else {
                           updateTask(this.dispatch, this.state.selectedTaskId, this.state.content.trim(), this.state.selectedLabelId);
                         }
-                        this.props.changeLocation(`/dashboard?tab-index=${tabIndex}`);
+                        this.props.changeLocation(`/dashboard`);
                       }
                       break;
                     }
                     case (keyCode === ESC_KEY && !shift && !ctrl):
                     case (keyCode === ESC_KEY && shift && !ctrl):
                     case (keyCode === ESC_KEY && !shift && ctrl): {
-                      this.props.changeLocation(`/dashboard?tab-index=${tabIndex}`);
+                      this.props.changeLocation(`/dashboard`);
                       break;
                     }
                     default: {

@@ -1,13 +1,6 @@
 import {getState} from '@khirayama/circuit';
 import actionTypes from 'constants/action-types';
 
-export function updateDashboardTabIndex(dispatch, dashboardTabIndex) {
-  dispatch({
-    type: actionTypes.UPDATE_DASHBOARD_TAB_INDEX,
-    dashboardTabIndex,
-  });
-}
-
 export function initializeHomePage(params, {dispatch}) {
   return new Promise(resolve => {
     dispatch({type: actionTypes.INITIALIZE_HOME_PAGE});
@@ -18,10 +11,8 @@ export function initializeHomePage(params, {dispatch}) {
 export function initializeDashboardPage(params, {dispatch, query}) {
   return new Promise(resolve => {
     const state = getState();
-    const dashboardTabIndex = (query['tab-index']) ? Number(query['tab-index']) : (state || {}).dashboardTabIndex || 0;
     dispatch({
       type: actionTypes.INITIALIZE_DASHBOARD_PAGE,
-      dashboardTabIndex,
     });
     resolve();
   });
