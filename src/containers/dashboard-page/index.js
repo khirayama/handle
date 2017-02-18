@@ -4,6 +4,10 @@ import {Container} from 'libs/container';
 import {parseTextToItem} from 'libs/parse-text-to-item';
 
 import {
+  updateSelectedLabelId,
+} from 'action-creators/application-state-action-creators';
+
+import {
   deleteTask,
   uncompletedTask,
   completedTask,
@@ -35,10 +39,24 @@ import {
   TabContentListItem,
 } from 'components/tab';
 
+function updateQueryStringParameter(uri, key, value) {
+  const re = new RegExp('([?&])' + key + '=.*?(&|$)', 'i');
+  const separator = uri.indexOf('?') === -1 ? '?' : '&';
+
+  if (uri.match(re)) {
+    return uri.replace(re, '$1' + key + '=' + value + '$2');
+  }
+  return uri + separator + key + '=' + value;
+}
+
 export class DashboardPage extends Container {
   componentDidMount() {
     super.componentDidMount();
+
     fixTaskPriorities(this.dispatch);
+
+    const href = updateQueryStringParameter(location.href, 'label-id', this.state.selectedLabelId);
+    history.replaceState(null, null, href);
   }
   render() {
     const state = this.state;
@@ -50,6 +68,13 @@ export class DashboardPage extends Container {
       return label.visibled;
     }).sort((labelA, labelB) => {
       return (labelA.priority > labelB.priority) ? 1 : -1;
+    });
+
+    let tabIndex = 0;
+    activeLabels.forEach((label, index) => {
+      if (label.id === state.selectedLabelId) {
+        tabIndex = index;
+      }
     });
 
     activeLabels.forEach((label, index) => {
@@ -66,7 +91,14 @@ export class DashboardPage extends Container {
       });
       let labelTabContentList = null;
 
-      labelTabElements.push(<TabListItem key={index} index={index}>{label.name}</TabListItem>);
+      labelTabElements.push(<TabListItem
+        key={index} index={index} onActive={() => {
+          updateSelectedLabelId(this.dispatch, label.id);
+
+          const href = updateQueryStringParameter(location.href, 'label-id', label.id);
+          history.replaceState(null, null, href);
+        }}
+                                  >{label.name}</TabListItem>);
 
       if (this.state.ui === 'desktop') {
         labelTabContentList = (
@@ -222,7 +254,7 @@ export class DashboardPage extends Container {
         <section className="page-content">
           <ApplicationHeader imageUrl={state.profile.imageUrl}/>
           <section className="tab-container">
-            <Tab>
+            <Tab index={tabIndex}>
               <TabList>{labelTabElements}</TabList>
               <TabContentList>{labelTabContentElements}</TabContentList>
             </Tab>

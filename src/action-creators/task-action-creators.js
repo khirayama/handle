@@ -14,6 +14,10 @@ function find(items, id) {
 }
 
 export function createTask(dispatch, content, labelId) {
+  dispatch({
+    type: actionTypes.UPDATE_SELECTED_LABEL_ID,
+    selectedLabelId: labelId,
+  });
   Task.create({
     content,
     labelId,
@@ -21,6 +25,7 @@ export function createTask(dispatch, content, labelId) {
     dispatch({
       type: actionTypes.CREATE_TASK,
       task,
+      selectedTaskId: task.id,
     });
   });
 }

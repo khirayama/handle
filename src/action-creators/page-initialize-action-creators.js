@@ -1,4 +1,3 @@
-import {getState} from '@khirayama/circuit';
 import actionTypes from 'constants/action-types';
 
 export function initializeHomePage(params, {dispatch}) {
@@ -8,9 +7,8 @@ export function initializeHomePage(params, {dispatch}) {
   });
 }
 
-export function initializeDashboardPage(params, {dispatch, query}) {
+export function initializeDashboardPage(params, {dispatch}) {
   return new Promise(resolve => {
-    const state = getState();
     dispatch({
       type: actionTypes.INITIALIZE_DASHBOARD_PAGE,
     });

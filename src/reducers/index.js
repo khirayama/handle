@@ -6,24 +6,22 @@ export default function reducer(state, action) {
       state.tasks = action.tasks;
       state.labels = action.labels;
       state.profile = action.profile;
+      state.selectedLabelId = action.selectedLabelId;
+      state.selectedTaskId = action.selectedTaskId;
       break;
     }
 
     case actionTypes.INITIALIZE_DASHBOARD_PAGE: {
-      state.selectedTaskId = null;
-      state.selectedLabelId = null;
       break;
     }
 
     case actionTypes.INITIALIZE_TASK_PAGE: {
-      state.selectedTaskId = action.selectedTaskId;
       state.selectedLabelId = action.selectedLabelId;
+      state.selectedTaskId = action.selectedTaskId;
       break;
     }
 
     case actionTypes.INITIALIZE_LABELS_PAGE: {
-      state.selectedTaskId = null;
-      state.selectedLabelId = null;
       break;
     }
 
@@ -32,9 +30,16 @@ export default function reducer(state, action) {
       break;
     }
 
+    // application
+    case actionTypes.UPDATE_SELECTED_LABEL_ID: {
+      state.selectedLabelId = action.selectedLabelId;
+      break;
+    }
+
     // task
     case actionTypes.CREATE_TASK: {
       state.tasks.push(Object.assign({}, action.task));
+      state.selectedTaskId = action.selectedTaskId;
       break;
     }
     case actionTypes.UPDATE_TASKS: {

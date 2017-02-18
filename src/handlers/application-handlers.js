@@ -61,6 +61,8 @@ function setApplicationInitialState(req) {
               username: req.user.username,
               imageUrl: req.user.imageUrl,
             },
+            selectedLabelId: (req.query['label-id'] === undefined) ? null : Number(req.query['label-id']),
+            selectedTaskId: (req.query['task-id'] === undefined) ? null : Number(req.query['task-id']),
           };
           resolve(action);
         }).catch(error => console.log(error));
