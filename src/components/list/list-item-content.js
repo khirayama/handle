@@ -34,6 +34,10 @@ export class ListItemContent extends Component {
     });
   }
   _handleTouchMove(event) {
+    if (this.touch.startX === null || this.touch.startY === null) {
+      return;
+    }
+
     const diff = this._calcDiff();
     const props = this.context.getProps();
     const touch = this.context.getTouch();
@@ -67,6 +71,10 @@ export class ListItemContent extends Component {
     }
   }
   _handleTouchEnd() {
+    if (this.touch.startX === null || this.touch.startY === null) {
+      return;
+    }
+
     this._updateTouchEndView();
 
     const currentIndex = this._calcCurrentIndex();
