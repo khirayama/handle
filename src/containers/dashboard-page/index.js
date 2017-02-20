@@ -58,11 +58,33 @@ export class DashboardPage extends Container {
     let href = updateQueryStringParameter(location.href, 'label-id', this.state.selectedLabelId);
     href = updateQueryStringParameter(href, 'task-id', this.state.selectedTaskId);
     history.replaceState(null, null, href);
+
+    // scroll to selectedTaskId's task for update
+    if (this.state.selectedLabelId && this.state.selectedTaskId) {
+      const selectedTaskList = this.taskLists[this.state.selectedLabelId].listElement;
+      const selectedTaskListItem = this.taskListItems[this.state.selectedTaskId].listItem;
+
+      selectedTaskList.scrollTop = (selectedTaskListItem.offsetTop + selectedTaskListItem.offsetHeight) - (selectedTaskList.offsetHeight / 2);
+    }
   }
-  componentDidUpdate() {
+  componentDidUpdate(prevProps, prevState) {
     let href = updateQueryStringParameter(location.href, 'label-id', this.state.selectedLabelId);
     href = updateQueryStringParameter(href, 'task-id', this.state.selectedTaskId);
     history.replaceState(null, null, href);
+
+    // scroll to selectedTaskId's task for create and wait create animation
+    if (
+      this.state.selectedLabelId &&
+      this.state.selectedTaskId &&
+      this.state.selectedTaskId !== prevState.selectedTaskId
+    ) {
+      setTimeout(() => {
+        const selectedTaskList = this.taskLists[this.state.selectedLabelId].listElement;
+        const selectedTaskListItem = this.taskListItems[this.state.selectedTaskId].listItem;
+
+        selectedTaskList.scrollTop = (selectedTaskListItem.offsetTop + selectedTaskListItem.offsetHeight) - selectedTaskList.offsetHeight;
+      }, 175);
+    }
   }
   render() {
     const state = this.state;
@@ -110,6 +132,11 @@ export class DashboardPage extends Container {
         labelTabContentList = (
           <SortableList
             className="task-list"
+            ref={(taskList) => {
+              this.taskLists = Object.assign({}, this.taskLists, {
+                [label.id]: taskList,
+              });
+            }}
             onSort={(from, to) => {
               sortTasks(this.dispatch, filterdTasks[from].id, to);
             }}
@@ -118,6 +145,9 @@ export class DashboardPage extends Container {
               return (
                 <SortableListItem
                   key={task.id}
+                  ref={(taskListItem) => {
+                    this.taskListItems = Object.assign({}, this.taskListItems, {[task.id]: taskListItem});
+                  }}
                   className={classNames({'sortable-list-item__completed': task.completed})}
                   >
                   <IconButton
@@ -189,6 +219,11 @@ export class DashboardPage extends Container {
         labelTabContentList = (
           <List
             className="task-list"
+            ref={(taskList) => {
+              this.taskLists = Object.assign({}, this.taskLists, {
+                [label.id]: taskList,
+              });
+            }}
             onSort={(from, to) => {
               sortTasks(this.dispatch, filterdTasks[from].id, to);
             }}
@@ -197,6 +232,9 @@ export class DashboardPage extends Container {
               return (
                 <ListItem
                   key={task.id}
+                  ref={(taskListItem) => {
+                    this.taskListItems = Object.assign({}, this.taskListItems, {[task.id]: taskListItem});
+                  }}
                   onSwipeLeft={() => {
                     deleteTask(this.dispatch, task.id);
                   }}
