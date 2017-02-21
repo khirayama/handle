@@ -61,10 +61,19 @@ export class DashboardPage extends Container {
 
     // scroll to selectedTaskId's task for update
     if (this.state.selectedLabelId && this.state.selectedTaskId) {
-      const selectedTaskList = this.taskLists[this.state.selectedLabelId].listElement;
-      const selectedTaskListItem = this.taskListItems[this.state.selectedTaskId].listItem;
+      let selectedTaskList = null;
+      let selectedTaskListItem = null;
 
-      selectedTaskList.scrollTop = (selectedTaskListItem.offsetTop + selectedTaskListItem.offsetHeight) - (selectedTaskList.offsetHeight / 2);
+      if (this.taskLists[this.state.selectedLabelId]) {
+        selectedTaskList = this.taskLists[this.state.selectedLabelId].listElement;
+      }
+      if (this.taskListItems[this.state.selectedTaskId]) {
+        selectedTaskListItem = this.taskListItems[this.state.selectedTaskId].listItem;
+      }
+
+      if (selectedTaskList && selectedTaskListItem) {
+        selectedTaskList.scrollTop = (selectedTaskListItem.offsetTop + selectedTaskListItem.offsetHeight) - (selectedTaskList.offsetHeight / 2);
+      }
     }
   }
   componentDidUpdate(prevProps, prevState) {
@@ -79,10 +88,19 @@ export class DashboardPage extends Container {
       this.state.selectedTaskId !== prevState.selectedTaskId
     ) {
       setTimeout(() => {
-        const selectedTaskList = this.taskLists[this.state.selectedLabelId].listElement;
-        const selectedTaskListItem = this.taskListItems[this.state.selectedTaskId].listItem;
+        let selectedTaskList = null;
+        let selectedTaskListItem = null;
 
-        selectedTaskList.scrollTop = (selectedTaskListItem.offsetTop + selectedTaskListItem.offsetHeight) - selectedTaskList.offsetHeight;
+        if (this.taskLists[this.state.selectedLabelId]) {
+          selectedTaskList = this.taskLists[this.state.selectedLabelId].listElement;
+        }
+        if (this.taskListItems[this.state.selectedTaskId]) {
+          selectedTaskListItem = this.taskListItems[this.state.selectedTaskId].listItem;
+        }
+
+        if (selectedTaskList && selectedTaskListItem) {
+          selectedTaskList.scrollTop = (selectedTaskListItem.offsetTop + selectedTaskListItem.offsetHeight) - (selectedTaskList.offsetHeight / 2);
+        }
       }, 175);
     }
   }
