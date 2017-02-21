@@ -1,10 +1,7 @@
-import path from 'path';
-
 class I18n {
   constructor(config) {
     this._locales = config.locales;
     this._defaultLocale = config.defaultLocale;
-    this._path = config.path;
 
     this._locale = this._defaultLocale;
     this._dictionary = {};
@@ -16,9 +13,8 @@ class I18n {
   }
   _import() {
     this._locales.forEach(locale => {
-      const dictionaryPath = path.join(this._path, locale);
-
-      const dic = require(dictionaryPath);
+      // Don't run with dynamic path
+      const dic = require('config/locales/' + locale);
       this._dictionary[locale] = dic;
     });
   }
@@ -42,10 +38,4 @@ class I18n {
 export default new I18n({
   locales: ['en', 'ja'],
   defaultLocale: 'en',
-  path: 'config/locales',
-  // for browserify
-  requires: [
-    require('config/locales/en'),
-    require('config/locales/ja'),
-  ],
 });

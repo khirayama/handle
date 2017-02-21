@@ -18,8 +18,8 @@
     "compile:scripts:watch": "babel src --out-dir dist -w --source-maps inline",
     "copy:files": "cpx 'src/**/*.{json,woff2}' dist && mkdir dist/public",
     "copy:files:watch": "cpx -w 'src/**/*.json' dist",
-    "bundle:scripts": "NODE_PATH=src browserify src/client.js -o dist/public/bundle.js -t babelify -t envify -t uglifyify && uglifyjs dist/public/bundle.js -o dist/public/bundle.js",
-    "bundle:scripts:watch": "NODE_PATH=src watchify src/client.js -o dist/public/bundle.js -v -t babelify -t envify --debug",
+    "bundle:scripts": "NODE_PATH=src webpack && uglifyjs dist/public/bundle.js -o dist/public/bundle.js",
+    "bundle:scripts:watch": "NODE_PATH=src webpack -w",
     "build:scripts": "npm run compile:scripts && npm run copy:files && npm run bundle:scripts",
     "watch:scripts": "npm run compile:scripts && npm run copy:files && (npm run compile:scripts:watch & npm run copy:files:watch & npm run bundle:scripts:watch)",
     "build:styles": "postcss -c .postcssrc.js",
@@ -42,6 +42,7 @@
     "autoprefixer": "^6.7.2",
     "axios": "^0.15.3",
     "babel-cli": "^6.22.2",
+    "babel-loader": "^6.3.2",
     "babel-preset-es2015": "^6.22.0",
     "babel-preset-react": "^6.22.0",
     "babelify": "^7.3.0",
@@ -80,6 +81,7 @@
     "stylelint-config-standard": "^16.0.0",
     "uglify-js": "^2.7.5",
     "uglifyify": "^3.0.4",
-    "watchify": "^3.9.0"
+    "watchify": "^3.9.0",
+    "webpack": "^2.2.1"
   }
 }
