@@ -19,4 +19,5 @@ module.exports = {
       use: 'babel-loader',
     }],
   },
+  devtool: 'inline-source-map',
 };
