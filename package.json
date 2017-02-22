@@ -16,7 +16,7 @@
     "server:watch": "NODE_PATH=dist nodemon --config .nodemonrc.json dist/server.js",
     "compile:scripts": "babel src --out-dir dist",
     "compile:scripts:watch": "babel src --out-dir dist -w --source-maps inline",
-    "copy:files": "cpx 'src/**/*.{json,woff2}' dist && mkdir dist/public",
+    "copy:files": "cpx 'src/**/*.{json,woff2,png}' dist && mkdir dist/public",
     "copy:files:watch": "cpx -w 'src/**/*.json' dist",
     "bundle:scripts": "NODE_PATH=src webpack && uglifyjs dist/public/bundle.js -o dist/public/bundle.js",
     "bundle:scripts:watch": "NODE_PATH=src webpack -w",
