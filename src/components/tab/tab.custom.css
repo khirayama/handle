@@ -47,9 +47,3 @@
     }
   }
 }
-
-.desktop {
-  .tab-list-item:focus {
-    background-color: $color-ui-focus;
-  }
-}
