@@ -6,7 +6,8 @@ import getLocalAddress from 'libs/get-local-address';
 import {User, Task, Label} from 'models';
 
 const {ipv4} = getLocalAddress();
-const hostname = (process.env.NODE_ENV === 'production') ? process.env.APPLICATION_URL : `http://${ipv4[0].address}:3000`;
+const hostname_ = (ipv4[0]) ? ipv4[0].address : 'localhost';
+const hostname = (process.env.NODE_ENV === 'production') ? process.env.APPLICATION_URL : `http://${hostname_}:3000`;
 
 const config = {
   twitter: {

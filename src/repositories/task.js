@@ -6,7 +6,9 @@ if (typeof window === 'undefined' && process.env.NODE_ENV === 'production') {
   hostname = process.env.APPLICATION_URL;
 } else if (typeof window === 'undefined') {
   const {ipv4} = getLocalAddress();
-  hostname = `http://${ipv4[0].address}:3000`;
+  const hostname_ = (ipv4[0]) ? ipv4[0].address : 'localhost';
+
+  hostname = `http://${hostname_}:3000`;
 }
 
 class Task extends Collection {

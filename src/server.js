@@ -56,7 +56,8 @@ app.use(authRouter);
 app.use(uiRouter);
 
 app.listen(port, '0.0.0.0', () => {
+  const hostname = (ipv4[0]) ? ipv4[0].address : 'localhost';
   console.log(`NODE_ENV: ${process.env.NODE_ENV}.`);
-  console.log(`open http://${ipv4[0].address}:${port}`);
-  console.log(`open http://${ipv4[0].address}:${port}/dashboard`);
+  console.log(`open http://${hostname}:${port}`);
+  console.log(`open http://${hostname}:${port}/dashboard`);
 });

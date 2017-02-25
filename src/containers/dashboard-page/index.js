@@ -150,7 +150,7 @@ export class DashboardPage extends Container {
         labelTabContentList = (
           <SortableList
             className="task-list"
-            ref={(taskList) => {
+            ref={taskList => {
               this.taskLists = Object.assign({}, this.taskLists, {
                 [label.id]: taskList,
               });
@@ -163,7 +163,7 @@ export class DashboardPage extends Container {
               return (
                 <SortableListItem
                   key={task.id}
-                  ref={(taskListItem) => {
+                  ref={taskListItem => {
                     this.taskListItems = Object.assign({}, this.taskListItems, {[task.id]: taskListItem});
                   }}
                   className={classNames({'sortable-list-item__completed': task.completed})}
@@ -237,7 +237,7 @@ export class DashboardPage extends Container {
         labelTabContentList = (
           <List
             className="task-list"
-            ref={(taskList) => {
+            ref={taskList => {
               this.taskLists = Object.assign({}, this.taskLists, {
                 [label.id]: taskList,
               });
@@ -250,7 +250,7 @@ export class DashboardPage extends Container {
               return (
                 <ListItem
                   key={task.id}
-                  ref={(taskListItem) => {
+                  ref={taskListItem => {
                     this.taskListItems = Object.assign({}, this.taskListItems, {[task.id]: taskListItem});
                   }}
                   onSwipeLeft={() => {
