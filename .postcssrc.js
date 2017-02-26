@@ -1,20 +1,19 @@
 module.exports = {
-  "input": "src/styles/index.css",
-  "output": "dist/public/index.css",
-  "use": [
-    "postcss-easy-import",
-    "postcss-simple-vars",
-    "postcss-nested",
-    "autoprefixer",
-    "cssnano"
-  ],
-  "postcss-easy-import": {
-    "glob": true,
-    "onImport": (sources) => {
-      global.watchCSS(sources, this.from);
-    }
+  from: './src/styles/index.css',
+  to: './dist/public/index.css',
+  plugins: {
+    'postcss-easy-import': {
+      glob: true,
+      onImport: sources => {
+        console.log('import');
+        // global.watchCSS(sources, this.from);
+      },
+    },
+    'postcss-simple-vars': null,
+    'postcss-nested': null,
+    'autoprefixer': {
+      browsers: ['last 2 versions'],
+    },
+    'cssnano': null,
   },
-  "autoprefixer": {
-    "browsers": ["last 2 versions"]
-  }
 };
