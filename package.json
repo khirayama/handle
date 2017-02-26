@@ -35,7 +35,9 @@
     "lint:styles": "stylelint --config .stylelintrc src/**/*.css",
     "db:create": "mysql -u root < src/config/db.sql",
     "db:migrate": "sequelize db:migrate --config src/config/config.js",
-    "migration:create": "sequelize migration:create --name"
+    "migration:create": "sequelize migration:create --name",
+    "test": "ava",
+    "test:watch": "ava --watch"
   },
   "dependencies": {
     "@khirayama/circuit": "^1.1.1",
@@ -84,5 +86,14 @@
     "uglifyify": "^3.0.4",
     "watchify": "^3.9.0",
     "webpack": "^2.2.1"
+  },
+  "ava": {
+    "babel": "inherit",
+    "files": [
+      "test/**/*.js"
+    ],
+    "require": [
+      "babel-core/register"
+    ]
   }
 }
