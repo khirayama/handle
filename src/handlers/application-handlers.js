@@ -27,8 +27,10 @@ function template(head, state, content) {
 
         <!-- standalone for android-->
         <link rel="manifest" href="/manifest.json">
+        <link rel="icon" sizes="192x192" href="/images/icon192.png">
         <!-- standalone for ios-->
         <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="apple-touch-icon" sizes="76x76" href="/images/icon72.png">
 
         <link rel="stylesheet" href="/index.css">
         <script src="/bundle.js" defer></script>
