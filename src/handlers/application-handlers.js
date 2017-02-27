@@ -26,11 +26,13 @@ function template(head, state, content) {
         <title>${head.title}</title>
 
         <!-- standalone for android-->
+        <meta name="mobile-web-app-capable" content="yes">
+        <link rel="icon" sizes="192x192" href="/images/icon-android.png">
         <link rel="manifest" href="/manifest.json">
-        <link rel="icon" sizes="192x192" href="/images/icon@4x.png">
+
         <!-- standalone for ios-->
         <meta name="apple-mobile-web-app-capable" content="yes">
-        <link rel="apple-touch-icon" sizes="76x76" href="/images/icon@1.5x.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="/images/icon-ios.png">
 
         <link rel="stylesheet" href="/index.css">
         <script src="/bundle.js" defer></script>
