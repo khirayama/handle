@@ -32,12 +32,12 @@ import {
   SortableListItem,
 } from 'components/sortable-list';
 import {
-  Tab,
+  Tabs,
   TabList,
   TabListItem,
   TabContentList,
   TabContentListItem,
-} from 'components/tab';
+} from '@khirayama/handle-ui';
 
 function updateQueryStringParameter(uri, key, value) {
   const re = new RegExp('([?&])' + key + '=.*?(&|$)', 'i');
@@ -316,10 +316,10 @@ export class DashboardPage extends Container {
         <section className="page-content">
           <ApplicationHeader imageUrl={state.profile.imageUrl}/>
           <section className="tab-container">
-            <Tab index={tabIndex}>
+            <Tabs index={tabIndex}>
               <TabList>{labelTabElements}</TabList>
               <TabContentList>{labelTabContentElements}</TabContentList>
-            </Tab>
+            </Tabs>
           </section>
         </section>
       </section>
