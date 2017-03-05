@@ -38,9 +38,9 @@
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/@khirayama/circuit/-/circuit-1.1.1.tgz#cb2451492936937d2c749907fa0314a77f3494da"
 
-"@khirayama/handle-ui@^0.0.4":
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/@khirayama/handle-ui/-/handle-ui-0.0.4.tgz#14321f76c8a9909548ba255c91f0684600129c7e"
+"@khirayama/handle-ui@^0.0.6":
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/@khirayama/handle-ui/-/handle-ui-0.0.6.tgz#cc899229a389ad10b83d0237407f530638d8e072"
   dependencies:
     autoprefixer "^6.7.6"
     babel-cli "^6.23.0"
@@ -321,10 +321,6 @@ async@^2.1.2:
   resolved "https://registry.yarnpkg.com/async/-/async-2.1.5.tgz#e587c68580994ac67fc56ff86d3ac56bdbe810bc"
   dependencies:
     lodash "^4.14.0"
-
-async@~0.2.6:
-  version "0.2.10"
-  resolved "https://registry.yarnpkg.com/async/-/async-0.2.10.tgz#b6bbe0b0674b9d719708ca38de8c237cb526c3d1"
 
 asynckit@^0.4.0:
   version "0.4.0"
@@ -6640,16 +6636,7 @@ ua-parser-js@^0.7.9:
   version "0.7.12"
   resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.12.tgz#04c81a99bdd5dc52263ea29d24c6bf8d4818a4bb"
 
-uglify-js@2.x.x, uglify-js@^2.7.5:
-  version "2.7.5"
-  resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-2.7.5.tgz#4612c0c7baaee2ba7c487de4904ae122079f2ca8"
-  dependencies:
-    async "~0.2.6"
-    source-map "~0.5.1"
-    uglify-to-browserify "~1.0.0"
-    yargs "~3.10.0"
-
-uglify-js@^2.8.7:
+uglify-js@2.x.x, uglify-js@^2.7.5, uglify-js@^2.8.7:
   version "2.8.7"
   resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-2.8.7.tgz#e0391911507b6d2e05697a528f1686e90a11b160"
   dependencies:

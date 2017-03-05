@@ -14,16 +14,17 @@ import {Link} from 'components/link';
 import {IconButton} from 'components/icon-button';
 import {Icon} from 'components/icon';
 import {
+  Tabs,
+  TabList,
+  TabListItem,
+  TabContentList,
+  TabContentListItem,
   List,
   ListItem,
-  ListItemContent,
-  ListItemLeftBackground,
-  ListItemRightBackground,
-} from 'components/list';
-import {
-  SortableList,
-  SortableListItem,
-} from 'components/sortable-list';
+  SwipeableView,
+  SwipeableViewContent,
+  SwipeableViewBackground,
+} from '@khirayama/handle-ui';
 
 export class LabelsPage extends Container {
   render() {
@@ -31,7 +32,7 @@ export class LabelsPage extends Container {
 
     if (this.state.ui === 'desktop') {
       labelList = (
-        <SortableList
+        <List
           className="label-list"
           onSort={(from, to) => {
             sortLabels(this.dispatch, this.state.labels[from].id, to);
@@ -40,9 +41,9 @@ export class LabelsPage extends Container {
             return (labelA.priority > labelB.priority) ? 1 : -1;
           }).map(label => {
             return (
-              <SortableListItem
+              <ListItem
                 key={label.id}
-                className={classNames({'sortable-list-item__unvisibled': !label.visibled})}
+                className={classNames({'list-item__unvisibled': !label.visibled})}
                 >
                 <IconButton
                   className="label-list-left-icon"
@@ -92,10 +93,10 @@ export class LabelsPage extends Container {
                     });
                   }}
                   >delete</IconButton>
-              </SortableListItem>
+              </ListItem>
             );
           })}
-        </SortableList>
+        </List>
       );
     } else if (this.state.ui === 'mobile') {
       labelList = (
@@ -108,40 +109,39 @@ export class LabelsPage extends Container {
             return (labelA.priority > labelB.priority) ? 1 : -1;
           }).map(label => {
             return (
-              <ListItem
-                key={label.id}
-                onSwipeLeft={() => {
-                  promiseConfirm(`Delete ${label.name} label?`).then(confirm_ => {
-                    if (confirm_) {
-                      deleteLabel(this.dispatch, label.id);
-                    }
-                  });
-                }}
-                onSwipeRight={() => {
-                  if (label.visibled) {
-                    unvisibledLabel(this.dispatch, label.id);
-                  } else {
-                    visibledLabel(this.dispatch, label.id);
-                  }
-                }}
-                througnLeft={false}
-                througnRight={false}
-                >
-                <ListItemLeftBackground>
-                  {(label.visibled) ?
-                    (<Icon>visibility_off</Icon>) :
-                    (<Icon>visibility</Icon>)
-                  }
-                </ListItemLeftBackground>
-                <ListItemContent
-                  className={classNames({'list-item-content__unvisibled': !label.visibled})}
-                  onClick={() => {
-                    this.props.changeLocation(`/labels/${label.id}/edit`);
+              <ListItem key={label.id}>
+                <SwipeableView
+                  onSwipeLeft={() => {
+                    promiseConfirm(`Delete ${label.name} label?`).then(confirm_ => {
+                      if (confirm_) {
+                        deleteLabel(this.dispatch, label.id);
+                      }
+                    });
                   }}
-                  >{label.name}</ListItemContent>
-                <ListItemRightBackground>
-                  <Icon>delete</Icon>
-                </ListItemRightBackground>
+                  onSwipeRight={() => {
+                    if (label.visibled) {
+                      unvisibledLabel(this.dispatch, label.id);
+                    } else {
+                      visibledLabel(this.dispatch, label.id);
+                    }
+                  }}
+                  >
+                  <SwipeableViewBackground position='left'>
+                    {(label.visibled) ?
+                      (<Icon>visibility_off</Icon>) :
+                      (<Icon>visibility</Icon>)
+                    }
+                  </SwipeableViewBackground>
+                  <SwipeableViewContent
+                    className={classNames({'list-item-content__unvisibled': !label.visibled})}
+                    onClick={() => {
+                      this.props.changeLocation(`/labels/${label.id}/edit`);
+                    }}
+                    >{label.name}</SwipeableViewContent>
+                  <SwipeableViewBackground position='right'>
+                    <Icon>delete</Icon>
+                  </SwipeableViewBackground>
+                </SwipeableView>
               </ListItem>
             );
           })}

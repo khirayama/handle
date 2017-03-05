@@ -21,22 +21,16 @@ import {LinkText} from 'components/link-text';
 import {Icon} from 'components/icon';
 import {IconButton} from 'components/icon-button';
 import {
-  List,
-  ListItem,
-  ListItemContent,
-  ListItemLeftBackground,
-  ListItemRightBackground,
-} from 'components/list';
-import {
-  SortableList,
-  SortableListItem,
-} from 'components/sortable-list';
-import {
   Tabs,
   TabList,
   TabListItem,
   TabContentList,
   TabContentListItem,
+  List,
+  ListItem,
+  SwipeableView,
+  SwipeableViewContent,
+  SwipeableViewBackground,
 } from '@khirayama/handle-ui';
 
 function updateQueryStringParameter(uri, key, value) {
@@ -148,7 +142,7 @@ export class DashboardPage extends Container {
 
       if (this.state.ui === 'desktop') {
         labelTabContentList = (
-          <SortableList
+          <List
             className="task-list"
             ref={taskList => {
               this.taskLists = Object.assign({}, this.taskLists, {
@@ -161,12 +155,12 @@ export class DashboardPage extends Container {
             >
             {filterdTasks.map(task => {
               return (
-                <SortableListItem
+                <ListItem
                   key={task.id}
                   ref={taskListItem => {
                     this.taskListItems = Object.assign({}, this.taskListItems, {[task.id]: taskListItem});
                   }}
-                  className={classNames({'sortable-list-item__completed': task.completed})}
+                  className={classNames({'list-item__completed': task.completed})}
                   >
                   <IconButton
                     className="task-list-left-icon"
@@ -229,9 +223,9 @@ export class DashboardPage extends Container {
                       deleteTask(this.dispatch, task.id);
                     }}
                     >delete</IconButton>
-                </SortableListItem>
+                </ListItem>
               );
-            })}</SortableList>
+            })}</List>
         );
       } else if (this.state.ui === 'mobile') {
         labelTabContentList = (
@@ -253,47 +247,50 @@ export class DashboardPage extends Container {
                   ref={taskListItem => {
                     this.taskListItems = Object.assign({}, this.taskListItems, {[task.id]: taskListItem});
                   }}
-                  onSwipeLeft={() => {
-                    deleteTask(this.dispatch, task.id);
-                  }}
-                  onSwipeRight={() => {
-                    if (task.completed) {
-                      uncompletedTask(this.dispatch, task.id);
-                    } else {
-                      completedTask(this.dispatch, task.id);
-                    }
-                  }}
-                  througnRight={false}
                   >
-                  <ListItemLeftBackground>
-                    <Icon>check</Icon>
-                  </ListItemLeftBackground>
-                  <ListItemContent
-                    onClick={() => {
-                      this.props.changeLocation(`/tasks/${task.id}/edit`);
+                  <SwipeableView
+                    onSwipeLeft={() => {
+                      deleteTask(this.dispatch, task.id);
                     }}
-                    className={classNames({'list-item-content__completed': task.completed})}
+                    onSwipeRight={() => {
+                      if (task.completed) {
+                        uncompletedTask(this.dispatch, task.id);
+                      } else {
+                        completedTask(this.dispatch, task.id);
+                      }
+                    }}
+                    throughLeft={true}
                     >
-                    {(task.schedule) ? (
-                      <span className="task-list-item-content-schedule-container">
-                        <span className={`task-list-item-content-schedule task-list-item-content-schedule__${task.schedule.shortMonthName.toLowerCase()}`}>
-                          <span className="task-list-item-content-schedule-month">
-                            {task.schedule.shortMonthName}
-                          </span>
-                          <span className="task-list-item-content-schedule-date">
-                            {task.schedule.date}
-                          </span>
-                          <span className="task-list-item-content-schedule-day">
-                            {task.schedule.shortDayName}
+                    <SwipeableViewBackground position='left'>
+                      <Icon>check</Icon>
+                    </SwipeableViewBackground>
+                    <SwipeableViewContent
+                      onClick={() => {
+                        this.props.changeLocation(`/tasks/${task.id}/edit`);
+                      }}
+                      className={classNames({'list-item-content__completed': task.completed})}
+                      >
+                      {(task.schedule) ? (
+                        <span className="task-list-item-content-schedule-container">
+                          <span className={`task-list-item-content-schedule task-list-item-content-schedule__${task.schedule.shortMonthName.toLowerCase()}`}>
+                            <span className="task-list-item-content-schedule-month">
+                              {task.schedule.shortMonthName}
+                            </span>
+                            <span className="task-list-item-content-schedule-date">
+                              {task.schedule.date}
+                            </span>
+                            <span className="task-list-item-content-schedule-day">
+                              {task.schedule.shortDayName}
+                            </span>
                           </span>
                         </span>
-                      </span>
-                    ) : null}
-                    <span className="task-list-item-content-text"><LinkText text={task.content}/></span>
-                  </ListItemContent>
-                  <ListItemRightBackground>
-                    <Icon>delete</Icon>
-                  </ListItemRightBackground>
+                      ) : null}
+                      <span className="task-list-item-content-text"><LinkText text={task.content}/></span>
+                    </SwipeableViewContent>
+                    <SwipeableViewBackground position='right'>
+                      <Icon>delete</Icon>
+                    </SwipeableViewBackground>
+                  </SwipeableView>
                 </ListItem>
               );
             })}</List>
