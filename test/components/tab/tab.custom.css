@@ -1,0 +1,49 @@
+.tab {
+  width: 100%;
+  height: 100%;
+
+  .tab-list {
+    height: 48px;
+    box-shadow: 0 1px 1px $color-ui-shadow;
+
+    .tab-list-item {
+      position: relative;
+      text-align: center;
+      font-weight: $font-weight-bold;
+      background-color: $color-white;
+
+      &::after {
+        position: absolute;
+        z-index: 0;
+        left: 50%;
+        bottom: 0;
+        width: 0;
+        height: 3px;
+        content: '';
+        background: $color-primary;
+        transition-timing-function: $ease-out-expo;
+        transition-duration: $time-basic;
+        transition-property: width, left;
+        will-change: width, left;
+      }
+      &.tab-list-item__active {
+        &::after {
+          width: 100%;
+          left: 0;
+        }
+      }
+    }
+  }
+
+  .tab-content-list {
+    height: calc(100% - 48px);
+    will-change: left;
+
+    .tab-content-list-item {
+      overflow: hidden;
+      width: 100%;
+      height: 100%;
+      background: #fff;
+    }
+  }
+}

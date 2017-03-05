@@ -1,0 +1,218 @@
+$ease-out: ease-out;
+$ease-out-expo: cubic-bezier(0.19, 1, 0.32, 1);
+
+$timing-transition: 600ms $ease-out-expo;
+
+$font-family: 'Noto Sans Japanese', sans-serif;
+$font-weight-normal: 400;
+$font-weight-bold: 700;
+$font-base-size: 16px;
+
+$radius: 2px;
+$border: solid 1px $color-divider;
+
+html,
+body {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+html {
+  color: $color-text;
+  text-align: justify;
+  font-weight: $font-weight-normal;
+  font-size: $font-base-size;
+  font-family: $font-family;
+}
+
+/* prevent scroll bound for iOS */
+body {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.application {
+  width: 100%;
+  height: 100%;
+
+  &-content {
+    width: 100%;
+    height: 100%;
+    background: $color-background;
+  }
+}
+
+.page-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: scroll;
+  width: 100%;
+  height: 100%;
+}
+
+.page {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: $color-white;
+  box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.1);
+  z-index: 0;
+
+  .page-content {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.page-scale-in {
+  &.page-transition-enter {
+    .page-content {
+      transform: scale(.9)
+    }
+  }
+  &.page-transition-enter.page-transition-enter-active {
+    .page-content {
+      transform: scale(1);
+      transition: $timing-transition;
+      transition-property: transform;
+      will-change: transform;
+    }
+  }
+}
+
+.page-scale-out {
+  &.page-transition-leave {
+    .page-content {
+      z-index: -1;
+      transform: scale(1);
+    }
+  }
+  &.page-transition-leave.page-transition-leave-active {
+    .page-content {
+      transform: scale(.9);
+      transition: $timing-transition;
+      transition-property: transform;
+      will-change: transform;
+    }
+  }
+}
+
+.page-slide-in {
+  &.page-transition-enter {
+    z-index: 1;
+    transform: translateX(100%);
+  }
+  &.page-transition-enter.page-transition-enter-active {
+    transform: translateX(0);
+    transition: $timing-transition;
+    transition-property: transform;
+    will-change: transform;
+  }
+}
+
+.page-slide-out {
+  &.page-transition-leave {
+    transform: translateX(0);
+  }
+  &.page-transition-leave.page-transition-leave-active {
+    z-index: 1;
+    transform: translateX(100%);
+    transition: $timing-transition;
+    transition-property: transform;
+    will-change: transform;
+  }
+}
+
+.page-pop-up {
+  &.page-transition-enter {
+    z-index: 1;
+    transform: translateY(100%);
+  }
+  &.page-transition-enter.page-transition-enter-active {
+    transform: translateY(0);
+    transition: $timing-transition;
+    transition-property: transform;
+    will-change: transform;
+  }
+}
+
+.page-pop-down {
+  &.page-transition-leave {
+    transform: translateY(0);
+  }
+  &.page-transition-leave.page-transition-leave-active {
+    z-index: 1;
+    transform: translateY(100%);
+    transition: $timing-transition;
+    transition-property: transform;
+    will-change: transform;
+  }
+}
+
+.icon {
+  display: inline-block;
+  overflow: hidden;
+  width: 1em;
+  vertical-align: text-bottom;
+  font-style: normal;
+  font-size: inherit;
+  font-family: 'Material Icons';
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: 'liga';
+}
+
+.size__inline {
+  width: auto;
+}
+
+.size__spread {
+  width: 100%;
+}
+
+.__promise-confirm {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, .8);
+  z-index: 1000000;
+  &-content {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 200px;
+    max-width: 280px;
+    background: $color-white;
+    border: $border;
+    border-radius: $radius;
+    padding: 12px;
+    &-message {
+      padding: 0 0 24px;
+    }
+    &-buttons {
+      text-align: right;
+    }
+    &-approval-button,
+    &-denial-button {
+      appearance: none;
+      background: $color-white;
+      padding: 4px 8px;
+      font-weight: $font-weight-bold;
+      border-radius: $radius;
+      &:focus {
+        background: $color-ui-focus;
+      }
+    }
+  }
+}

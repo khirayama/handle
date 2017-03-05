@@ -1,0 +1,46 @@
+.link {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: $radius;
+  background-color: inherit;
+  color: $color-text-primary;
+  text-align: center;
+  font-weight: $font-weight-bold;
+  cursor: pointer;
+  transition-timing-function: $ease-out-expo;
+  transition-duration: $time-basic;
+  transition-property: background;
+  user-select: none;
+
+  .icon {
+    color: $color-text-secondary;
+    transition-timing-function: $ease-out-expo;
+    transition-duration: $time-basic;
+    transition-property: background, color;
+  }
+}
+
+.desktop {
+  .link {
+    &:hover,
+    &:focus {
+      background-color: $color-ui-focus;
+      .icon {
+        color: $color-text-primary;
+        background-color: $color-ui-focus;
+      }
+    }
+
+    &:active {
+      background-color: $color-ui-active;
+      .icon {
+        color: $color-text-primary;
+        background-color: $color-ui-active;
+      }
+    }
+  }
+}
+
+.link__attention {
+  color: $color-accent-attention;
+}
