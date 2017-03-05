@@ -41,5 +41,5 @@
   "start_url": "/dashboard",
   "display": "standalone",
   "theme_color": "#fff",
-  "background_color": "##fff"
+  "background_color": "white"
 }
