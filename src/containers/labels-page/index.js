@@ -133,7 +133,7 @@ export class LabelsPage extends Container {
                     }
                   </SwipeableViewBackground>
                   <SwipeableViewContent
-                    className={classNames({'list-item-content__unvisibled': !label.visibled})}
+                    className={classNames({'swipeable-view-content__unvisibled': !label.visibled})}
                     onClick={() => {
                       this.props.changeLocation(`/labels/${label.id}/edit`);
                     }}

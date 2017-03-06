@@ -268,7 +268,7 @@ export class DashboardPage extends Container {
                       onClick={() => {
                         this.props.changeLocation(`/tasks/${task.id}/edit`);
                       }}
-                      className={classNames({'list-item-content__completed': task.completed})}
+                      className={classNames({'swipeable-view-content__completed': task.completed})}
                       >
                       {(task.schedule) ? (
                         <span className="task-list-item-content-schedule-container">
