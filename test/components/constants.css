@@ -1,8 +1,0 @@
-$ease-out: ease-out;
-$ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
-
-$time-min: 100ms;
-$time-fast: 175ms;
-$time-basic: 200ms;
-$time-slow: 400ms;
-$time-max: 600ms;
