@@ -3,7 +3,7 @@ import {Container} from 'libs/container';
 import promiseConfirm from 'libs/promise-confirm';
 
 import {Link} from 'components/link';
-import {Icon} from 'components/icon';
+import {Icon} from '@khirayama/handle-ui';
 
 export class ProfilePage extends Container {
   render() {

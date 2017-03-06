@@ -7,8 +7,8 @@ import {
 } from 'action-creators/task-action-creators';
 
 import {Link} from 'components/link';
-import {Icon} from 'components/icon';
 import {IconButton} from 'components/icon-button';
+import {Icon} from '@khirayama/handle-ui';
 
 export class TaskPage extends Container {
   constructor(props) {

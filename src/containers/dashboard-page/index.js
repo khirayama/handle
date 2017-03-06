@@ -18,7 +18,6 @@ import {
 import {ApplicationHeader} from 'components/application-header';
 import {Link} from 'components/link';
 import {LinkText} from 'components/link-text';
-import {Icon} from 'components/icon';
 import {IconButton} from 'components/icon-button';
 import {
   Tabs,
@@ -31,6 +30,7 @@ import {
   SwipeableView,
   SwipeableViewContent,
   SwipeableViewBackground,
+  Icon,
 } from '@khirayama/handle-ui';
 
 function updateQueryStringParameter(uri, key, value) {

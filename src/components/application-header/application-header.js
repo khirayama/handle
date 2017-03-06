@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 
 import {Link} from 'components/link';
-import {Icon} from 'components/icon';
+import {Icon} from '@khirayama/handle-ui';
 
 export class ApplicationHeader extends Component {
   render() {
