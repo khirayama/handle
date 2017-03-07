@@ -11,7 +11,6 @@ import {
 } from 'action-creators/label-action-creators';
 
 import {Link} from 'components/link';
-import {IconButton} from 'components/icon-button';
 import {
   Tabs,
   TabList,
@@ -24,6 +23,7 @@ import {
   SwipeableViewContent,
   SwipeableViewBackground,
   Icon,
+  IconButton,
 } from '@khirayama/handle-ui';
 
 export class LabelsPage extends Container {

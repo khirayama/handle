@@ -7,8 +7,10 @@ import {
 } from 'action-creators/label-action-creators';
 
 import {Link} from 'components/link';
-import {IconButton} from 'components/icon-button';
-import {Icon} from '@khirayama/handle-ui';
+import {
+  Icon,
+  IconButton,
+} from '@khirayama/handle-ui';
 
 export class LabelPage extends Container {
   constructor(props) {

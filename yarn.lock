@@ -38,9 +38,9 @@
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/@khirayama/circuit/-/circuit-1.1.1.tgz#cb2451492936937d2c749907fa0314a77f3494da"
 
-"@khirayama/handle-ui@^0.0.7":
-  version "0.0.7"
-  resolved "https://registry.yarnpkg.com/@khirayama/handle-ui/-/handle-ui-0.0.7.tgz#1a2ac06a051563cb37a9aa7d53bf8972f59a616d"
+"@khirayama/handle-ui@^0.0.8":
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/@khirayama/handle-ui/-/handle-ui-0.0.8.tgz#aaba9db2dcdd42c484a27d266b17cabdc7cd5fee"
   dependencies:
     autoprefixer "^6.7.6"
     babel-cli "^6.23.0"
@@ -60,6 +60,7 @@
     react "^15.4.2"
     react-addons-css-transition-group "^15.4.2"
     react-dom "^15.4.2"
+    ua-parser-js "^0.7.12"
 
 JSONStream@^0.8.4:
   version "0.8.4"
@@ -6632,7 +6633,7 @@ typedarray@~0.0.5:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
 
-ua-parser-js@^0.7.9:
+ua-parser-js@^0.7.12, ua-parser-js@^0.7.9:
   version "0.7.12"
   resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.12.tgz#04c81a99bdd5dc52263ea29d24c6bf8d4818a4bb"
 
