@@ -15,7 +15,6 @@ import {
   fixTaskPriorities,
 } from 'action-creators/task-action-creators';
 
-import {ApplicationHeader} from 'components/application-header';
 import {Link} from 'components/link';
 import {LinkText} from 'components/link-text';
 import {
@@ -311,7 +310,16 @@ export class DashboardPage extends Container {
     return (
       <section className="page dashboard-page">
         <section className="page-content">
-          <ApplicationHeader imageUrl={state.profile.imageUrl}/>
+          <section className="application-header">
+            <Link href="/profile" className="setting-link">
+              <div className="setting-link-content">
+                <img src={state.profile.imageUrl}/>
+              </div>
+            </Link>
+            <Link href="/labels" className="labels-link">
+              <Icon>label</Icon>
+            </Link>
+          </section>
           <section className="tab-container">
             <Tabs index={tabIndex}>
               <TabList>{labelTabElements}</TabList>
