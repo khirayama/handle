@@ -60,8 +60,8 @@ export class DashboardPage extends Container {
       if (this.taskLists[this.state.selectedLabelId]) {
         selectedTaskList = this.taskLists[this.state.selectedLabelId].listElement;
       }
-      if (this.taskListItems[this.state.selectedTaskId]) {
-        selectedTaskListItem = this.taskListItems[this.state.selectedTaskId].listItem;
+      if (this.taskListItemContents[this.state.selectedTaskId]) {
+        selectedTaskListItem = this.taskListItemContents[this.state.selectedTaskId].listItem;
       }
 
       if (selectedTaskList && selectedTaskListItem) {
@@ -87,8 +87,8 @@ export class DashboardPage extends Container {
         if (this.taskLists[this.state.selectedLabelId]) {
           selectedTaskList = this.taskLists[this.state.selectedLabelId].listElement;
         }
-        if (this.taskListItems[this.state.selectedTaskId]) {
-          selectedTaskListItem = this.taskListItems[this.state.selectedTaskId].listItem;
+        if (this.taskListItemContents[this.state.selectedTaskId]) {
+          selectedTaskListItem = this.taskListItemContents[this.state.selectedTaskId].listItem;
         }
 
         if (selectedTaskList && selectedTaskListItem) {
@@ -156,9 +156,6 @@ export class DashboardPage extends Container {
               return (
                 <ListItem
                   key={task.id}
-                  ref={taskListItem => {
-                    this.taskListItems = Object.assign({}, this.taskListItems, {[task.id]: taskListItem});
-                  }}
                   className={classNames({'list-item__completed': task.completed})}
                   >
                   <IconButton
@@ -175,6 +172,9 @@ export class DashboardPage extends Container {
                     >done</IconButton>
                   <div
                     className="task-list-item-content"
+                    ref={taskListItem => {
+                      this.taskListItemContents = Object.assign({}, this.taskListItemContents, {[task.id]: taskListItem});
+                    }}
                     onMouseDown={() => {
                       this.down = true;
                       this.clickable = true;
@@ -243,9 +243,6 @@ export class DashboardPage extends Container {
               return (
                 <ListItem
                   key={task.id}
-                  ref={taskListItem => {
-                    this.taskListItems = Object.assign({}, this.taskListItems, {[task.id]: taskListItem});
-                  }}
                   >
                   <SwipeableView
                     onSwipeLeft={() => {
@@ -266,6 +263,9 @@ export class DashboardPage extends Container {
                     <SwipeableViewContent
                       onClick={() => {
                         this.props.changeLocation(`/tasks/${task.id}/edit`);
+                      }}
+                      ref={taskListItem => {
+                        this.taskListItemContents = Object.assign({}, this.taskListItemContents, {[task.id]: taskListItem});
                       }}
                       className={classNames({'swipeable-view-content__completed': task.completed})}
                       >
