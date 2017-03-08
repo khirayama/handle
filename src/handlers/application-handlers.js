@@ -31,6 +31,8 @@ function template(head, state, content) {
         <link rel="manifest" href="/manifest.json">
 
         <!-- standalone for ios-->
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="apple-mobile-web-app-title" content="Handle">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <link rel="apple-touch-icon" sizes="76x76" href="/images/icon-ios.png">
 

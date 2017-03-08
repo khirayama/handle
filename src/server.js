@@ -36,6 +36,7 @@ app.use(bodyParser.json());
 app.use(session({
   keys: [process.env.SECRET_KEY],
   name: '_handle_session',
+  maxAge: 1000 * 60 * 24 * 365,
 }));
 app.use((req, res, next) => {
   // priority: query - setting - cookie - default

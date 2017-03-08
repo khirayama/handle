@@ -6,6 +6,10 @@ import {Link} from 'components/link';
 import {Icon} from '@khirayama/handle-ui';
 
 export class ProfilePage extends Container {
+  handleClickLink(event) {
+    event.preventDefault();
+    location.href = event.currentTarget.href;
+  }
   render() {
     const profile = this.state.profile;
 
@@ -24,7 +28,7 @@ export class ProfilePage extends Container {
             </div>
             <div className="profile-username">{profile.username}</div>
             <ul className="profile-action-list">
-              <li><a href="/logout" className="link">Logout</a></li>
+              <li><a href="/logout" className="link" onClick={this.handleClickLink}>Logout</a></li>
               <li><a
                 onClick={() => {
                   promiseConfirm('Delete account?').then(confirm_ => {
