@@ -38,9 +38,9 @@
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/@khirayama/circuit/-/circuit-1.1.1.tgz#cb2451492936937d2c749907fa0314a77f3494da"
 
-"@khirayama/handle-ui@^0.0.8":
-  version "0.0.8"
-  resolved "https://registry.yarnpkg.com/@khirayama/handle-ui/-/handle-ui-0.0.8.tgz#aaba9db2dcdd42c484a27d266b17cabdc7cd5fee"
+"@khirayama/handle-ui@^0.0.9":
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/@khirayama/handle-ui/-/handle-ui-0.0.9.tgz#ca9fd687683acf24a405f42b3a88ea2a31a8427f"
   dependencies:
     autoprefixer "^6.7.6"
     babel-cli "^6.23.0"
@@ -58,7 +58,7 @@
     postcss-nested "^1.0.0"
     postcss-simple-vars "^3.0.0"
     react "^15.4.2"
-    react-addons-css-transition-group "^15.4.2"
+    react-addons-transition-group "^15.4.2"
     react-dom "^15.4.2"
     ua-parser-js "^0.7.12"
 
@@ -5534,6 +5534,13 @@ rc@^1.0.1, rc@^1.1.6, rc@~1.1.6:
 react-addons-css-transition-group@^15.4.1, react-addons-css-transition-group@^15.4.2:
   version "15.4.2"
   resolved "https://registry.yarnpkg.com/react-addons-css-transition-group/-/react-addons-css-transition-group-15.4.2.tgz#b7828834dfa14229fe07750e331e8a8cb6fb7745"
+  dependencies:
+    fbjs "^0.8.4"
+    object-assign "^4.1.0"
+
+react-addons-transition-group@^15.4.2:
+  version "15.4.2"
+  resolved "https://registry.yarnpkg.com/react-addons-transition-group/-/react-addons-transition-group-15.4.2.tgz#4c42fa1c2ce024acab2924316c0f11268ded1af3"
   dependencies:
     fbjs "^0.8.4"
     object-assign "^4.1.0"
