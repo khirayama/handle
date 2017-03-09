@@ -11,6 +11,7 @@
   transition-duration: $time-basic;
   transition-property: background;
   user-select: none;
+  touch-action: manipulation;
 
   .icon {
     color: $color-text-secondary;

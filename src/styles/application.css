@@ -24,6 +24,7 @@ html {
   font-weight: $font-weight-normal;
   font-size: $font-base-size;
   font-family: $font-family;
+  touch-action: manipulation;
 }
 
 /* prevent scroll bound for iOS */

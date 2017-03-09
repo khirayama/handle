@@ -23,6 +23,7 @@ const routes = [{
   head: {title: 'Handle'},
   options: {
     data: {dispatch},
+    async: false,
   },
 }, {
   path: '/dashboard',
@@ -32,7 +33,7 @@ const routes = [{
   className: 'connector-dashboard',
   options: {
     data: {dispatch},
-    async: true,
+    async: false,
   },
 }, {
   path: '/tasks/new',
@@ -42,7 +43,7 @@ const routes = [{
   className: 'connector-tasks-new',
   options: {
     data: {dispatch},
-    async: true,
+    async: false,
   },
 }, {
   path: '/tasks/:id/edit',
@@ -52,7 +53,7 @@ const routes = [{
   className: 'connector-tasks-edit',
   options: {
     data: {dispatch},
-    async: true,
+    async: false,
   },
 }, {
   path: '/labels',
@@ -62,6 +63,7 @@ const routes = [{
   className: 'connector-labels',
   options: {
     data: {dispatch},
+    async: false,
   },
 }, {
   path: '/labels/new',
@@ -71,7 +73,7 @@ const routes = [{
   className: 'connector-labels-new',
   options: {
     data: {dispatch},
-    async: true,
+    async: false,
   },
 }, {
   path: '/labels/:id/edit',
@@ -81,7 +83,7 @@ const routes = [{
   className: 'connector-labels-edit',
   options: {
     data: {dispatch},
-    async: true,
+    async: false,
   },
 }, {
   path: '/profile',
@@ -90,6 +92,7 @@ const routes = [{
   className: 'connector-profile',
   options: {
     data: {dispatch},
+    async: false,
   },
 }, {
   path: '/*',
@@ -98,6 +101,7 @@ const routes = [{
   className: 'connector-not-found',
   options: {
     data: {dispatch},
+    async: false,
   },
 }];
 
