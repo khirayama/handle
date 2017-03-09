@@ -50,6 +50,7 @@
   .label-page {
     /* pop up */
     &.page-transition-enter {
+      pointer-events: none;
       z-index: 1;
       transform: translateY(100%);
     }
@@ -62,6 +63,7 @@
 
     /* pop down */
     &.page-transition-leave {
+      pointer-events: none;
       transform: translateY(0);
     }
     &.page-transition-leave.page-transition-leave-active {

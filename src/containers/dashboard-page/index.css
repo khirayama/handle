@@ -79,6 +79,7 @@
   .dashboard-page {
     /* scale in */
     &.page-transition-enter {
+      pointer-events: none;
       .page-content {
         transform: scale(.9)
       }
@@ -94,6 +95,7 @@
 
     /* scale out */
     &.page-transition-leave {
+      pointer-events: none;
       .page-content {
         z-index: -1;
         transform: scale(1);
