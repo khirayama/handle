@@ -34,6 +34,7 @@ i {
   padding: 0;
   outline: 0;
   border: 0;
+  border-radius: 0;
   letter-spacing: calc($letter-spacing / 1);
   font-weight: inherit;
   font-style: normal;

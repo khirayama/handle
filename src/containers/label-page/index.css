@@ -34,7 +34,7 @@
       height: calc(100% - 56px);
       .label-form-content-textarea-container {
         width: 100%;
-        height: calc(100% - 51px);
+        height: 100%;
         .label-form-content-textarea {
           width: 100%;
           height: 20%;
