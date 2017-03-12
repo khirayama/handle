@@ -284,7 +284,7 @@ export class DashboardPage extends Container {
                           </span>
                         </span>
                       ) : null}
-                      <span className="task-list-item-content-text"><LinkText text={task.content}/></span>
+                      <span className="task-list-item-content-text"><LinkText>{task.content}</LinkText></span>
                     </SwipeableViewContent>
                     <SwipeableViewBackground position='right'>
                       <Icon>delete</Icon>
