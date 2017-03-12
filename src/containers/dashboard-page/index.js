@@ -16,7 +16,6 @@ import {
 } from 'action-creators/task-action-creators';
 
 import {Link} from 'components/link';
-import {LinkText} from 'components/link-text';
 import {
   Tabs,
   TabList,
@@ -30,6 +29,7 @@ import {
   SwipeableViewBackground,
   Icon,
   IconButton,
+  LinkText,
 } from '@khirayama/handle-ui';
 
 function updateQueryStringParameter(uri, key, value) {
@@ -213,7 +213,7 @@ export class DashboardPage extends Container {
                         </span>
                       </span>
                     ) : null}
-                    <span className="task-list-item-content-text"><LinkText text={task.content}/></span>
+                    <span className="task-list-item-content-text"><LinkText>{task.content}</LinkText></span>
                   </div>
                   <IconButton
                     className="task-list-right-icon"
