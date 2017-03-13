@@ -38,9 +38,9 @@
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/@khirayama/circuit/-/circuit-1.1.1.tgz#cb2451492936937d2c749907fa0314a77f3494da"
 
-"@khirayama/handle-ui@^0.0.16":
-  version "0.0.16"
-  resolved "https://registry.yarnpkg.com/@khirayama/handle-ui/-/handle-ui-0.0.16.tgz#f4c7194ecce927e23cfb4a5aa23fac9a1e274a44"
+"@khirayama/handle-ui@^0.0.17":
+  version "0.0.17"
+  resolved "https://registry.yarnpkg.com/@khirayama/handle-ui/-/handle-ui-0.0.17.tgz#64a651b99ae0b93b3d4767bea2b84977f4d31c0d"
   dependencies:
     autoprefixer "^6.7.6"
     babel-cli "^6.23.0"

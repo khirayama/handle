@@ -41,7 +41,7 @@
   },
   "dependencies": {
     "@khirayama/circuit": "^1.1.1",
-    "@khirayama/handle-ui": "^0.0.16",
+    "@khirayama/handle-ui": "^0.0.17",
     "autoprefixer": "^6.7.7",
     "ava": "^0.18.2",
     "axios": "^0.15.3",
