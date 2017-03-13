@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
   entry: './src/client.js',
@@ -6,6 +7,9 @@ module.exports = {
     path: path.resolve(__dirname, 'dist', 'public'),
     filename: 'bundle.js'
   },
+  plugins: [
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+  ],
   resolve: {
     modules: [
       path.join(__dirname, "src"),
