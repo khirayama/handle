@@ -3,8 +3,7 @@ $ease-out-expo: cubic-bezier(0.19, 1, 0.32, 1);
 
 $timing-transition: 600ms $ease-out-expo;
 
-/* $font-family: 'Noto Sans Japanese', sans-serif; */
-$font-family: sans-serif;
+$font-family: 'Noto Sans Japanese', sans-serif;
 $font-weight-normal: 400;
 $font-weight-bold: 700;
 $font-base-size: 16px;
