@@ -2,13 +2,13 @@ import passport from 'passport';
 
 import {User, Task, Label} from 'models';
 
-export function authHandler(req, res) {
+export function authHandler(req, res, next) {
   const provider = req.params.provider;
 
   const scope = null;
   const authenticate = passport.authenticate(provider, {scope});
 
-  authenticate(req, res);
+  authenticate(req, res, next);
 }
 
 export function authCallbackHandler(req, res, next) {
