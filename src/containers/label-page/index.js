@@ -1,6 +1,8 @@
 import React from 'react';
 import {Container} from 'libs/container';
 
+import {PAGE_TRANSITION_TIME} from 'components/constants';
+
 import {
   createLabel,
   updateLabel,
@@ -24,6 +26,15 @@ export class LabelPage extends Container {
       name: (label) ? label.name : '',
       selectedLabelId: this.state.selectedLabelId || null,
     });
+  }
+  componentDidMount() {
+    super.componentDidMount();
+    setTimeout(() => {
+      const input = document.querySelector('.label-form-content-input');
+      if (input.focus) {
+        input.focus();
+      }
+    }, PAGE_TRANSITION_TIME + 3);
   }
   render() {
     return (

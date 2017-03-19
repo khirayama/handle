@@ -1,6 +1,8 @@
 import React from 'react';
 import {Container} from 'libs/container';
 
+import {PAGE_TRANSITION_TIME} from 'components/constants';
+
 import {
   createTask,
   updateTask,
@@ -30,6 +32,15 @@ export class TaskPage extends Container {
       content: (task) ? task.content : '',
       selectedLabelId: this.state.selectedLabelId || ((task) ? task.labelId : (activeLabels[0] || {}).id) || null,
     });
+  }
+  componentDidMount() {
+    super.componentDidMount();
+    setTimeout(() => {
+      const input = document.querySelector('.task-form-content-input');
+      if (input.focus) {
+        input.focus();
+      }
+    }, PAGE_TRANSITION_TIME + 3);
   }
   render() {
     const state = this.state;

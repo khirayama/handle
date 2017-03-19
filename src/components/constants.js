@@ -1,3 +1,4 @@
+export const PAGE_TRANSITION_TIME = 600;
 export const TRANSITION_TIME = 175;
 export const THRESHOLD_DELTA = 0.8;
 export const THRESHOLD_HOLD_TIME = 500;
