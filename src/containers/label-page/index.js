@@ -49,10 +49,10 @@ export class LabelPage extends Container {
               ><Icon>close</Icon></Link>
           </header>
           <section className="label-form">
-            <div className="label-form-content-textarea-container">
-              <textarea
-                autoFocus
-                className="label-form-content-textarea"
+            <div className="label-form-content-input-container">
+              <input
+                type="text"
+                className="label-form-content-input"
                 placeholder="Label Name"
                 value={this.state.name}
                 onChange={event => {

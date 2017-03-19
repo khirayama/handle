@@ -54,13 +54,10 @@
           }
         }
       }
-      .task-form-content-textarea-container {
+      .task-form-content-input-container {
         width: 100%;
-        height: calc(100% - 51px);
-        .task-form-content-textarea {
+        .task-form-content-input {
           width: 100%;
-          height: 20%;
-          min-height: 80px;
           padding: 12px;
           resize: none;
         }

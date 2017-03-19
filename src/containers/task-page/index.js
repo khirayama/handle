@@ -76,10 +76,10 @@ export class TaskPage extends Container {
                 </select>
               ) : null}
             </div>
-            <div className="task-form-content-textarea-container">
-              <textarea
-                autoFocus
-                className="task-form-content-textarea"
+            <div className="task-form-content-input-container">
+              <input
+                type="text"
+                className="task-form-content-input"
                 placeholder="Task Content"
                 value={this.state.content}
                 onChange={event => {
