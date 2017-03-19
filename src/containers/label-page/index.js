@@ -30,10 +30,7 @@ export class LabelPage extends Container {
   componentDidMount() {
     super.componentDidMount();
     setTimeout(() => {
-      const input = document.querySelector('.label-form-content-input');
-      if (input.focus) {
-        input.focus();
-      }
+      this.inputElement.focus();
     }, PAGE_TRANSITION_TIME + 3);
   }
   render() {
@@ -60,12 +57,18 @@ export class LabelPage extends Container {
               ><Icon>close</Icon></Link>
           </header>
           <section className="label-form">
-            <div className="label-form-content-input-container">
+            <div
+              className="label-form-content-input-container"
+              onClick={() => {
+                this.inputElement.focus();
+              }}
+              >
               <input
                 type="text"
                 className="label-form-content-input"
                 placeholder="Label Name"
                 value={this.state.name}
+                ref={inputElement => this.inputElement = inputElement}
                 onChange={event => {
                   this.setState({name: event.target.value});
                 }}

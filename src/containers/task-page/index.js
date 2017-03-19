@@ -36,10 +36,7 @@ export class TaskPage extends Container {
   componentDidMount() {
     super.componentDidMount();
     setTimeout(() => {
-      const input = document.querySelector('.task-form-content-input');
-      if (input.focus) {
-        input.focus();
-      }
+      this.inputElement.focus();
     }, PAGE_TRANSITION_TIME + 3);
   }
   render() {
@@ -87,12 +84,18 @@ export class TaskPage extends Container {
                 </select>
               ) : null}
             </div>
-            <div className="task-form-content-input-container">
+            <div
+              className="task-form-content-input-container"
+              onClick={() => {
+                this.inputElement.focus();
+              }}
+              >
               <input
                 type="text"
                 className="task-form-content-input"
                 placeholder="Task Content"
                 value={this.state.content}
+                ref={inputElement => this.inputElement = inputElement}
                 onChange={event => {
                   this.setState({content: event.target.value});
                 }}

@@ -34,10 +34,10 @@
       height: calc(100% - 56px);
       .label-form-content-input-container {
         width: 100%;
+        height: 100%;
         .label-form-content-input {
           width: 100%;
           padding: 12px;
-          resize: none;
         }
       }
     }

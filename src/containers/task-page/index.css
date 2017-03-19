@@ -56,10 +56,10 @@
       }
       .task-form-content-input-container {
         width: 100%;
+        height: calc(100% - 51px);
         .task-form-content-input {
           width: 100%;
           padding: 12px;
-          resize: none;
         }
       }
     }
