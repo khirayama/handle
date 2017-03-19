@@ -255,9 +255,9 @@ export class DashboardPage extends Container {
                         completedTask(this.dispatch, task.id);
                       }
                     }}
-                    throughLeft={true}
+                    throughLeft
                     >
-                    <SwipeableViewBackground position='left'>
+                    <SwipeableViewBackground position="left">
                       <Icon>check</Icon>
                     </SwipeableViewBackground>
                     <SwipeableViewContent
@@ -286,7 +286,7 @@ export class DashboardPage extends Container {
                       ) : null}
                       <span className="task-list-item-content-text"><LinkText>{task.content}</LinkText></span>
                     </SwipeableViewContent>
-                    <SwipeableViewBackground position='right'>
+                    <SwipeableViewBackground position="right">
                       <Icon>delete</Icon>
                     </SwipeableViewBackground>
                   </SwipeableView>

@@ -12,11 +12,6 @@ import {
 
 import {Link} from 'components/link';
 import {
-  Tabs,
-  TabList,
-  TabListItem,
-  TabContentList,
-  TabContentListItem,
   List,
   ListItem,
   SwipeableView,
@@ -126,7 +121,7 @@ export class LabelsPage extends Container {
                     }
                   }}
                   >
-                  <SwipeableViewBackground position='left'>
+                  <SwipeableViewBackground position="left">
                     {(label.visibled) ?
                       (<Icon>visibility_off</Icon>) :
                       (<Icon>visibility</Icon>)
@@ -138,7 +133,7 @@ export class LabelsPage extends Container {
                       this.props.changeLocation(`/labels/${label.id}/edit`);
                     }}
                     >{label.name}</SwipeableViewContent>
-                  <SwipeableViewBackground position='right'>
+                  <SwipeableViewBackground position="right">
                     <Icon>delete</Icon>
                   </SwipeableViewBackground>
                 </SwipeableView>
