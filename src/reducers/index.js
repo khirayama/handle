@@ -30,13 +30,13 @@ export default function reducer(state, action) {
       break;
     }
 
-    // application
+    // Application
     case actionTypes.UPDATE_SELECTED_LABEL_ID: {
       state.selectedLabelId = action.selectedLabelId;
       break;
     }
 
-    // task
+    // Task
     case actionTypes.CREATE_TASK: {
       state.tasks.push(Object.assign({}, action.task));
       state.selectedTaskId = action.selectedTaskId;
@@ -64,7 +64,7 @@ export default function reducer(state, action) {
       break;
     }
 
-    // labels
+    // Labels
     case actionTypes.CREATE_LABEL: {
       state.labels.push(Object.assign({}, action.label));
       break;

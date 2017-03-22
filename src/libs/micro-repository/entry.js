@@ -32,7 +32,7 @@ export class Entry {
       }).catch(error => reject(error));
     });
   }
-  // command
+  // Command
   update(data, config) {
     return new Promise((resolve, reject) => {
       this._request.put(this._url(), data, config).then(({data}) => {
@@ -42,7 +42,7 @@ export class Entry {
     });
   }
 
-  // for cache
+  // For cache
   _clear() {
     this._cache = {
       response: null,

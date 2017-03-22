@@ -54,9 +54,9 @@ export class Collection {
       resolve(data);
     }).catch(error => reject(error));
   }
-  // command
+  // Command
   create(data, config) {
-    // return new Promise((resolve, reject) => {
+    // Return new Promise((resolve, reject) => {
     //   this._request.post(this._url(), data, config).then(res => {
     //     resolve(res.data);
     //     setTimeout(() => {
@@ -74,7 +74,7 @@ export class Collection {
     });
   }
   update(data, config) {
-    // return new Promise((resolve, reject) => {
+    // Return new Promise((resolve, reject) => {
     //   this.find(data.id, config).then(item => {
     //     Object.assign(item, data);
     //     this._request.put(this._url(data.id), data, config).then(res => {
@@ -99,7 +99,7 @@ export class Collection {
     });
   }
   delete(id, config) {
-    // return new Promise((resolve, reject) => {
+    // Return new Promise((resolve, reject) => {
     //   if (this._cache.response !== null) {
     //     this._cache.response = this._cache.response.filter(res => {
     //       return res.id !== id;
@@ -126,16 +126,16 @@ export class Collection {
     });
   }
 
-  // for cache
+  // For cache
   _clear() {
-    // this._cache = {
+    // This._cache = {
     //   response: null,
     //   configString: '{}',
     // };
   }
   // _save(config = {}, response = null) {
   _save() {
-    // this._cache.response = response;
+    // This._cache.response = response;
     // this._cache.configString = JSON.stringify(config);
   }
 }

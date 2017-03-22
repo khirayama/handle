@@ -52,7 +52,7 @@ export class DashboardPage extends Container {
     href = updateQueryStringParameter(href, 'task-id', this.state.selectedTaskId);
     history.replaceState(null, null, href);
 
-    // scroll to selectedTaskId's task for update
+    // Scroll to selectedTaskId's task for update
     if (this.state.selectedLabelId && this.state.selectedTaskId) {
       let selectedTaskList = null;
       let selectedTaskListItem = null;
@@ -74,7 +74,7 @@ export class DashboardPage extends Container {
     href = updateQueryStringParameter(href, 'task-id', this.state.selectedTaskId);
     history.replaceState(null, null, href);
 
-    // scroll to selectedTaskId's task for create and wait create animation
+    // Scroll to selectedTaskId's task for create and wait create animation
     if (
       this.state.selectedLabelId &&
       this.state.selectedTaskId &&

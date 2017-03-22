@@ -136,25 +136,25 @@ export function textToSchedule(dateText, referenceDate) {
 
   if (dateText) {
     if (dateText.match(/today/i)) {
-      // today
+      // Today
       date = moment(referenceDate);
     } else if (dateText.match(/tomorrow/i)) {
-      // tomorrow
+      // Tomorrow
       date = moment(referenceDate).add(1, 'days');
     } else if (dateText.match(/this/i)) {
-      // this week
+      // This week
       _dayNum = getDayNum(dateText);
       if (_dayNum !== -1) {
         date = moment(referenceDate).day(_dayNum);
       }
     } else if (dateText.match(/next/i)) {
-      // next week
+      // Next week
       _dayNum = getDayNum(dateText);
       if (_dayNum !== -1) {
         date = moment(referenceDate).day(_dayNum).add(7, 'days');
       }
     } else if (dateText.match(/\//)) {
-      // date
+      // Date
       _date = dateText.split('/');
       if (_date.length === 2) {
         _date.unshift(moment(referenceDate).year());
@@ -175,7 +175,7 @@ export function textToSchedule(dateText, referenceDate) {
         date = moment(_date).add(1, 'years');
       }
     } else {
-      // day
+      // Day
       _dayNum = getDayNum(dateText);
       if (_dayNum !== -1) {
         date = moment(referenceDate).day(_dayNum);

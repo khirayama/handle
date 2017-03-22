@@ -21,7 +21,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 const {ipv4} = getLocalAddress();
 
-// middleware
+// Middleware
 app.use(compression({
   threshold: 0,
   level: 9,
@@ -39,7 +39,7 @@ app.use(session({
   maxAge: 1000 * 60 * 24 * 365,
 }));
 app.use((req, res, next) => {
-  // priority: query - setting - cookie - default
+  // Priority: query - setting - cookie - default
   const locale = req.query.lang || req.cookies._handle_locale || req.locale || i18n.defaultLocale;
 
   req.getLocale = () => locale;
@@ -47,11 +47,11 @@ app.use((req, res, next) => {
   next();
 });
 
-// passport
+// Passport
 app.use(passport.initialize());
 app.use(passport.session());
 
-// router
+// Router
 app.use(apiRouter);
 app.use(authRouter);
 app.use(uiRouter);
