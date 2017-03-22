@@ -60,6 +60,7 @@ export function destroyTaskHandler(req, res) {
     Task.findAll({
       where: {
         userId: req.user.id,
+        labelId: task.labelId,
         priority: {
           $gt: task.priority,
         },
